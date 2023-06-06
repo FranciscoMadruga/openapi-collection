@@ -1,0 +1,2651 @@
+openapi: 3.0.0
+info:
+  title: Shopify
+  description: >-
+    More than 1,000,000 merchants use Shopify to run their businesses. They come
+    in all sizes, from all around the world, and each one is different. Shopify
+    solves many of their hardest commerce problems out of the boxu2014but every
+    business has unique needs.
+
+
+    Contact Support:
+     Name: No Contact
+     Email: email@example.com
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+tags:
+  - name: admin
+  - name: admin > script tags
+  - name: admin > comments
+  - name: admin > comments > 2941387470
+  - name: admin > smart collections
+  - name: admin > products
+  - name: admin > products > 7990943555
+  - name: admin > products > 7990943555 > metafields
+  - name: admin > products > 7990943555 > variants
+  - name: admin > products > 7990943555 > images
+  - name: admin > orders
+  - name: admin > orders > 4554953422
+  - name: admin > orders > 4554953422 > refunds
+  - name: admin > orders > 4554953422 > transactions
+  - name: admin > orders > 4602125518
+  - name: admin > orders > 4495703502
+  - name: admin > orders > 4495703502 > fulfillments/3763917198
+  - name: admin > orders > 4528049998/fulfillments
+  - name: admin > orders > 4528049998/fulfillments > 3770145678
+  - name: admin > collects.json
+  - name: admin > blogs
+  - name: admin > blogs > 62581763
+  - name: admin > blogs > 62581763 > articles
+  - name: admin > gift cards
+  - name: admin > webhooks
+  - name: admin > metafields
+  - name: admin > pages
+  - name: admin > customers
+  - name: admin > customers > 3989659651
+  - name: admin > customers > 3989659651 > addresses
+  - name: admin > custom collections
+  - name: admin > comments.json
+  - name: admin > articles
+  - name: admin > variants
+  - name: admin > customer saved searches
+  - name: admin > events
+  - name: admin > countries
+  - name: admin > countries > 261414723
+  - name: admin > countries > 261414723 > provinces
+  - name: admin > collects
+  - name: admin > discounts
+  - name: admin > discounts > 2951196163
+  - name: admin > themes
+  - name: admin > redirects
+  - name: admin > application charges
+paths:
+  /admin/script_tags/373484.json:
+    get:
+      tags:
+        - admin > script tags
+      summary: Get a single  script tag
+      description: Get a single  script tag.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/script_tags/108074126.json:
+    put:
+      tags:
+        - admin > script tags
+      summary: update a script tag
+      description: Update a script tag.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/script_tags/count.json:
+    get:
+      tags:
+        - admin > script tags
+      summary: Get a count of all script tags
+      description: Get a count of all script tags.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/2941387470/spam.json:
+    post:
+      tags:
+        - admin > comments > 2941387470
+      summary: Mark a comment as Spam
+      description: Mark a comment as spam.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/2941387470/remove.json:
+    post:
+      tags:
+        - admin > comments > 2941387470
+      summary: Remove a comment
+      description: Remove a comment.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/2941387470/approve.json:
+    post:
+      tags:
+        - admin > comments > 2941387470
+      summary: Approve a comment
+      description: Approve a comment.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/2941387470/not_spam.json:
+    post:
+      tags:
+        - admin > comments > 2941387470
+      summary: Mark a comment as not spam
+      description: Mark a comment as not spam.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/2941387470/restore.json:
+    post:
+      tags:
+        - admin > comments > 2941387470
+      summary: restore a comment
+      description: Restore a comment.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/2941387470.json:
+    put:
+      tags:
+        - admin > comments
+      summary: Update a comment
+      description: Update a comment.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/:
+    get:
+      tags:
+        - admin > comments
+      summary: Get a single comment
+      description: Get a single comment.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments/count.json:
+    get:
+      tags:
+        - admin > comments
+      summary: Get a count of all comments
+      description: Get a count of all comments.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/smart_collections/401912846.json:
+    get:
+      tags:
+        - admin > smart collections
+      summary: Get a single collection
+      description: Get a single collection.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/smart_collections/count.json:
+    get:
+      tags:
+        - admin > smart collections
+      summary: Get a count of all collections
+      description: Get a count of all collections.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/smart_collections/408154574.json:
+    delete:
+      tags:
+        - admin > smart collections
+      summary: Delete a single collection
+      description: Delete a single collection.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/metafields/count.json:
+    get:
+      tags:
+        - admin > products > 7990943555 > metafields
+      summary: Get a count of all metafields that belong to a product
+      description: Get a count of all metafields that belong to a product.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/metafields/33058305934.json:
+    get:
+      tags:
+        - admin > products > 7990943555 > metafields
+      summary: >-
+        Get a single product metafield using the metafield's nested resource
+        path
+      description: >-
+        Get a single product metafield using the metafield's nested resource
+        path.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/variants/count.json:
+    get:
+      tags:
+        - admin > products > 7990943555 > variants
+      summary: Get a count of variants for a product
+      description: Get a count of variants for a product.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/variants/34705478094.json:
+    delete:
+      tags:
+        - admin > products > 7990943555 > variants
+      summary: Delete a product variant
+      description: Delete a product variant.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/images/19489404942.json:
+    get:
+      tags:
+        - admin > products > 7990943555 > images
+      summary: Get a single product image by id
+      description: Get a single product image by id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/images/count.json:
+    get:
+      tags:
+        - admin > products > 7990943555 > images
+      summary: Get a count of all product images
+      description: Get a count of all product images.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/images.json:
+    get:
+      tags:
+        - admin > products > 7990943555
+      summary: Get all product images
+      description: Get all product images.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/variants.json:
+    get:
+      tags:
+        - admin > products > 7990943555
+      summary: Get all variants for a product
+      description: Get all variants for a product.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/metafields.json:
+    get:
+      tags:
+        - admin > products > 7990943555
+      summary: Get all metafields that belong to a product
+      description: Get all metafields that belong to a product.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555/events.json:
+    get:
+      tags:
+        - admin > products > 7990943555
+      summary: Get all the events from a particular product
+      description: Get all the events from a particular product.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/9579007950.json:
+    put:
+      tags:
+        - admin > products
+      summary: Update a product and one of its variants
+      description: Update a product and one of its variants.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/count.json:
+    get:
+      tags:
+        - admin > products
+      summary: Count all products
+      description: Count all products.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/7990943555.json:
+    get:
+      tags:
+        - admin > products
+      summary: Get a single product
+      description: Get a single product.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/refunds/calculate.json:
+    post:
+      tags:
+        - admin > orders > 4554953422 > refunds
+      summary: Calculate a refund for a line item and shipping
+      description: Calculate a refund for a line item and shipping.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/refunds/646546.json:
+    get:
+      tags:
+        - admin > orders > 4554953422 > refunds
+      summary: Get a representation of a single refund
+      description: Get a representation of a single refund.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/transactions/count.json:
+    get:
+      tags:
+        - admin > orders > 4554953422 > transactions
+      summary: Get a count of transactions for an order
+      description: Get a count of transactions for an order.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/transactions/5016037966.json:
+    get:
+      tags:
+        - admin > orders > 4554953422 > transactions
+      summary: Get a specific transaction
+      description: Get a specific transaction.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/cancel.json:
+    post:
+      tags:
+        - admin > orders > 4554953422
+      summary: Canceling an Order
+      description: Canceling an order.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/close.json:
+    post:
+      tags:
+        - admin > orders > 4554953422
+      summary: Close a processed order
+      description: Close a processed order.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/events.json:
+    get:
+      tags:
+        - admin > orders > 4554953422
+      summary: Get all the events from a particular order
+      description: Get all the events from a particular order.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/refunds.json:
+    get:
+      tags:
+        - admin > orders > 4554953422
+      summary: Get all refunds from a specific order
+      description: Get all refunds from a specific order.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/open.json:
+    post:
+      tags:
+        - admin > orders > 4554953422
+      summary: Re-opening a closed Order
+      description: Re-opening a closed order.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422/transactions.json:
+    get:
+      tags:
+        - admin > orders > 4554953422
+      summary: Get all transactions for an order
+      description: Get all transactions for an order.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4602125518/risks.json:
+    get:
+      tags:
+        - admin > orders > 4602125518
+      summary: Get all Order Risks for an Order
+      description: Get all order risks for an order.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4602125518/risks/8609858574.json:
+    get:
+      tags:
+        - admin > orders > 4602125518
+      summary: Get a single Order Risk
+      description: Get a single order risk.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4495703502/fulfillments/3763917198/events/9519874062.json:
+    delete:
+      tags:
+        - admin > orders > 4495703502 > fulfillments/3763917198
+      summary: Delete a fulfillment event.
+      description: Delete a fulfillment event..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4495703502/fulfillments/3763917198/events.json:
+    post:
+      tags:
+        - admin > orders > 4495703502 > fulfillments/3763917198
+      summary: Create a fulfillment event.
+      description: Create a fulfillment event..
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4495703502/fulfillments.json:
+    get:
+      tags:
+        - admin > orders > 4495703502
+      summary: Get a list of all fulfillments for an order.
+      description: Get a list of all fulfillments for an order..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4528049998/fulfillments/3770145678/cancel.json:
+    post:
+      tags:
+        - admin > orders > 4528049998/fulfillments > 3770145678
+      summary: Cancel a fulfillment.
+      description: Cancel a fulfillment..
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4528049998/fulfillments/3770145678/complete.json:
+    post:
+      tags:
+        - admin > orders > 4528049998/fulfillments > 3770145678
+      summary: Complete a fulfillment.
+      description: Complete a fulfillment..
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4528049998/fulfillments/3770145678/events/:
+    get:
+      tags:
+        - admin > orders > 4528049998/fulfillments > 3770145678
+      summary: Fetch a fulfillment event.
+      description: Fetch a fulfillment event..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4528049998/fulfillments/3770145678/open.json:
+    post:
+      tags:
+        - admin > orders > 4528049998/fulfillments > 3770145678
+      summary: Transition a fulfillment from pending to open.
+      description: Transition a fulfillment from pending to open..
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4528049998/fulfillments/3770145678/events.json:
+    get:
+      tags:
+        - admin > orders > 4528049998/fulfillments > 3770145678
+      summary: Get a list of all fulfillment events for a fulfillment
+      description: Get a list of all fulfillment events for a fulfillment.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4528049998/fulfillments/3770145678.json:
+    get:
+      tags:
+        - admin > orders > 4528049998/fulfillments
+      summary: Get the Representation of a specific fulfillment.
+      description: Get the representation of a specific fulfillment..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4528049998/fulfillments/count.json:
+    get:
+      tags:
+        - admin > orders > 4528049998/fulfillments
+      summary: Count all the total number of fulfillments for an order.
+      description: Count all the total number of fulfillments for an order..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/4554953422.json:
+    get:
+      tags:
+        - admin > orders
+      summary: Get a representation of a single order
+      description: Get a representation of a single order.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/count.json:
+    get:
+      tags:
+        - admin > orders
+      summary: Count all orders
+      description: Count all orders.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/collects.json:
+    get:
+      tags:
+        - admin > collects.json
+      summary: List all collects
+      description: List all collects.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - admin > collects.json
+      summary: Add a product to a collection
+      description: Add a product to a collection.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs/62581763/articles/196805774.json:
+    get:
+      tags:
+        - admin > blogs > 62581763 > articles
+      summary: Get a single article by its ID and the ID of the parent blog
+      description: Get a single article by its id and the id of the parent blog.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs/62581763/articles/count.json:
+    get:
+      tags:
+        - admin > blogs > 62581763 > articles
+      summary: Get a count of all articles from a certain blog
+      description: Get a count of all articles from a certain blog.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs/62581763/articles/197247246.json:
+    delete:
+      tags:
+        - admin > blogs > 62581763 > articles
+      summary: Delete an article of a blog tags of articles
+      description: Delete an article of a blog tags of articles.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs/62581763/articles.json:
+    get:
+      tags:
+        - admin > blogs > 62581763
+      summary: Get a list of all articles from a certain blog
+      description: Get a list of all articles from a certain blog.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs/92408974.json:
+    put:
+      tags:
+        - admin > blogs
+      summary: Update a blog
+      description: Update a blog.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs/62581763.json:
+    get:
+      tags:
+        - admin > blogs
+      summary: Get a single blog by its ID
+      description: Get a single blog by its id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs/count.json:
+    get:
+      tags:
+        - admin > blogs
+      summary: Get a count of all blogs
+      description: Get a count of all blogs.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/gift_cards/61810574/disable.json:
+    post:
+      tags:
+        - admin > gift cards
+      summary: Disable a gift card
+      description: Disable a gift card.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/gift_cards/61466894.json:
+    get:
+      tags:
+        - admin > gift cards
+      summary: Show a specific gift card's details
+      description: Show a specific gift card's details.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/gift_cards/count.json:
+    get:
+      tags:
+        - admin > gift cards
+      summary: Retrieve a count of all gift cards
+      description: Retrieve a count of all gift cards.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/gift_cards/61810574.json:
+    put:
+      tags:
+        - admin > gift cards
+      summary: Update the expiry date of a gift card
+      description: Update the expiry date of a gift card.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/gift_cards/search.json:
+    get:
+      tags:
+        - admin > gift cards
+      summary: Get all gift cards that matches the query
+      description: Get all gift cards that matches the query.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+        - name: query
+          in: query
+          schema:
+            type: string
+          example: <post>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/webhooks/503738446.json:
+    put:
+      tags:
+        - admin > webhooks
+      summary: Update a Webhook
+      description: Update a webhook.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/webhooks/count.json:
+    get:
+      tags:
+        - admin > webhooks
+      summary: Get a count of all webhooks for your shop.
+      description: Get a count of all webhooks for your shop..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/webhooks/93838927.json:
+    get:
+      tags:
+        - admin > webhooks
+      summary: Get a single webhook by its id.
+      description: Get a single webhook by its id..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/metafields/33145232974.json:
+    get:
+      tags:
+        - admin > metafields
+      summary: Get a single store metafield by ID
+      description: Get a single store metafield by id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/metafields/count.json:
+    get:
+      tags:
+        - admin > metafields
+      summary: Get a count of all metafields for a store
+      description: Get a count of all metafields for a store.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pages/count.json:
+    get:
+      tags:
+        - admin > pages
+      summary: Count all pages for a shop
+      description: Count all pages for a shop.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pages/216307854.json:
+    put:
+      tags:
+        - admin > pages
+      summary: update a page
+      description: Update a page.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pages/169722563.json:
+    get:
+      tags:
+        - admin > pages
+      summary: Get a single page by its ID
+      description: Get a single page by its id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/3989659651/addresses/5484465742.json:
+    put:
+      tags:
+        - admin > customers > 3989659651 > addresses
+      summary: Updating a customers postal code
+      description: Updating a customers postal code.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/3989659651/addresses/5436816654/default.json:
+    put:
+      tags:
+        - admin > customers > 3989659651 > addresses
+      summary: assigning a new default address to a customer
+      description: Assigning a new default address to a customer.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/3989659651/addresses/set.json:
+    put:
+      tags:
+        - admin > customers > 3989659651 > addresses
+      summary: destroying multiple customer addresses
+      description: Destroying multiple customer addresses.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+        - name: address_ids[]
+          in: query
+          schema:
+            type: string
+          example: <>
+        - name: operation
+          in: query
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/3989659651/addresses/5436816654.json:
+    get:
+      tags:
+        - admin > customers > 3989659651 > addresses
+      summary: Get a single customers address
+      description: Get a single customers address.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/3989659651/addresses.json:
+    get:
+      tags:
+        - admin > customers > 3989659651
+      summary: Get all of a customer's addresses
+      description: Get all of a customer's addresses.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/search.json:
+    get:
+      tags:
+        - admin > customers
+      summary: Get all customers with an address in the Brazil
+      description: Get all customers with an address in the brazil.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+        - name: query
+          in: query
+          schema:
+            type: string
+          example: <post>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/5438892686.json:
+    put:
+      tags:
+        - admin > customers
+      summary: Add metafield to an existing customer
+      description: Add metafield to an existing customer.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/3989659651.json:
+    get:
+      tags:
+        - admin > customers
+      summary: Get a single customer by ID
+      description: Get a single customer by id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/count.json:
+    get:
+      tags:
+        - admin > customers
+      summary: Get a count of all customers
+      description: Get a count of all customers.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/custom_collections/246409795.json:
+    get:
+      tags:
+        - admin > custom collections
+      summary: Get a single custom collections
+      description: Get a single custom collections.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/custom_collections/count.json:
+    get:
+      tags:
+        - admin > custom collections
+      summary: Get a count of all custom collections
+      description: Get a count of all custom collections.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/comments.json:
+    post:
+      tags:
+        - admin > comments.json
+      summary: Create a new comment for an article
+      description: Create a new comment for an article.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > comments.json
+      summary: Get a list of all comments
+      description: Get a list of all comments.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/articles/tags.json:
+    get:
+      tags:
+        - admin > articles
+      summary: Get a list of all the tags of articles
+      description: Get a list of all the tags of articles.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/articles/authors.json:
+    get:
+      tags:
+        - admin > articles
+      summary: Get a list of all the authors of articles
+      description: Get a list of all the authors of articles.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/variants/34705478094.json:
+    put:
+      tags:
+        - admin > variants
+      summary: Update an existing product variant
+      description: Update an existing product variant.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin//variants/25831837123.json:
+    get:
+      tags:
+        - admin > variants
+      summary: Get a product variant by id
+      description: Get a product variant by id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer_saved_searches/1189248515/customers.json:
+    get:
+      tags:
+        - admin > customer saved searches
+      summary: Get all customers who match the criteria
+      description: Get all customers who match the criteria.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer_saved_searches/count.json:
+    get:
+      tags:
+        - admin > customer saved searches
+      summary: Get a count of all customer saved searches
+      description: Get a count of all customer saved searches.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer_saved_searches/2029905294.json:
+    put:
+      tags:
+        - admin > customer saved searches
+      summary: Update an existing Customer Saved Search
+      description: Update an existing customer saved search.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer_saved_searches/1189248515.json:
+    get:
+      tags:
+        - admin > customer saved searches
+      summary: Get one customer saved search by ID
+      description: Get one customer saved search by id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/events/58706658318.json:
+    get:
+      tags:
+        - admin > events
+      summary: Shows the same fields as the list action.
+      description: Shows the same fields as the list action..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/events/count.json:
+    get:
+      tags:
+        - admin > events
+      summary: Count all the events
+      description: Count all the events.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/countries/261414723/provinces/count.json:
+    get:
+      tags:
+        - admin > countries > 261414723 > provinces
+      summary: Get a count of all provinces
+      description: Get a count of all provinces.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/countries/261414723/provinces/4003640003.json:
+    get:
+      tags:
+        - admin > countries > 261414723 > provinces
+      summary: get a single province
+      description: Get a single province.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/countries/261414723/provinces.json:
+    get:
+      tags:
+        - admin > countries > 261414723
+      summary: Get all provinces
+      description: Get all provinces.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/countries/444574734.json:
+    put:
+      tags:
+        - admin > countries
+      summary: update a country
+      description: Update a country.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/countries/261414723.json:
+    get:
+      tags:
+        - admin > countries
+      summary: Show Country
+      description: Show country.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/countries/count.json:
+    get:
+      tags:
+        - admin > countries
+      summary: Get a count of all countries
+      description: Get a count of all countries.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/collects/20713233987.json:
+    get:
+      tags:
+        - admin > collects
+      summary: Return a collect with a certain id
+      description: Return a collect with a certain id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/collects/921728736.json:
+    delete:
+      tags:
+        - admin > collects
+      summary: Remove a product from a collection
+      description: Remove a product from a collection.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/collects/count.json:
+    get:
+      tags:
+        - admin > collects
+      summary: Get a count of all collects
+      description: Get a count of all collects.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/discounts/2951196163/disable.json:
+    post:
+      tags:
+        - admin > discounts > 2951196163
+      summary: Disable a discount
+      description: Disable a discount.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/discounts/2951196163/enable.json:
+    post:
+      tags:
+        - admin > discounts > 2951196163
+      summary: Enable a discount
+      description: Enable a discount.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/discounts/2951196163.json:
+    get:
+      tags:
+        - admin > discounts
+      summary: Retrieve a discount
+      description: Retrieve a discount.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/themes/110163843/assets.json:
+    get:
+      tags:
+        - admin > themes
+      summary: Get a list of all theme assets
+      description: Get a list of all theme assets.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/themes/110163843.json:
+    get:
+      tags:
+        - admin > themes
+      summary: Get a single theme
+      description: Get a single theme.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/themes/164593742.json:
+    put:
+      tags:
+        - admin > themes
+      summary: Update a theme's attributes
+      description: Update a theme's attributes.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/redirects/count.json:
+    get:
+      tags:
+        - admin > redirects
+      summary: Get a countt of all URL redirect
+      description: Get a countt of all url redirect.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/redirects/293743566.json:
+    put:
+      tags:
+        - admin > redirects
+      summary: Update a redirect
+      description: Update a redirect.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/redirects/count/7376372.json:
+    get:
+      tags:
+        - admin > redirects
+      summary: Get a single URL redirect
+      description: Get a single url redirect.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/application_charges/675931192/activate.json:
+    post:
+      tags:
+        - admin > application charges
+      summary: Activate a one-time charge
+      description: Activate a one-time charge.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/application_charges/1.json:
+    get:
+      tags:
+        - admin > application charges
+      summary: Retrieve one-time application charge
+      description: Retrieve one-time application charge.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/custom_collections.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all custom collections
+      description: Get a list of all custom collections.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/metafields.json:
+    get:
+      tags:
+        - admin
+      summary: Get all metafields that belong to a store
+      description: Get all metafields that belong to a store.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/blogs.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all blogs
+      description: Get a list of all blogs.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/policies.json:
+    get:
+      tags:
+        - admin
+      summary: getting the shops policies
+      description: Getting the shops policies.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/countries.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all countries
+      description: Get a list of all countries.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/fulfillment_services.json:
+    get:
+      tags:
+        - admin
+      summary: List your app's fulfillment services
+      description: List your app's fulfillment services.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/application_charges.json:
+    get:
+      tags:
+        - admin
+      summary: Retrieving all one-time charges since a specified ID
+      description: Retrieving all one-time charges since a specified id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+        - name: since_id
+          in: query
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/gift_cards.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all gift cards
+      description: Get a list of all gift cards.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/smart_collections.json:
+    get:
+      tags:
+        - admin
+      summary: Get all collection
+      description: Get all collection.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/locations/8790723.json:
+    get:
+      tags:
+        - admin
+      summary: Get a single location
+      description: Get a single location.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/webhooks.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all webhooks for your shop.
+      description: Get a list of all webhooks for your shop..
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders.json:
+    get:
+      tags:
+        - admin
+      summary: Get all orders from a customer
+      description: Get all orders from a customer.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+        - name: customer_id
+          in: query
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/carrier_services.json:
+    get:
+      tags:
+        - admin
+      summary: List carrier services
+      description: List carrier services.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/fulfillment_services/1357646.json:
+    get:
+      tags:
+        - admin
+      summary: Get a single fulfillment service by its ID
+      description: Get a single fulfillment service by its id.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pages.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all pages
+      description: Get a list of all pages.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/discounts.json:
+    get:
+      tags:
+        - admin
+      summary: List all discounts
+      description: List all discounts.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/locations.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all locations for a shop
+      description: Get a list of all locations for a shop.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/carrier_services/13841038.json:
+    get:
+      tags:
+        - admin
+      summary: Update a carrier service
+      description: Update a carrier service.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/checkouts.json:
+    get:
+      tags:
+        - admin
+      summary: List all abandoned checkouts
+      description: List all abandoned checkouts.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer_saved_searches.json:
+    get:
+      tags:
+        - admin
+      summary: Get all customer saved searches for a shop
+      description: Get all customer saved searches for a shop.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/redirects.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all URL redirect
+      description: Get a list of all url redirect.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/script_tags.json:
+    get:
+      tags:
+        - admin
+      summary: Get a list of all script tags
+      description: Get a list of all script tags.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/shop.json:
+    get:
+      tags:
+        - admin
+      summary: Get the configuration of the shop account
+      description: Get the configuration of the shop account.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products.json:
+    get:
+      tags:
+        - admin
+      summary: Get all products
+      description: Get all products.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/recurring_application_charges.json:
+    post:
+      tags:
+        - admin
+      summary: Create a new charge
+      description: Create a new charge.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers.json:
+    get:
+      tags:
+        - admin
+      summary: Retrieve all customers
+      description: Retrieve all customers.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/themes.json:
+    get:
+      tags:
+        - admin
+      summary: Get all shop themes
+      description: Get all shop themes.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/shipping_zones.json:
+    get:
+      tags:
+        - admin
+      summary: Show list of shipping zones
+      description: Show list of shipping zones.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/checkouts/count.json:
+    get:
+      tags:
+        - admin
+      summary: Get a count of checkouts
+      description: Get a count of checkouts.
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /account/login:
+    post:
+      tags:
+        - General
+      summary: Hack Authentication
+      description: Hack authentication.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content
+          in: header
+          schema:
+            type: string
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

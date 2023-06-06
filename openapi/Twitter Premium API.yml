@@ -1,0 +1,352 @@
+openapi: 3.0.0
+info:
+  title: Twitter Premium API
+  description: This is a Postman Collection for the Twitter Premium APIs.
+  version: 1.0.0
+servers:
+  - url: https://api.twitter.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauth1Auth:
+      type: http
+      scheme: oauth1
+tags:
+  - name: Search:30day
+    description: Search Tweets created in the last 30 days with a query rule.
+  - name: Search:FullArchive
+  - name: AccountActivity
+paths:
+  /1.1/tweets/search/30day/{environment}.json:
+    post:
+      tags:
+        - Search:30day
+      summary: Search:30day (paid tiers)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n\t\"maxResults\": 500,\n\t\"query\": \"#fridayfeeling
+                has:images -is:retweet\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/tweets/search/30day/{environment}/counts.json:
+    post:
+      tags:
+        - Search:30day
+      summary: Search:30day counts (paid tiers)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n\t\"query\": \"#fridayfeeling has:images -is:retweet\",\n   
+                \"bucket\": \"day\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/tweets/search/fullarchive/{environment}.json:
+    post:
+      tags:
+        - Search:FullArchive
+      summary: Search:FullArchive (paid tiers)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n\t\"maxResults\": 500,\n\t\"query\": \"#fridayfeeling
+                has:images -is:retweet\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/tweets/search/fullarchive/{environment}/counts.json:
+    post:
+      tags:
+        - Search:FullArchive
+      summary: Search:FullArchive counts (paid tiers)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n\t\"query\": \"#fridayfeeling has:images -is:retweet\",\n   
+                \"bucket\": \"day\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/account_activity/all/webhooks.json:
+    get:
+      tags:
+        - AccountActivity
+      summary: List Webhook URLs
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/account_activity/all/{environment}/webhooks.json:
+    post:
+      tags:
+        - AccountActivity
+      summary: Create Webhook URL
+      requestBody:
+        content: {}
+      security:
+        - oauth1Auth: []
+      parameters:
+        - name: url
+          in: query
+          schema:
+            type: string
+          description: 'Example: https://your_domain.com/webhook/twitter'
+          example: http://127.0.0.1:4040
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/account_activity/all/{environment}/webhooks/{webhook_id}:
+    put:
+      tags:
+        - AccountActivity
+      summary: Check or reset webhook URL
+      requestBody:
+        content: {}
+      security:
+        - oauth1Auth: []
+      parameters:
+        - name: oauth_consumer_key
+          in: query
+          schema:
+            type: string
+          example: your premium App consumer key
+        - name: oauth_nonce
+          in: query
+          schema:
+            type: string
+          example: UqnkudcQe1t
+        - name: oauth_signature
+          in: query
+          schema:
+            type: string
+          example: DOlAihn1wQiWZVrvuGxK0+Dc+Yg=
+        - name: oauth_signature_method
+          in: query
+          schema:
+            type: string
+          example: HMAC-SHA1
+        - name: oauth_timestamp
+          in: query
+          schema:
+            type: integer
+          example: '1625004314'
+        - name: oauth_token
+          in: query
+          schema:
+            type: string
+          example: your user access token
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: webhook_id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Webhook identifier of the webhook you would like to run a CRC for.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - AccountActivity
+      summary: Delete webhook URL
+      security:
+        - oauth1Auth: []
+      parameters:
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: webhook_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/account_activity/all/{environment}/subscriptions/list.json:
+    get:
+      tags:
+        - AccountActivity
+      summary: List active subscriptions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/account_activity/all/subscriptions/count.json:
+    get:
+      tags:
+        - AccountActivity
+      summary: Count active subscriptions
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/account_activity/all/{environment}/subscriptions.json:
+    post:
+      tags:
+        - AccountActivity
+      summary: Create subscription
+      requestBody:
+        content: {}
+      security:
+        - oauth1Auth: []
+      parameters:
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - AccountActivity
+      summary: Check subscription
+      security:
+        - oauth1Auth: []
+      parameters:
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /1.1/account_activity/all/{environment}/subscriptions/{user_id}:
+    delete:
+      tags:
+        - AccountActivity
+      summary: Delete subscription
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: environment
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: User ID of the subscription you would like removed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

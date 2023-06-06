@@ -1,0 +1,4006 @@
+{
+	"info": {
+		"_postman_id": "a96221e2-b43c-4973-9be0-3ec0566f4cd9",
+		"name": "Shopify",
+		"description": "More than 1,000,000 merchants use Shopify to run their businesses. They come in all sizes, from all around the world, and each one is different. Shopify solves many of their hardest commerce problems out of the boxu2014but every business has unique needs.\n\nContact Support:\n Name: No Contact\n Email: email@example.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27825666",
+		"_collection_link": "https://www.postman.com/api-evangelist/workspace/shopify/collection/35240-a96221e2-b43c-4973-9be0-3ec0566f4cd9?action=share&creator=27825666&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "script tags",
+					"item": [
+						{
+							"name": "Get a single  script tag",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/script_tags/373484.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"script_tags",
+										"373484.json"
+									]
+								},
+								"description": "Get a single  script tag."
+							},
+							"response": []
+						},
+						{
+							"name": "update a script tag",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/script_tags/108074126.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"script_tags",
+										"108074126.json"
+									]
+								},
+								"description": "Update a script tag."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all script tags",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/script_tags/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"script_tags",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all script tags."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "comments",
+					"item": [
+						{
+							"name": "2941387470",
+							"item": [
+								{
+									"name": "Mark a comment as Spam",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/comments/2941387470/spam.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"comments",
+												"2941387470",
+												"spam.json"
+											]
+										},
+										"description": "Mark a comment as spam."
+									},
+									"response": []
+								},
+								{
+									"name": "Remove a comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/comments/2941387470/remove.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"comments",
+												"2941387470",
+												"remove.json"
+											]
+										},
+										"description": "Remove a comment."
+									},
+									"response": []
+								},
+								{
+									"name": "Approve a comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/comments/2941387470/approve.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"comments",
+												"2941387470",
+												"approve.json"
+											]
+										},
+										"description": "Approve a comment."
+									},
+									"response": []
+								},
+								{
+									"name": "Mark a comment as not spam",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/comments/2941387470/not_spam.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"comments",
+												"2941387470",
+												"not_spam.json"
+											]
+										},
+										"description": "Mark a comment as not spam."
+									},
+									"response": []
+								},
+								{
+									"name": "restore a comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/comments/2941387470/restore.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"comments",
+												"2941387470",
+												"restore.json"
+											]
+										},
+										"description": "Restore a comment."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update a comment",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/comments/2941387470.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"comments",
+										"2941387470.json"
+									]
+								},
+								"description": "Update a comment."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single comment",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/comments/#{{id}}.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"comments",
+										""
+									],
+									"hash": "{{id}}.json"
+								},
+								"description": "Get a single comment."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all comments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/comments/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"comments",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all comments."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "smart collections",
+					"item": [
+						{
+							"name": "Get a single collection",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/smart_collections/401912846.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"smart_collections",
+										"401912846.json"
+									]
+								},
+								"description": "Get a single collection."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all collections",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/smart_collections/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"smart_collections",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all collections."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a single collection",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/smart_collections/408154574.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"smart_collections",
+										"408154574.json"
+									]
+								},
+								"description": "Delete a single collection."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "7990943555",
+							"item": [
+								{
+									"name": "metafields",
+									"item": [
+										{
+											"name": "Get a count of all metafields that belong to a product",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/products/7990943555/metafields/count.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"products",
+														"7990943555",
+														"metafields",
+														"count.json"
+													]
+												},
+												"description": "Get a count of all metafields that belong to a product."
+											},
+											"response": []
+										},
+										{
+											"name": "Get a single product metafield using the metafield's nested resource path",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/products/7990943555/metafields/33058305934.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"products",
+														"7990943555",
+														"metafields",
+														"33058305934.json"
+													]
+												},
+												"description": "Get a single product metafield using the metafield's nested resource path."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "variants",
+									"item": [
+										{
+											"name": "Get a count of variants for a product",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/products/7990943555/variants/count.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"products",
+														"7990943555",
+														"variants",
+														"count.json"
+													]
+												},
+												"description": "Get a count of variants for a product."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete a product variant",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/products/7990943555/variants/34705478094.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"products",
+														"7990943555",
+														"variants",
+														"34705478094.json"
+													]
+												},
+												"description": "Delete a product variant."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "images",
+									"item": [
+										{
+											"name": "Get a single product image by id",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/products/7990943555/images/19489404942.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"products",
+														"7990943555",
+														"images",
+														"19489404942.json"
+													]
+												},
+												"description": "Get a single product image by id."
+											},
+											"response": []
+										},
+										{
+											"name": "Get a count of all product images",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/products/7990943555/images/count.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"products",
+														"7990943555",
+														"images",
+														"count.json"
+													]
+												},
+												"description": "Get a count of all product images."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Get all product images",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/products/7990943555/images.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"products",
+												"7990943555",
+												"images.json"
+											]
+										},
+										"description": "Get all product images."
+									},
+									"response": []
+								},
+								{
+									"name": "Get all variants for a product",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/products/7990943555/variants.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"products",
+												"7990943555",
+												"variants.json"
+											]
+										},
+										"description": "Get all variants for a product."
+									},
+									"response": []
+								},
+								{
+									"name": "Get all metafields that belong to a product",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/products/7990943555/metafields.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"products",
+												"7990943555",
+												"metafields.json"
+											]
+										},
+										"description": "Get all metafields that belong to a product."
+									},
+									"response": []
+								},
+								{
+									"name": "Get all the events from a particular product",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/products/7990943555/events.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"products",
+												"7990943555",
+												"events.json"
+											]
+										},
+										"description": "Get all the events from a particular product."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update a product and one of its variants",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/products/9579007950.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"9579007950.json"
+									]
+								},
+								"description": "Update a product and one of its variants."
+							},
+							"response": []
+						},
+						{
+							"name": "Count all products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/products/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"count.json"
+									]
+								},
+								"description": "Count all products."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single product",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/products/7990943555.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"7990943555.json"
+									]
+								},
+								"description": "Get a single product."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "4554953422",
+							"item": [
+								{
+									"name": "refunds",
+									"item": [
+										{
+											"name": "Calculate a refund for a line item and shipping",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4554953422/refunds/calculate.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4554953422",
+														"refunds",
+														"calculate.json"
+													]
+												},
+												"description": "Calculate a refund for a line item and shipping."
+											},
+											"response": []
+										},
+										{
+											"name": "Get a representation of a single refund",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4554953422/refunds/646546.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4554953422",
+														"refunds",
+														"646546.json"
+													]
+												},
+												"description": "Get a representation of a single refund."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "transactions",
+									"item": [
+										{
+											"name": "Get a count of transactions for an order",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4554953422/transactions/count.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4554953422",
+														"transactions",
+														"count.json"
+													]
+												},
+												"description": "Get a count of transactions for an order."
+											},
+											"response": []
+										},
+										{
+											"name": "Get a specific transaction",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4554953422/transactions/5016037966.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4554953422",
+														"transactions",
+														"5016037966.json"
+													]
+												},
+												"description": "Get a specific transaction."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Canceling an Order",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4554953422/cancel.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4554953422",
+												"cancel.json"
+											]
+										},
+										"description": "Canceling an order."
+									},
+									"response": []
+								},
+								{
+									"name": "Close a processed order",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4554953422/close.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4554953422",
+												"close.json"
+											]
+										},
+										"description": "Close a processed order."
+									},
+									"response": []
+								},
+								{
+									"name": "Get all the events from a particular order",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4554953422/events.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4554953422",
+												"events.json"
+											]
+										},
+										"description": "Get all the events from a particular order."
+									},
+									"response": []
+								},
+								{
+									"name": "Get all refunds from a specific order",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4554953422/refunds.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4554953422",
+												"refunds.json"
+											]
+										},
+										"description": "Get all refunds from a specific order."
+									},
+									"response": []
+								},
+								{
+									"name": "Re-opening a closed Order",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4554953422/open.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4554953422",
+												"open.json"
+											]
+										},
+										"description": "Re-opening a closed order."
+									},
+									"response": []
+								},
+								{
+									"name": "Get all transactions for an order",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4554953422/transactions.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4554953422",
+												"transactions.json"
+											]
+										},
+										"description": "Get all transactions for an order."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "4602125518",
+							"item": [
+								{
+									"name": "Get all Order Risks for an Order",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4602125518/risks.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4602125518",
+												"risks.json"
+											]
+										},
+										"description": "Get all order risks for an order."
+									},
+									"response": []
+								},
+								{
+									"name": "Get a single Order Risk",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4602125518/risks/8609858574.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4602125518",
+												"risks",
+												"8609858574.json"
+											]
+										},
+										"description": "Get a single order risk."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "4495703502",
+							"item": [
+								{
+									"name": "fulfillments/3763917198",
+									"item": [
+										{
+											"name": "Delete a fulfillment event.",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4495703502/fulfillments/3763917198/events/9519874062.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4495703502",
+														"fulfillments",
+														"3763917198",
+														"events",
+														"9519874062.json"
+													]
+												},
+												"description": "Delete a fulfillment event.."
+											},
+											"response": []
+										},
+										{
+											"name": "Create a fulfillment event.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4495703502/fulfillments/3763917198/events.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4495703502",
+														"fulfillments",
+														"3763917198",
+														"events.json"
+													]
+												},
+												"description": "Create a fulfillment event.."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Get a list of all fulfillments for an order.",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4495703502/fulfillments.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4495703502",
+												"fulfillments.json"
+											]
+										},
+										"description": "Get a list of all fulfillments for an order.."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "4528049998/fulfillments",
+							"item": [
+								{
+									"name": "3770145678",
+									"item": [
+										{
+											"name": "Cancel a fulfillment.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4528049998/fulfillments/3770145678/cancel.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4528049998",
+														"fulfillments",
+														"3770145678",
+														"cancel.json"
+													]
+												},
+												"description": "Cancel a fulfillment.."
+											},
+											"response": []
+										},
+										{
+											"name": "Complete a fulfillment.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4528049998/fulfillments/3770145678/complete.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4528049998",
+														"fulfillments",
+														"3770145678",
+														"complete.json"
+													]
+												},
+												"description": "Complete a fulfillment.."
+											},
+											"response": []
+										},
+										{
+											"name": "Fetch a fulfillment event.",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4528049998/fulfillments/3770145678/events/#{{event_id}}.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4528049998",
+														"fulfillments",
+														"3770145678",
+														"events",
+														""
+													],
+													"hash": "{{event_id}}.json"
+												},
+												"description": "Fetch a fulfillment event.."
+											},
+											"response": []
+										},
+										{
+											"name": "Transition a fulfillment from pending to open.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4528049998/fulfillments/3770145678/open.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4528049998",
+														"fulfillments",
+														"3770145678",
+														"open.json"
+													]
+												},
+												"description": "Transition a fulfillment from pending to open.."
+											},
+											"response": []
+										},
+										{
+											"name": "Get a list of all fulfillment events for a fulfillment",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/orders/4528049998/fulfillments/3770145678/events.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"orders",
+														"4528049998",
+														"fulfillments",
+														"3770145678",
+														"events.json"
+													]
+												},
+												"description": "Get a list of all fulfillment events for a fulfillment."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Get the Representation of a specific fulfillment.",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4528049998/fulfillments/3770145678.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4528049998",
+												"fulfillments",
+												"3770145678.json"
+											]
+										},
+										"description": "Get the representation of a specific fulfillment.."
+									},
+									"response": []
+								},
+								{
+									"name": "Count all the total number of fulfillments for an order.",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/orders/4528049998/fulfillments/count.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"4528049998",
+												"fulfillments",
+												"count.json"
+											]
+										},
+										"description": "Count all the total number of fulfillments for an order.."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get a representation of a single order",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/orders/4554953422.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"orders",
+										"4554953422.json"
+									]
+								},
+								"description": "Get a representation of a single order."
+							},
+							"response": []
+						},
+						{
+							"name": "Count all orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/orders/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"orders",
+										"count.json"
+									]
+								},
+								"description": "Count all orders."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "collects.json",
+					"item": [
+						{
+							"name": "List all collects",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/collects.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"collects.json"
+									]
+								},
+								"description": "List all collects."
+							},
+							"response": []
+						},
+						{
+							"name": "Add a product to a collection",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/collects.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"collects.json"
+									]
+								},
+								"description": "Add a product to a collection."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "blogs",
+					"item": [
+						{
+							"name": "62581763",
+							"item": [
+								{
+									"name": "articles",
+									"item": [
+										{
+											"name": "Get a single article by its ID and the ID of the parent blog",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/blogs/62581763/articles/196805774.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"blogs",
+														"62581763",
+														"articles",
+														"196805774.json"
+													]
+												},
+												"description": "Get a single article by its id and the id of the parent blog."
+											},
+											"response": []
+										},
+										{
+											"name": "Get a count of all articles from a certain blog",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/blogs/62581763/articles/count.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"blogs",
+														"62581763",
+														"articles",
+														"count.json"
+													]
+												},
+												"description": "Get a count of all articles from a certain blog."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete an article of a blog tags of articles",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/blogs/62581763/articles/197247246.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"blogs",
+														"62581763",
+														"articles",
+														"197247246.json"
+													]
+												},
+												"description": "Delete an article of a blog tags of articles."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Get a list of all articles from a certain blog",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/blogs/62581763/articles.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"blogs",
+												"62581763",
+												"articles.json"
+											]
+										},
+										"description": "Get a list of all articles from a certain blog."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update a blog",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/blogs/92408974.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"blogs",
+										"92408974.json"
+									]
+								},
+								"description": "Update a blog."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single blog by its ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/blogs/62581763.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"blogs",
+										"62581763.json"
+									]
+								},
+								"description": "Get a single blog by its id."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all blogs",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/blogs/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"blogs",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all blogs."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "gift cards",
+					"item": [
+						{
+							"name": "Disable a gift card",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/gift_cards/61810574/disable.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"gift_cards",
+										"61810574",
+										"disable.json"
+									]
+								},
+								"description": "Disable a gift card."
+							},
+							"response": []
+						},
+						{
+							"name": "Show a specific gift card's details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/gift_cards/61466894.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"gift_cards",
+										"61466894.json"
+									]
+								},
+								"description": "Show a specific gift card's details."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a count of all gift cards",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/gift_cards/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"gift_cards",
+										"count.json"
+									]
+								},
+								"description": "Retrieve a count of all gift cards."
+							},
+							"response": []
+						},
+						{
+							"name": "Update the expiry date of a gift card",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/gift_cards/61810574.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"gift_cards",
+										"61810574.json"
+									]
+								},
+								"description": "Update the expiry date of a gift card."
+							},
+							"response": []
+						},
+						{
+							"name": "Get all gift cards that matches the query",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/gift_cards/search.json?query=<post>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"gift_cards",
+										"search.json"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "<post>"
+										}
+									]
+								},
+								"description": "Get all gift cards that matches the query."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "webhooks",
+					"item": [
+						{
+							"name": "Update a Webhook",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/webhooks/503738446.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"webhooks",
+										"503738446.json"
+									]
+								},
+								"description": "Update a webhook."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all webhooks for your shop.",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/webhooks/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"webhooks",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all webhooks for your shop.."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single webhook by its id.",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/webhooks/93838927.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"webhooks",
+										"93838927.json"
+									]
+								},
+								"description": "Get a single webhook by its id.."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "metafields",
+					"item": [
+						{
+							"name": "Get a single store metafield by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/metafields/33145232974.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"metafields",
+										"33145232974.json"
+									]
+								},
+								"description": "Get a single store metafield by id."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all metafields for a store",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/metafields/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"metafields",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all metafields for a store."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "pages",
+					"item": [
+						{
+							"name": "Count all pages for a shop",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/pages/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"pages",
+										"count.json"
+									]
+								},
+								"description": "Count all pages for a shop."
+							},
+							"response": []
+						},
+						{
+							"name": "update a page",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/pages/216307854.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"pages",
+										"216307854.json"
+									]
+								},
+								"description": "Update a page."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single page by its ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/pages/169722563.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"pages",
+										"169722563.json"
+									]
+								},
+								"description": "Get a single page by its id."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "3989659651",
+							"item": [
+								{
+									"name": "addresses",
+									"item": [
+										{
+											"name": "Updating a customers postal code",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/customers/3989659651/addresses/5484465742.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"customers",
+														"3989659651",
+														"addresses",
+														"5484465742.json"
+													]
+												},
+												"description": "Updating a customers postal code."
+											},
+											"response": []
+										},
+										{
+											"name": "assigning a new default address to a customer",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/customers/3989659651/addresses/5436816654/default.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"customers",
+														"3989659651",
+														"addresses",
+														"5436816654",
+														"default.json"
+													]
+												},
+												"description": "Assigning a new default address to a customer."
+											},
+											"response": []
+										},
+										{
+											"name": "destroying multiple customer addresses",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/customers/3989659651/addresses/set.json?address_ids[]=<>&operation=<>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"customers",
+														"3989659651",
+														"addresses",
+														"set.json"
+													],
+													"query": [
+														{
+															"key": "address_ids[]",
+															"value": "<>"
+														},
+														{
+															"key": "operation",
+															"value": "<>"
+														}
+													]
+												},
+												"description": "Destroying multiple customer addresses."
+											},
+											"response": []
+										},
+										{
+											"name": "Get a single customers address",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/customers/3989659651/addresses/5436816654.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"customers",
+														"3989659651",
+														"addresses",
+														"5436816654.json"
+													]
+												},
+												"description": "Get a single customers address."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Get all of a customer's addresses",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/customers/3989659651/addresses.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"customers",
+												"3989659651",
+												"addresses.json"
+											]
+										},
+										"description": "Get all of a customer's addresses."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get all customers with an address in the Brazil",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customers/search.json?query=<post>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customers",
+										"search.json"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "<post>"
+										}
+									]
+								},
+								"description": "Get all customers with an address in the brazil."
+							},
+							"response": []
+						},
+						{
+							"name": "Add metafield to an existing customer",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customers/5438892686.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customers",
+										"5438892686.json"
+									]
+								},
+								"description": "Add metafield to an existing customer."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single customer by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customers/3989659651.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customers",
+										"3989659651.json"
+									]
+								},
+								"description": "Get a single customer by id."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all customers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customers/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customers",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all customers."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "custom collections",
+					"item": [
+						{
+							"name": "Get a single custom collections",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/custom_collections/246409795.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"custom_collections",
+										"246409795.json"
+									]
+								},
+								"description": "Get a single custom collections."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all custom collections",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/custom_collections/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"custom_collections",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all custom collections."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "comments.json",
+					"item": [
+						{
+							"name": "Create a new comment for an article",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/comments.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"comments.json"
+									]
+								},
+								"description": "Create a new comment for an article."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of all comments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/comments.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"comments.json"
+									]
+								},
+								"description": "Get a list of all comments."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "articles",
+					"item": [
+						{
+							"name": "Get a list of all the tags of articles",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/articles/tags.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"articles",
+										"tags.json"
+									]
+								},
+								"description": "Get a list of all the tags of articles."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of all the authors of articles",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/articles/authors.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"articles",
+										"authors.json"
+									]
+								},
+								"description": "Get a list of all the authors of articles."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "variants",
+					"item": [
+						{
+							"name": "Update an existing product variant",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/variants/34705478094.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"variants",
+										"34705478094.json"
+									]
+								},
+								"description": "Update an existing product variant."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a product variant by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin//variants/25831837123.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"",
+										"variants",
+										"25831837123.json"
+									]
+								},
+								"description": "Get a product variant by id."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customer saved searches",
+					"item": [
+						{
+							"name": "Get all customers who match the criteria",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customer_saved_searches/1189248515/customers.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customer_saved_searches",
+										"1189248515",
+										"customers.json"
+									]
+								},
+								"description": "Get all customers who match the criteria."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all customer saved searches",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customer_saved_searches/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customer_saved_searches",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all customer saved searches."
+							},
+							"response": []
+						},
+						{
+							"name": "Update an existing Customer Saved Search",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customer_saved_searches/2029905294.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customer_saved_searches",
+										"2029905294.json"
+									]
+								},
+								"description": "Update an existing customer saved search."
+							},
+							"response": []
+						},
+						{
+							"name": "Get one customer saved search by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/customer_saved_searches/1189248515.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"customer_saved_searches",
+										"1189248515.json"
+									]
+								},
+								"description": "Get one customer saved search by id."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "events",
+					"item": [
+						{
+							"name": "Shows the same fields as the list action.",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/events/58706658318.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"events",
+										"58706658318.json"
+									]
+								},
+								"description": "Shows the same fields as the list action.."
+							},
+							"response": []
+						},
+						{
+							"name": "Count all the events",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/events/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"events",
+										"count.json"
+									]
+								},
+								"description": "Count all the events."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "countries",
+					"item": [
+						{
+							"name": "261414723",
+							"item": [
+								{
+									"name": "provinces",
+									"item": [
+										{
+											"name": "Get a count of all provinces",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/countries/261414723/provinces/count.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"countries",
+														"261414723",
+														"provinces",
+														"count.json"
+													]
+												},
+												"description": "Get a count of all provinces."
+											},
+											"response": []
+										},
+										{
+											"name": "get a single province",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content",
+														"value": "<>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/countries/261414723/provinces/4003640003.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"countries",
+														"261414723",
+														"provinces",
+														"4003640003.json"
+													]
+												},
+												"description": "Get a single province."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Get all provinces",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/countries/261414723/provinces.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"countries",
+												"261414723",
+												"provinces.json"
+											]
+										},
+										"description": "Get all provinces."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "update a country",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/countries/444574734.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"countries",
+										"444574734.json"
+									]
+								},
+								"description": "Update a country."
+							},
+							"response": []
+						},
+						{
+							"name": "Show Country",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/countries/261414723.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"countries",
+										"261414723.json"
+									]
+								},
+								"description": "Show country."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all countries",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/countries/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"countries",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all countries."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "collects",
+					"item": [
+						{
+							"name": "Return a collect with a certain id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/collects/20713233987.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"collects",
+										"20713233987.json"
+									]
+								},
+								"description": "Return a collect with a certain id."
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a product from a collection",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/collects/921728736.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"collects",
+										"921728736.json"
+									]
+								},
+								"description": "Remove a product from a collection."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a count of all collects",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/collects/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"collects",
+										"count.json"
+									]
+								},
+								"description": "Get a count of all collects."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "discounts",
+					"item": [
+						{
+							"name": "2951196163",
+							"item": [
+								{
+									"name": "Disable a discount",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/discounts/2951196163/disable.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"discounts",
+												"2951196163",
+												"disable.json"
+											]
+										},
+										"description": "Disable a discount."
+									},
+									"response": []
+								},
+								{
+									"name": "Enable a discount",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content",
+												"value": "<>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/discounts/2951196163/enable.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"discounts",
+												"2951196163",
+												"enable.json"
+											]
+										},
+										"description": "Enable a discount."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Retrieve a discount",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/discounts/2951196163.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"discounts",
+										"2951196163.json"
+									]
+								},
+								"description": "Retrieve a discount."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "themes",
+					"item": [
+						{
+							"name": "Get a list of all theme assets",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/themes/110163843/assets.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"themes",
+										"110163843",
+										"assets.json"
+									]
+								},
+								"description": "Get a list of all theme assets."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single theme",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/themes/110163843.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"themes",
+										"110163843.json"
+									]
+								},
+								"description": "Get a single theme."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a theme's attributes",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/themes/164593742.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"themes",
+										"164593742.json"
+									]
+								},
+								"description": "Update a theme's attributes."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "redirects",
+					"item": [
+						{
+							"name": "Get a countt of all URL redirect",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/redirects/count.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"redirects",
+										"count.json"
+									]
+								},
+								"description": "Get a countt of all url redirect."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a redirect",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/redirects/293743566.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"redirects",
+										"293743566.json"
+									]
+								},
+								"description": "Update a redirect."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single URL redirect",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/redirects/count/7376372.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"redirects",
+										"count",
+										"7376372.json"
+									]
+								},
+								"description": "Get a single url redirect."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "application charges",
+					"item": [
+						{
+							"name": "Activate a one-time charge",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/application_charges/675931192/activate.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"application_charges",
+										"675931192",
+										"activate.json"
+									]
+								},
+								"description": "Activate a one-time charge."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve one-time application charge",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content",
+										"value": "<>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/application_charges/1.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"application_charges",
+										"1.json"
+									]
+								},
+								"description": "Retrieve one-time application charge."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get a list of all custom collections",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/custom_collections.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"custom_collections.json"
+							]
+						},
+						"description": "Get a list of all custom collections."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all metafields that belong to a store",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/metafields.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"metafields.json"
+							]
+						},
+						"description": "Get all metafields that belong to a store."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all blogs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/blogs.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"blogs.json"
+							]
+						},
+						"description": "Get a list of all blogs."
+					},
+					"response": []
+				},
+				{
+					"name": "getting the shops policies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/policies.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"policies.json"
+							]
+						},
+						"description": "Getting the shops policies."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all countries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/countries.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"countries.json"
+							]
+						},
+						"description": "Get a list of all countries."
+					},
+					"response": []
+				},
+				{
+					"name": "List your app's fulfillment services",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/fulfillment_services.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"fulfillment_services.json"
+							]
+						},
+						"description": "List your app's fulfillment services."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieving all one-time charges since a specified ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/application_charges.json?since_id=<>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"application_charges.json"
+							],
+							"query": [
+								{
+									"key": "since_id",
+									"value": "<>"
+								}
+							]
+						},
+						"description": "Retrieving all one-time charges since a specified id."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all gift cards",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/gift_cards.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"gift_cards.json"
+							]
+						},
+						"description": "Get a list of all gift cards."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all collection",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/smart_collections.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"smart_collections.json"
+							]
+						},
+						"description": "Get all collection."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single location",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations/8790723.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations",
+								"8790723.json"
+							]
+						},
+						"description": "Get a single location."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all webhooks for your shop.",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/webhooks.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"webhooks.json"
+							]
+						},
+						"description": "Get a list of all webhooks for your shop.."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all orders from a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/orders.json?customer_id=<>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"orders.json"
+							],
+							"query": [
+								{
+									"key": "customer_id",
+									"value": "<>"
+								}
+							]
+						},
+						"description": "Get all orders from a customer."
+					},
+					"response": []
+				},
+				{
+					"name": "List carrier services",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/carrier_services.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"carrier_services.json"
+							]
+						},
+						"description": "List carrier services."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single fulfillment service by its ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/fulfillment_services/1357646.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"fulfillment_services",
+								"1357646.json"
+							]
+						},
+						"description": "Get a single fulfillment service by its id."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all pages",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/pages.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"pages.json"
+							]
+						},
+						"description": "Get a list of all pages."
+					},
+					"response": []
+				},
+				{
+					"name": "List all discounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/discounts.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"discounts.json"
+							]
+						},
+						"description": "List all discounts."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all locations for a shop",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations.json"
+							]
+						},
+						"description": "Get a list of all locations for a shop."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a carrier service",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/carrier_services/13841038.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"carrier_services",
+								"13841038.json"
+							]
+						},
+						"description": "Update a carrier service."
+					},
+					"response": []
+				},
+				{
+					"name": "List all abandoned checkouts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/checkouts.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"checkouts.json"
+							]
+						},
+						"description": "List all abandoned checkouts."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all customer saved searches for a shop",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/customer_saved_searches.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"customer_saved_searches.json"
+							]
+						},
+						"description": "Get all customer saved searches for a shop."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all URL redirect",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/redirects.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"redirects.json"
+							]
+						},
+						"description": "Get a list of all url redirect."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of all script tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/script_tags.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"script_tags.json"
+							]
+						},
+						"description": "Get a list of all script tags."
+					},
+					"response": []
+				},
+				{
+					"name": "Get the configuration of the shop account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/shop.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"shop.json"
+							]
+						},
+						"description": "Get the configuration of the shop account."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/products.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"products.json"
+							]
+						},
+						"description": "Get all products."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new charge",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/recurring_application_charges.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"recurring_application_charges.json"
+							]
+						},
+						"description": "Create a new charge."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/customers.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"customers.json"
+							]
+						},
+						"description": "Retrieve all customers."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all shop themes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/themes.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"themes.json"
+							]
+						},
+						"description": "Get all shop themes."
+					},
+					"response": []
+				},
+				{
+					"name": "Show list of shipping zones",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/shipping_zones.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"shipping_zones.json"
+							]
+						},
+						"description": "Show list of shipping zones."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a count of checkouts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content",
+								"value": "<>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/checkouts/count.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"checkouts",
+								"count.json"
+							]
+						},
+						"description": "Get a count of checkouts."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hack Authentication",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content",
+						"value": "<>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/account/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"account",
+						"login"
+					]
+				},
+				"description": "Hack authentication."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "httpsDefaultParameterValue:DefaultParameterValue@DefaultParameterValue.myshopify.com/",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "<post>",
+			"type": "any"
+		},
+		{
+			"key": "event_id",
+			"value": "<>",
+			"type": "any"
+		}
+	]
+}

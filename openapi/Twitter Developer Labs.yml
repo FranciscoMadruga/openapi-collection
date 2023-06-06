@@ -1,0 +1,2637 @@
+openapi: 3.0.0
+info:
+  title: Twitter Developer Labs
+  description: "Twitter Developer Labs allow developers to test and share feedback on previews of new Twitter API features. The endpoints, documentation, and resources for Labs will be updated as we incorporate feedback from the developer community.\n\n# Postman collection for Twitter Developer Labs\nThis is a Postman collection for the developer previews in [Twitter Developer Labs](https://developer.twitter.com/en/labs?utm_source=postman).\n\nFor more details, read the [Twitter Developer Labs documentation](https://developer.twitter.com/en/docs/labs?utm_source=postman).\n\n**Remember:** The endpoints we release in Labs will be previews and are likely to change before they are released broadly, so we encourage you to take that into consideration as you build.\n\n## Quick install\n\nJust click the **Run in Postman** button. You're all set!\n\n## Environment\n\nThis collection includes a environment variables that are needed to authenticate each request. You will need to add values to each variable.\n\n|Name|Description|\n|----|-----------|\n|`consumer_key`|Your OAuth consumer key|\t\n|`consumer_secret`|Your OAuth consumer secret|\n|`access_token`|Your OAuth access token|\n|`token_secret`|Your OAuth access token secret|\n\nTo find these values:\n1. Open your [app dashboard](https://developer.twitter.com/en/apps?utm_source=postman).\n2. Select your app, then click **Details**.\n3. Head over the **Keys and tokens** tab.\n4. Copy the values into each variable.\n\nTo add these values to your Postman environment:\n1. Select the ⚙️ icon next to the **Twitter Developer Labs** environment name.\n2. Click **Twitter Developer Labs**.\n3. For each variable, add the values from your app dashboard in the **Current value** column.\n4. When you're done adding all values, click **Update**.\n\nPostman will set up your requests to be authenticated using OAuth 2.0 (Bearer token) authentication.\n\n## Get help\n\nIf you need help, ask a question in the [Labs community forums](https://twittercommunity.com/c/labs).\n\n## Submit feedback\n\nYour ideas matter! Help us develop the next generation of the Twitter API by [sharing your feedback](https://twitterdevfeedback.uservoice.com/).\n\nWe know the best future version of our API will come from creating it together with the people who use it most."
+  version: 1.0.0
+servers:
+  - url: https://api.twitter.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: Labs v1
+    description: >-
+      There is a new version of the Labs available now! Use the **Labs v2**
+      folder in this collection to see what's new. For more details, check our
+      [comparison and migration
+      guide](https://developer.twitter.com/en/docs/labs/overview/versioning/migration-guide.html).
+  - name: Labs v2
+  - name: Labs v2 > Tweets and Users v2
+    description: >-
+      This is a Postman collection for the [Tweets and Users developer
+      preview](https://developer.twitter.com/en/docs/labs/tweets-and-users).
+
+
+      The endpoints we release in Labs will be previews and are likely to change
+      before they are released broadly, so we encourage you to take that into
+      consideration as you build.
+paths:
+  /labs/2/users/{id}:
+    get:
+      tags:
+        - Labs v2 > Tweets and Users v2
+      summary: Single user by ID
+      description: >-
+        This endpoint returns information about users. You can specify users by
+        their ID or username.
+
+
+        For full details, see the [API
+        reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-users-v2)
+        for this endpoint.
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '534'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:32:51 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '899'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568321271'
+            x-response-time:
+              schema:
+                type: integer
+                example: '70'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Success - Status 200 - Default format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        most_recent_tweet_id: '1171537108504215552'
+                        pinned_tweet_id: '1166401263170281472'
+                        format: default
+                example-1:
+                  summary: Success - Status 200 - Compact format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+                example-2:
+                  summary: Success - Status 200 - Detailed format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        stats:
+                          followers_count: 503251
+                          following_count: 1474
+                          tweet_count: 3419
+                          listed_count: 1526
+                        most_recent_tweet_id: '1158441822286303232'
+                        pinned_tweet_id: '1138505981460193280'
+                        format: detailed
+                example-3:
+                  summary: >-
+                    Success/Error - Status 200 - Multiple existing users and one
+                    error
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+                      - id: '6253282'
+                        created_at: '2007-05-23T06:01:13.000Z'
+                        name: Twitter API
+                        username: TwitterAPI
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/942858479592554497/BbazLO9L_normal.jpg
+                        format: compact
+                    errors:
+                      - value: twittererr
+                        detail: 'Could not find user with username: [twittererr].'
+                        type: >-
+                          https://api.twitter.com/labs/1/problems/resource-not-found
+                        title: Not Found Error
+                        resource_type: user
+                        parameter: username
+        '400':
+          description: Bad Request
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '193'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:45:20 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '898'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568321271'
+            x-response-time:
+              schema:
+                type: integer
+                example: '50'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                errors:
+                  - parameters:
+                      username:
+                        - twitterdev
+                    message: 'Unknown parameters in request: user'
+                type: https://api.twitter.com/labs/1/problems/invalid-request
+                title: Invalid Request
+                detail: One or more parameters to your request was invalid.
+        '401':
+          description: Authorization Required
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 401
+                title: Unauthorized
+                type: about:blank
+                detail: Unauthorized
+        '403':
+          description: Forbidden
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                client_id: '1234567890'
+                type: https://api.twitter.com/labs/1/problems/client-forbidden
+                title: Client Forbidden
+                detail: >-
+                  This request must be made with a registered client. Please
+                  create an account and enroll in Labs.
+                reason: client-not-enrolled
+                registration_url: https://developer.twitter.com/en/account/labs
+  /labs/2/users:
+    get:
+      tags:
+        - Labs v2 > Tweets and Users v2
+      summary: Multiple users
+      description: >-
+        This endpoint returns information about users. You can specify users by
+        their ID or username.
+
+
+        For full details, see the [API
+        reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-users-v2)
+        for this endpoint.
+      parameters:
+        - name: ids
+          in: query
+          schema:
+            type: string
+          description: >-
+            Required. A comma separated list of User IDs. Up to 100 are allowed
+            in a single request.
+      responses:
+        '200':
+          description: OK
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '534'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:32:51 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '899'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568321271'
+            x-response-time:
+              schema:
+                type: integer
+                example: '70'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Success - Status 200 - Detailed format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        stats:
+                          followers_count: 503251
+                          following_count: 1474
+                          tweet_count: 3419
+                          listed_count: 1526
+                        most_recent_tweet_id: '1158441822286303232'
+                        pinned_tweet_id: '1138505981460193280'
+                        format: detailed
+                example-1:
+                  summary: Success - Status 200 - Compact format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+                example-2:
+                  summary: Success - Status 200 - Default format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        most_recent_tweet_id: '1171537108504215552'
+                        pinned_tweet_id: '1166401263170281472'
+                        format: default
+                example-3:
+                  summary: >-
+                    Success/Error - Status 200 - Multiple existing users and one
+                    error
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+                      - id: '6253282'
+                        created_at: '2007-05-23T06:01:13.000Z'
+                        name: Twitter API
+                        username: TwitterAPI
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/942858479592554497/BbazLO9L_normal.jpg
+                        format: compact
+                    errors:
+                      - value: twittererr
+                        detail: 'Could not find user with username: [twittererr].'
+                        type: >-
+                          https://api.twitter.com/labs/1/problems/resource-not-found
+                        title: Not Found Error
+                        resource_type: user
+                        parameter: username
+        '400':
+          description: Bad Request
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '193'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:45:20 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '898'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568321271'
+            x-response-time:
+              schema:
+                type: integer
+                example: '50'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                errors:
+                  - parameters:
+                      username:
+                        - twitterdev
+                    message: 'Unknown parameters in request: user'
+                type: https://api.twitter.com/labs/1/problems/invalid-request
+                title: Invalid Request
+                detail: One or more parameters to your request was invalid.
+        '401':
+          description: Authorization Required
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 401
+                title: Unauthorized
+                type: about:blank
+                detail: Unauthorized
+        '403':
+          description: Forbidden
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                client_id: '1234567890'
+                type: https://api.twitter.com/labs/1/problems/client-forbidden
+                title: Client Forbidden
+                detail: >-
+                  This request must be made with a registered client. Please
+                  create an account and enroll in Labs.
+                reason: client-not-enrolled
+                registration_url: https://developer.twitter.com/en/account/labs
+  /labs/2/users/by/username/{username}:
+    get:
+      tags:
+        - Labs v2 > Tweets and Users v2
+      summary: Single user by username
+      description: >-
+        This endpoint returns information about users. You can specify users by
+        their ID or username.
+
+
+        For full details, see the [API
+        reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-users-v2)
+        for this endpoint.
+      parameters:
+        - name: username
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '849'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 23:34:31 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 4573e63ee134103b6b8d68baa608ffd6
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '897'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568332045'
+            x-response-time:
+              schema:
+                type: integer
+                example: '61'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: >-
+                    Success/Error - Status 200 - Multiple existing users and one
+                    error
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+                      - id: '6253282'
+                        created_at: '2007-05-23T06:01:13.000Z'
+                        name: Twitter API
+                        username: TwitterAPI
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/942858479592554497/BbazLO9L_normal.jpg
+                        format: compact
+                    errors:
+                      - value: twittererr
+                        detail: 'Could not find user with username: [twittererr].'
+                        type: >-
+                          https://api.twitter.com/labs/1/problems/resource-not-found
+                        title: Not Found Error
+                        resource_type: user
+                        parameter: username
+                example-1:
+                  summary: Success - Status 200 - Detailed format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        stats:
+                          followers_count: 503251
+                          following_count: 1474
+                          tweet_count: 3419
+                          listed_count: 1526
+                        most_recent_tweet_id: '1158441822286303232'
+                        pinned_tweet_id: '1138505981460193280'
+                        format: detailed
+                example-2:
+                  summary: Success - Status 200 - Default format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        most_recent_tweet_id: '1171537108504215552'
+                        pinned_tweet_id: '1166401263170281472'
+                        format: default
+                example-3:
+                  summary: Success - Status 200 - Compact format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+        '400':
+          description: Bad Request
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '193'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:45:20 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '898'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568321271'
+            x-response-time:
+              schema:
+                type: integer
+                example: '50'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                errors:
+                  - parameters:
+                      username:
+                        - twitterdev
+                    message: 'Unknown parameters in request: user'
+                type: https://api.twitter.com/labs/1/problems/invalid-request
+                title: Invalid Request
+                detail: One or more parameters to your request was invalid.
+        '401':
+          description: Authorization Required
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 401
+                title: Unauthorized
+                type: about:blank
+                detail: Unauthorized
+        '403':
+          description: Forbidden
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                client_id: '1234567890'
+                type: https://api.twitter.com/labs/1/problems/client-forbidden
+                title: Client Forbidden
+                detail: >-
+                  This request must be made with a registered client. Please
+                  create an account and enroll in Labs.
+                reason: client-not-enrolled
+                registration_url: https://developer.twitter.com/en/account/labs
+  /labs/2/users/by:
+    get:
+      tags:
+        - Labs v2 > Tweets and Users v2
+      summary: Multiple users by username
+      description: >-
+        This endpoint returns information about users. You can specify users by
+        their ID or username.
+
+
+        For full details, see the [API
+        reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-users-v2)
+        for this endpoint.
+      parameters:
+        - name: usernames
+          in: query
+          schema:
+            type: string
+          description: >-
+            Required. A comma separated list of usernames. Up to 100 are allowed
+            in a single request.
+      responses:
+        '200':
+          description: OK
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '849'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 23:34:31 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 4573e63ee134103b6b8d68baa608ffd6
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '897'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568332045'
+            x-response-time:
+              schema:
+                type: integer
+                example: '61'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: >-
+                    Success/Error - Status 200 - Multiple existing users and one
+                    error
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+                      - id: '6253282'
+                        created_at: '2007-05-23T06:01:13.000Z'
+                        name: Twitter API
+                        username: TwitterAPI
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/942858479592554497/BbazLO9L_normal.jpg
+                        format: compact
+                    errors:
+                      - value: twittererr
+                        detail: 'Could not find user with username: [twittererr].'
+                        type: >-
+                          https://api.twitter.com/labs/1/problems/resource-not-found
+                        title: Not Found Error
+                        resource_type: user
+                        parameter: username
+                example-1:
+                  summary: Success - Status 200 - Compact format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        verified: true
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        format: compact
+                example-2:
+                  summary: Success - Status 200 - Detailed format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        stats:
+                          followers_count: 503251
+                          following_count: 1474
+                          tweet_count: 3419
+                          listed_count: 1526
+                        most_recent_tweet_id: '1158441822286303232'
+                        pinned_tweet_id: '1138505981460193280'
+                        format: detailed
+                example-3:
+                  summary: Success - Status 200 - Default format
+                  value:
+                    data:
+                      - id: '2244994945'
+                        created_at: '2013-12-14T04:35:55.000Z'
+                        name: Twitter Dev
+                        username: TwitterDev
+                        protected: false
+                        location: Internet
+                        url: https://t.co/FGl7VOULyL
+                        description: >-
+                          Your official source for Twitter Platform news,
+                          updates & events. Need technical help? Visit
+                          https://t.co/mGHnxZU8c1 ⌨️ #TapIntoTwitter
+                        verified: true
+                        entities:
+                          url:
+                            urls:
+                              - start: 0
+                                end: 23
+                                url: https://t.co/FGl7VOULyL
+                                expanded_url: https://developer.twitter.com/
+                                display_url: developer.twitter.com
+                          description:
+                            urls:
+                              - start: 93
+                                end: 116
+                                url: https://t.co/mGHnxZU8c1
+                                expanded_url: https://twittercommunity.com/
+                                display_url: twittercommunity.com
+                            hashtags:
+                              - start: 120
+                                end: 135
+                                tag: TapIntoTwitter
+                        profile_image_url: >-
+                          https://pbs.twimg.com/profile_images/880136122604507136/xHrnqf1T_normal.jpg
+                        most_recent_tweet_id: '1171537108504215552'
+                        pinned_tweet_id: '1166401263170281472'
+                        format: default
+        '400':
+          description: Bad Request
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '193'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:45:20 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '898'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568321271'
+            x-response-time:
+              schema:
+                type: integer
+                example: '50'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                errors:
+                  - parameters:
+                      username:
+                        - twitterdev
+                    message: 'Unknown parameters in request: user'
+                type: https://api.twitter.com/labs/1/problems/invalid-request
+                title: Invalid Request
+                detail: One or more parameters to your request was invalid.
+        '401':
+          description: Authorization Required
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 401
+                title: Unauthorized
+                type: about:blank
+                detail: Unauthorized
+        '403':
+          description: Forbidden
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 20:41:01 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2e8ac482a125c53919d63798e24bf246
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '8'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                client_id: '1234567890'
+                type: https://api.twitter.com/labs/1/problems/client-forbidden
+                title: Client Forbidden
+                detail: >-
+                  This request must be made with a registered client. Please
+                  create an account and enroll in Labs.
+                reason: client-not-enrolled
+                registration_url: https://developer.twitter.com/en/account/labs
+  /labs/2/tweets/{id}:
+    get:
+      tags:
+        - Labs v2 > Tweets and Users v2
+      summary: Single Tweet
+      description: >-
+        This endpoints returns information about the Tweet specified by the
+        requested IDs.
+
+
+        For full details, see the [API
+        reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-tweets-v1)
+        for this endpoint.
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '586'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 22:09:22 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 2f7ef8c3ce7586feb546d04107eba63f
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '894'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568326665'
+            x-response-time:
+              schema:
+                type: integer
+                example: '42'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Success - Status 200 - Detailed format
+                  value:
+                    data:
+                      - id: '1138505981460193280'
+                        created_at: '2019-06-11T17:59:13.000Z'
+                        text: >-
+                          🎺 da-dada-DAH! We’re introducing the first Twitter
+                          Developer Labs endpoints: 
+
+
+                          ✨GET/users and GET/tweets ✨
+
+
+                          Labs is now open to all developers to start
+                          experimenting today 👉 https://t.co/eNx4Wc3Qwj
+                          https://t.co/ucmZrJAYjk
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '7_1138489597158199298'
+                        entities:
+                          urls:
+                            - start: 174
+                              end: 197
+                              url: https://t.co/eNx4Wc3Qwj
+                              expanded_url: >-
+                                https://twittercommunity.com/t/twitter-developer-labs-is-open-to-all-developers/126717
+                              display_url: twittercommunity.com/t/twitter-deve…
+                            - start: 198
+                              end: 221
+                              url: https://t.co/ucmZrJAYjk
+                        stats:
+                          retweet_count: 110
+                          reply_count: 30
+                          like_count: 254
+                          quote_count: 34
+                        possibly_sensitive: false
+                        lang: en
+                        source: >-
+                          <a href="http://twitter.com" rel="nofollow">Twitter
+                          Web Client</a>
+                        format: detailed
+                example-1:
+                  summary: >-
+                    Success/Error - Status 200 - Multiple existing Tweets and
+                    one error
+                  value:
+                    data:
+                      - id: '1171537108504215552'
+                        created_at: '2019-09-10T21:33:07.000Z'
+                        text: >-
+                          Students, are you looking for some peer inspiration
+                          for the year ahead? Take a look at our new blog post
+                          highlighting a few recent cool projects using the
+                          Twitter API! https://t.co/UCWAP9gvCG
+                        author_id: '2244994945'
+                        format: compact
+                      - id: '1166401263170281472'
+                        created_at: '2019-08-27T17:25:06.000Z'
+                        text: >-
+                          Our latest Twitter Developer Labs release helps you
+                          quickly assess the impact of your Tweets. Today, we’re
+                          releasing 
+
+
+                          ✨a new metrics endpoint✨
+
+
+                          https://t.co/0zfDWzlE7W https://t.co/7gTmm9gBfs
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '16_1166401237824110592'
+                        format: compact
+                    errors:
+                      - value: '1166401660698025983'
+                        detail: 'Could not find tweet with ids: [1166401660698025983].'
+                        type: >-
+                          https://api.twitter.com/labs/1/problems/resource-not-found
+                        title: Not Found Error
+                        parameter: ids
+                        resource_type: tweet
+                example-2:
+                  summary: Success - Status 200 - Compact format
+                  value:
+                    data:
+                      - id: '1138505981460193280'
+                        created_at: '2019-06-11T17:59:13.000Z'
+                        text: >-
+                          🎺 da-dada-DAH! We’re introducing the first Twitter
+                          Developer Labs endpoints: 
+
+
+                          ✨GET/users and GET/tweets ✨
+
+
+                          Labs is now open to all developers to start
+                          experimenting today 👉 https://t.co/eNx4Wc3Qwj
+                          https://t.co/ucmZrJAYjk
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '7_1138489597158199298'
+                        format: compact
+                example-3:
+                  summary: Success - Status 200 - Default format
+                  value:
+                    data:
+                      - id: '1138505981460193280'
+                        created_at: '2019-06-11T17:59:13.000Z'
+                        text: >-
+                          🎺 da-dada-DAH! We’re introducing the first Twitter
+                          Developer Labs endpoints: 
+
+
+                          ✨GET/users and GET/tweets ✨
+
+
+                          Labs is now open to all developers to start
+                          experimenting today 👉 https://t.co/eNx4Wc3Qwj
+                          https://t.co/ucmZrJAYjk
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '7_1138489597158199298'
+                        entities:
+                          urls:
+                            - start: 174
+                              end: 197
+                              url: https://t.co/eNx4Wc3Qwj
+                              expanded_url: >-
+                                https://twittercommunity.com/t/twitter-developer-labs-is-open-to-all-developers/126717
+                              display_url: twittercommunity.com/t/twitter-deve…
+                            - start: 198
+                              end: 221
+                              url: https://t.co/ucmZrJAYjk
+                        format: default
+        '400':
+          description: Bad Request
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '189'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 23:03:58 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 4573e63ee134103b6b8d68baa608ffd6
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '899'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568330338'
+            x-response-time:
+              schema:
+                type: integer
+                example: '28'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                errors:
+                  - parameters:
+                      '': []
+                    message: Request parameter `ids` can not be empty
+                type: https://api.twitter.com/labs/1/problems/invalid-request
+                title: Invalid Request
+                detail: One or more parameters to your request was invalid.
+        '401':
+          description: Authorization Required
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 22:27:50 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: aacc9179258ea0f71e989efff0ef7855
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '5'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 401
+                title: Unauthorized
+                type: about:blank
+                detail: Unauthorized
+        '403':
+          description: Forbidden
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '235'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 23:03:00 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 4573e63ee134103b6b8d68baa608ffd6
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '899'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568330280'
+            x-response-time:
+              schema:
+                type: integer
+                example: '28'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                client_id: '1234567890'
+                type: https://api.twitter.com/labs/1/problems/client-forbidden
+                title: Client Forbidden
+                detail: >-
+                  This request must be made with a registered client. Please
+                  create an account and enroll in Labs.
+                reason: client-not-enrolled
+                registration_url: https://developer.twitter.com/en/account/labs
+  /labs/2/tweets:
+    get:
+      tags:
+        - Labs v2 > Tweets and Users v2
+      summary: Multiple Tweets
+      description: >-
+        This endpoints returns information about the Tweet specified by the
+        requested IDs.
+
+
+        For full details, see the [API
+        reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/get-tweets-v1)
+        for this endpoint.
+      parameters:
+        - name: ids
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '608'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Fri, 13 Sep 2019 01:15:05 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 8b85ad64f1c2beb62152412c4e5d34dd
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '891'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568338106'
+            x-response-time:
+              schema:
+                type: integer
+                example: '62'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: >-
+                    Success/Error - Status 200 - Multiple existing Tweets and
+                    one error
+                  value:
+                    data:
+                      - id: '1171537108504215552'
+                        created_at: '2019-09-10T21:33:07.000Z'
+                        text: >-
+                          Students, are you looking for some peer inspiration
+                          for the year ahead? Take a look at our new blog post
+                          highlighting a few recent cool projects using the
+                          Twitter API! https://t.co/UCWAP9gvCG
+                        author_id: '2244994945'
+                        format: compact
+                      - id: '1166401263170281472'
+                        created_at: '2019-08-27T17:25:06.000Z'
+                        text: >-
+                          Our latest Twitter Developer Labs release helps you
+                          quickly assess the impact of your Tweets. Today, we’re
+                          releasing 
+
+
+                          ✨a new metrics endpoint✨
+
+
+                          https://t.co/0zfDWzlE7W https://t.co/7gTmm9gBfs
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '16_1166401237824110592'
+                        format: compact
+                    errors:
+                      - value: '1166401660698025983'
+                        detail: 'Could not find tweet with ids: [1166401660698025983].'
+                        type: >-
+                          https://api.twitter.com/labs/1/problems/resource-not-found
+                        title: Not Found Error
+                        parameter: ids
+                        resource_type: tweet
+                example-1:
+                  summary: Success - Status 200 - Detailed format
+                  value:
+                    data:
+                      - id: '1138505981460193280'
+                        created_at: '2019-06-11T17:59:13.000Z'
+                        text: >-
+                          🎺 da-dada-DAH! We’re introducing the first Twitter
+                          Developer Labs endpoints: 
+
+
+                          ✨GET/users and GET/tweets ✨
+
+
+                          Labs is now open to all developers to start
+                          experimenting today 👉 https://t.co/eNx4Wc3Qwj
+                          https://t.co/ucmZrJAYjk
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '7_1138489597158199298'
+                        entities:
+                          urls:
+                            - start: 174
+                              end: 197
+                              url: https://t.co/eNx4Wc3Qwj
+                              expanded_url: >-
+                                https://twittercommunity.com/t/twitter-developer-labs-is-open-to-all-developers/126717
+                              display_url: twittercommunity.com/t/twitter-deve…
+                            - start: 198
+                              end: 221
+                              url: https://t.co/ucmZrJAYjk
+                        stats:
+                          retweet_count: 110
+                          reply_count: 30
+                          like_count: 254
+                          quote_count: 34
+                        possibly_sensitive: false
+                        lang: en
+                        source: >-
+                          <a href="http://twitter.com" rel="nofollow">Twitter
+                          Web Client</a>
+                        format: detailed
+                example-2:
+                  summary: Success - Status 200 - Compact format
+                  value:
+                    data:
+                      - id: '1138505981460193280'
+                        created_at: '2019-06-11T17:59:13.000Z'
+                        text: >-
+                          🎺 da-dada-DAH! We’re introducing the first Twitter
+                          Developer Labs endpoints: 
+
+
+                          ✨GET/users and GET/tweets ✨
+
+
+                          Labs is now open to all developers to start
+                          experimenting today 👉 https://t.co/eNx4Wc3Qwj
+                          https://t.co/ucmZrJAYjk
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '7_1138489597158199298'
+                        format: compact
+                example-3:
+                  summary: Success - Status 200 - Default format
+                  value:
+                    data:
+                      - id: '1138505981460193280'
+                        created_at: '2019-06-11T17:59:13.000Z'
+                        text: >-
+                          🎺 da-dada-DAH! We’re introducing the first Twitter
+                          Developer Labs endpoints: 
+
+
+                          ✨GET/users and GET/tweets ✨
+
+
+                          Labs is now open to all developers to start
+                          experimenting today 👉 https://t.co/eNx4Wc3Qwj
+                          https://t.co/ucmZrJAYjk
+                        author_id: '2244994945'
+                        attachments:
+                          media_keys:
+                            - '7_1138489597158199298'
+                        entities:
+                          urls:
+                            - start: 174
+                              end: 197
+                              url: https://t.co/eNx4Wc3Qwj
+                              expanded_url: >-
+                                https://twittercommunity.com/t/twitter-developer-labs-is-open-to-all-developers/126717
+                              display_url: twittercommunity.com/t/twitter-deve…
+                            - start: 198
+                              end: 221
+                              url: https://t.co/ucmZrJAYjk
+                        format: default
+        '400':
+          description: Bad Request
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '189'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 23:03:58 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 4573e63ee134103b6b8d68baa608ffd6
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '899'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568330338'
+            x-response-time:
+              schema:
+                type: integer
+                example: '28'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                errors:
+                  - parameters:
+                      '': []
+                    message: Request parameter `ids` can not be empty
+                type: https://api.twitter.com/labs/1/problems/invalid-request
+                title: Invalid Request
+                detail: One or more parameters to your request was invalid.
+        '401':
+          description: Authorization Required
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '90'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 22:27:50 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_b
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-connection-hash:
+              schema:
+                type: string
+                example: aacc9179258ea0f71e989efff0ef7855
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-response-time:
+              schema:
+                type: integer
+                example: '5'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: 401
+                title: Unauthorized
+                type: about:blank
+                detail: Unauthorized
+        '403':
+          description: Forbidden
+          headers:
+            content-disposition:
+              schema:
+                type: string
+                example: attachment; filename=json.json
+            content-encoding:
+              schema:
+                type: string
+                example: gzip
+            content-length:
+              schema:
+                type: integer
+                example: '235'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            date:
+              schema:
+                type: string
+                example: Thu, 12 Sep 2019 23:03:00 GMT
+            server:
+              schema:
+                type: string
+                example: tsa_a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=631138519
+            x-access-level:
+              schema:
+                type: string
+                example: read
+            x-connection-hash:
+              schema:
+                type: string
+                example: 4573e63ee134103b6b8d68baa608ffd6
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-rate-limit-limit:
+              schema:
+                type: integer
+                example: '900'
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+                example: '899'
+            x-rate-limit-reset:
+              schema:
+                type: integer
+                example: '1568330280'
+            x-response-time:
+              schema:
+                type: integer
+                example: '28'
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                client_id: '1234567890'
+                type: https://api.twitter.com/labs/1/problems/client-forbidden
+                title: Client Forbidden
+                detail: >-
+                  This request must be made with a registered client. Please
+                  create an account and enroll in Labs.
+                reason: client-not-enrolled
+                registration_url: https://developer.twitter.com/en/account/labs

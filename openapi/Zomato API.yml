@@ -1,0 +1,953 @@
+openapi: 3.0.0
+info:
+  title: Zomato API
+  description: >-
+    This is a Zomato RESTful API. It gives you the freshest and most exhaustive
+    restaurant content to power your applications with. It covers 1.5 million
+    restaurants across 10,000 cities globally.This RESTful API searches for
+    restaurants by name, cuisine, or location, a detailed information including
+    ratings, location and cuisine. You can get free and instant access to
+    restaurant information by requesting the
+    [`access-key`](https://developers.zomato.com/api).
+
+
+    # Concepts
+
+
+    The Zomato Web-API utilizes standard HTTP communication and uses REST
+    concepts. Requests and responses contain JSON in the HTTP body. The
+    character encoding is always UTF8. Ensure that your client is capable of
+    handling SSL/TLS HTTP requests.
+
+
+    **API-Key**
+
+
+    An API-Key is a long-lasting secret that represents a unique id. An
+    authorized user can generate a key in Zomato-API for his usage. The user
+    should place this secret in your application settings. Important: Keep this
+    API-Key secret! The application then uses this api-key in each request that
+    is made with our api.
+
+
+    **Example HTTP Header**
+
+        Authorization: Bearer <API-Key or Access Token>
+        Accept: application/json
+    # HTTP Request examples
+
+    Requests that don’t have side-effects (and do not change anything) utilize
+
+    the `GET` method.
+
+
+    **Read example**
+
+        GET /api/v2.1/categories
+        Host: developers.zomato.com
+        Authorization: Bearer 5ffb698e3d9a8ea8d51fb8847c216058
+        Accept: application/json
+    # HTTP Response body
+
+
+    Every HTTP response is wrapped by a response body. You should evaluate the
+    success value to check if the operation was successful. If there was a
+    failure an error object will be returned. 
+
+
+    For successful operations we will return the data for read operations. For
+    read operations a corresponding object will be returned if the data is a
+    array of multiple items.
+
+
+    Example HTTP Response with single expected result or single affected entity
+
+        HTTP/2 200 OK
+        Content-Type: application/json
+
+        {
+            "success": true,
+            "data": {
+                "id": 1234,
+                 ...
+            }
+        }
+      
+     # Error handling
+
+
+    Ensure to evalute the http status code and react on them accordingly. See
+    table below. If there is an error code that is not 200, there might not be a
+    response body.
+
+
+    However if there is a response body `success` should be `false` and we
+    return a error with additional information what went wrong. 
+
+
+
+    Contact Support:
+     Email: vivekraj3200@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+paths:
+  /categories:
+    get:
+      tags:
+        - General
+      summary: Get list of Categories
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: >-
+            (Required) Get a list of categories. List of all restaurants
+            categorized under a particular restaurant type can be obtained using
+            /Search API with Category ID as inputs.
+          example: ipsum sunt labore ex
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                category_id: 3
+                category_name: Dine-out
+        '403':
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /cities:
+    get:
+      tags:
+        - General
+      summary: Find the Zomato ID and other details for a city.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: query by city name
+          example: ipsum sunt labore ex
+        - name: lat
+          in: query
+          schema:
+            type: number
+          description: latitude
+          example: '-77596659.4184915'
+        - name: lon
+          in: query
+          schema:
+            type: number
+          description: longitude
+          example: '-77596659.4184915'
+        - name: city_ids
+          in: query
+          schema:
+            type: string
+          description: comma separated city_id values
+          example: ipsum sunt labore ex
+        - name: count
+          in: query
+          schema:
+            type: integer
+          description: number of max results to display
+          example: '56625527'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 280
+                name: New York City, NY
+                country_id: 216
+                country_name: United States
+                is_state: false
+                state_id: 103
+                state_name: New York State
+                state_code: NY
+        '403':
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /collections:
+    get:
+      tags:
+        - General
+      summary: Returns Zomato Restaurant Collections in a City.
+      description: >-
+        List of all restaurants listed in any particular Zomato Collection can
+        be obtained using the '/search' API with Collection ID and Zomato City
+        ID as the input.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: lat
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: lon
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: city_id
+          in: query
+          schema:
+            type: string
+          description: id of the city for which collections are needed
+          example: ipsum sunt labore ex
+        - name: count
+          in: query
+          schema:
+            type: integer
+          description: number of max results to display
+          example: '56625527'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                collection_id: 1
+                title: Trending this week
+                url: https://www.zomato.com/new-york-city/top-restaurants
+                description: The most popular restaurants in town this week
+                image_url: >-
+                  https://b.zmtcdn.com/data/collections/e40960514831cb9b74c552d69eceee0f_1418387628_l.jpg
+                res_count: 30
+                share_url: http://www.zoma.to/c-280/1
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /cuisines:
+    get:
+      tags:
+        - General
+      summary: Get a list of all cuisines of restaurants listed in a city.
+      description: >-
+        List of all restaurants serving a particular cuisine can be obtained
+        using '/search' API with cuisine ID and location details.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: lat
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: lon
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: city_id
+          in: query
+          schema:
+            type: string
+          description: id of the city for which cuisines are needed
+          example: ipsum sunt labore ex
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                cuisine_id: 25
+                cuisine_name: string
+        '403':
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /establishments:
+    get:
+      tags:
+        - General
+      summary: Get a list of restaurant types in a city.
+      description: >-
+        List of all restaurants categorized under a particular restaurant type
+        can obtained using /Search API with Establishment ID and location
+        details as inputs.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: lat
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: lon
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: city_id
+          in: query
+          schema:
+            type: string
+          description: id of the city
+          example: ipsum sunt labore ex
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                establishment_id: 31
+                establishment_name: Bakery
+        '403':
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /geocode:
+    get:
+      tags:
+        - General
+      summary: Get location details based on coordinates
+      description: >-
+        Get Foodie and Nightlife Index, list of popular cuisines and nearby
+        restaurants around the given coordinates.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: lat
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: lon
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                locality:
+                  entity_type: group
+                  entity_id: 36932
+                  title: Chelsea Market, Chelsea, New York City
+                  latitude: 40.742051
+                  longitude: -74.004821
+                  city_id: 280
+                  city_name: New York City
+                  country_id: 216
+                  country_name: United States
+                popularity:
+                  popularity: 4.92
+                  nightlife_index: 4.95
+                  top_cuisines: cafe
+                link: https://www.zomato.com/new-york-city/chelsea-restaurants
+                nearby_restaurants:
+                  id: 16774318
+                  name: Otto Enoteca & Pizzeria
+                  url: >-
+                    https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village
+                  location:
+                    address: 15th Avenue, New York, NY 10003
+                    locality: Greenwich Village
+                    city: New York City
+                    latitude: 40.73201
+                    longitude: -73.996155
+                    zipcode: 10003
+                    country_id: 216
+                  average_cost_for_two: 60
+                  price_range: 2
+                  currency: $
+                  thumb: >-
+                    https://b.zmtcdn.com/data/pictures/chains/8/16774318/a54deb9e4dbb79dd7c8091b30c642077_featured_thumb.png
+                  featured_image: >-
+                    https://d.zmtcdn.com/data/pictures/chains/8/16774318/a54deb9e4dbb79dd7c8091b30c642077_featured_v2.png
+                  photos_url: >-
+                    https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/photos#tabtop
+                  menu_url: >-
+                    https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/menu#tabtop
+                  events_url: >-
+                    https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/menu#tabtop
+                  user_rating:
+                    aggregate_rating: 3.7
+                    rating_text: Very Good
+                    rating_color: 5BA829
+                    votes: 1046
+                  has_online_delivery: 0
+                  is_delivering_now: 0
+                  has_table_booking: 0
+                  deeplink: zomato://r/16774318
+                  cuisines: cafe
+                  all_reviews_count: 15
+                  photos_count: 18
+                  phone_numbers: -56989102.26376994
+                  photos:
+                    id: u_MjA5MjY1OTk5OT
+                    url: >-
+                      https://b.zmtcdn.com/data/reviews_photos/c15/9eb13ceaf6e90129c276ce6ff980bc15_1435111695_640_640_thumb.JPG
+                    thumb_url: >-
+                      https://b.zmtcdn.com/data/reviews_photos/c15/9eb13ceaf6e90129c276ce6ff980bc15_1435111695_200_thumb.JPG
+                    user:
+                      name: John Doe
+                      zomato_handle: John
+                      foodie_level: Super Foodie
+                      foodie_level_num: 9
+                      foodie_color: f58552
+                      profile_url: https://www.zomato.com/john
+                      profile_deeplink: zoma.to/u/1170245
+                      profile_image: string
+        '403':
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /locations:
+    get:
+      tags:
+        - General
+      summary: Search for locations.
+      description: >-
+        Search for Zomato locations by keyword. Provide coordinates to get
+        better search results.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: query
+          in: query
+          schema:
+            type: integer
+          description: (Required) suggestion for location name
+          example: '56625527'
+        - name: lat
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: lon
+          in: query
+          schema:
+            type: number
+          description: latitude / longitude of any point within a city
+          example: '-77596659.4184915'
+        - name: cunt
+          in: query
+          schema:
+            type: integer
+          description: max number of results to fetch
+          example: '56625527'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+        '403':
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /location_details:
+    get:
+      tags:
+        - General
+      summary: Get Zomato location details.
+      description: >-
+        Get Foodie Index, Nightlife Index, Top Cuisines and Best rated
+        restaurants in a given location
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: entity_id
+          in: query
+          schema:
+            type: integer
+          description: (Required) location id obtained from locations api
+          example: '56625527'
+        - name: entity_type
+          in: query
+          schema:
+            type: string
+          description: (Required) location type obtained from locations api
+          example: ipsum sunt labore ex
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity_type: group
+                entity_id: 36932
+                title: Chelsea Market, Chelsea, New York City
+                latitude: 40.742051
+                longitude: -67190840
+                city_id: 280
+                city_name: New York City
+                country_id: 216
+                country_name: United States
+        '403':
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /restaurant:
+    get:
+      tags:
+        - General
+      summary: Get restaurant details.
+      description: >-
+        Get detailed restaurant information using Zomato restaurant ID. Partner
+        Access is required to access photos and reviews.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: res_id
+          in: query
+          schema:
+            type: integer
+          description: (Required) id of restaurant whose details are requested
+          example: '56625527'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /dailymenu:
+    get:
+      tags:
+        - General
+      summary: Get daily menu of a restaurant
+      description: Get daily menu using Zomato restaurant ID.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: res_id
+          in: query
+          schema:
+            type: integer
+          description: (Required) id of restaurant whose details are requested
+          example: '56625527'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                daily_menu:
+                  daily_menu_id: 6507624
+                  name: Vinohradský pivovar
+                  start_date: 2016-03-08 11:00
+                  end_date: 016-03-08 15:00
+                  dishes:
+                    dish_id: 104089345
+                    name: Tatarák ze sumce s toustem
+                    price: 49 Kč
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /reviews:
+    get:
+      tags:
+        - General
+      summary: Get restaurant reviews.
+      description: >-
+        Get restaurant reviews using the Zomato restaurant ID. Only 5 latest
+        reviews are available under the Basic API plan.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: res_id
+          in: query
+          schema:
+            type: integer
+          description: (Required) id of restaurant whose details are requested
+          example: '56625527'
+        - name: start
+          in: query
+          schema:
+            type: integer
+          description: fetch results after this offset
+          example: '56625527'
+        - name: count
+          in: query
+          schema:
+            type: integer
+          description: max number of results to retrieve
+          example: '56625527'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                rating: -73370324
+                review_text: The best latte I've ever had. It tasted a little sweet
+                id: 24127336
+                rating_color: 305D02
+                review_time_friendly: 2 months ago
+                rating_text: Insane!
+                timestamp: 1435507367
+                likes: 0
+                user:
+                  name: John Doe
+                  zomato_handle: John
+                  foodie_level: Super Foodie
+                  foodie_level_num: 9
+                  foodie_color: f58552
+                  profile_url: https://www.zomato.com/john
+                  profile_deeplink: zoma.to/u/1170245
+                  profile_image: string
+                comments_count: 0
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /search:
+    get:
+      tags:
+        - General
+      summary: Search for restaurant
+      description: >-
+        The location input can be specified using Zomato location ID or
+        coordinates. Cuisine / Establishment / Collection IDs can be obtained
+        from respective api calls. Get up to 100 restaurants by changing the
+        'start' and 'count' parameters with the maximum value of count being 20.
+        Partner Access is required to access photos and reviews.
+      parameters:
+        - name: user-key
+          in: header
+          schema:
+            type: string
+          description: (Required) your API key
+          example: ipsum sunt labore ex
+        - name: entity_id
+          in: query
+          schema:
+            type: integer
+          description: location id
+          example: '56625527'
+        - name: entity_type
+          in: query
+          schema:
+            type: string
+          description: location type
+          example: available
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: query by city name
+          example: ipsum sunt labore ex
+        - name: lat
+          in: query
+          schema:
+            type: number
+          description: latitude
+          example: '-77596659.4184915'
+        - name: lon
+          in: query
+          schema:
+            type: number
+          description: longitude
+          example: '-77596659.4184915'
+        - name: start
+          in: query
+          schema:
+            type: integer
+          description: fetch results after this offset
+          example: '56625527'
+        - name: count
+          in: query
+          schema:
+            type: integer
+          description: max number of results to retrieve
+          example: '56625527'
+        - name: cuisine
+          in: query
+          schema:
+            type: string
+          description: list of cuisine id's separated by comma
+          example: ipsum sunt labore ex
+        - name: radius
+          in: query
+          schema:
+            type: number
+          description: radius around (lat,lon); to define search area, defined in meters(M)
+          example: '-77596659.4184915'
+        - name: establishment_type
+          in: query
+          schema:
+            type: string
+          description: estblishment id obtained from establishments call
+          example: ipsum sunt labore ex
+        - name: collection_id
+          in: query
+          schema:
+            type: string
+          description: collection id obtained from collections call
+          example: ipsum sunt labore ex
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: category ids obtained from categories call
+          example: ipsum sunt labore ex
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: sort restaurants by ..
+          example: available
+        - name: order
+          in: query
+          schema:
+            type: string
+          description: used with 'sort' parameter to define ascending / descending
+          example: available
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''

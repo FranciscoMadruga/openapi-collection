@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "bd88b932-9edb-48f8-9a06-4c8604e04c32",
+		"name": "AWS Config API",
+		"description": "Contact Support:\n Name: No Contact\n Email: email@example.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27825666",
+		"_collection_link": "https://www.postman.com/api-evangelist/workspace/authentication/collection/35240-bd88b932-9edb-48f8-9a06-4c8604e04c32?action=share&creator=27825666&source=collection_link"
+	},
+	"item": [],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

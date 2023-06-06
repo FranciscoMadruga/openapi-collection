@@ -1,0 +1,3645 @@
+openapi: 3.0.0
+info:
+  title: Google Maps Platform
+  description: API Specification for Google Maps Platform
+  version: 1.0.0
+servers:
+  - url: https://www.googleapis.com
+  - url: https://maps.googleapis.com
+  - url: https://roads.googleapis.com
+components:
+  securitySchemes:
+    apikeyAuth:
+      type: http
+      scheme: apikey
+security:
+  - apikeyAuth: []
+tags:
+  - name: Directions
+    description: >-
+      The Directions API is a web service that uses an HTTP request to return
+      JSON or XML-formatted directions between locations. You can receive
+      directions for several modes of transportation, such as transit, driving,
+      walking, or cycling.
+  - name: Distance Matrix
+    description: >-
+      The Distance Matrix API is a service that provides travel distance and
+      time for a matrix of origins and destinations.
+  - name: Elevation
+    description: >-
+      The Elevation API provides a simple interface to query locations on the
+      earth for elevation data. Additionally, you may request sampled elevation
+      data along paths, allowing you to calculate elevation changes along
+      routes.
+  - name: Geocoding
+    description: >-
+      The Geocoding API is a service that provides geocoding and reverse
+      geocoding of addresses.
+  - name: Geolocation
+    description: >-
+      The Geolocation API returns a location and accuracy radius based on
+      information about cell towers and WiFi nodes that the mobile client can
+      detect.
+  - name: Roads
+    description: >-
+      The Roads API identifies the roads a vehicle was traveling along and
+      provides additional metadata about those roads, such as speed limits.
+  - name: Time Zone
+    description: >-
+      The Time Zone API provides a simple interface to request the time zone for
+      locations on the surface of the earth, as well as the time offset from UTC
+      for each of those locations.
+  - name: Street View
+    description: >-
+      The Street View API provides a simple interface to retrieve Street View
+      images.
+  - name: Places
+    description: >-
+      The Places API is a service that returns information about places using
+      HTTP requests. Places are defined within this API as establishments,
+      geographic locations, or prominent points of interest.
+  - name: Geolocation API
+  - name: Directions API
+  - name: Elevation API
+  - name: Geocoding API
+  - name: Time Zone API
+  - name: Roads API
+  - name: Distance Matrix API
+  - name: Places API
+  - name: Street View API
+paths:
+  /geolocation/v1/geolocate:
+    post:
+      tags:
+        - Geolocation API
+      summary: geolocate
+      description: >-
+        Geolocation API returns a location and accuracy radius based on
+        information about cell towers and WiFi nodes that the mobile client can
+        detect. This document describes the protocol used to send this data to
+        the server and to return a response to the client.
+
+
+        Communication is done over HTTPS using POST. Both request and response
+        are formatted as JSON, and the content type of both is
+        `application/json`.
+
+
+        You must specify a key in your request, included as the value of a`key`
+        parameter. A `key` is your application's  API key. This key identifies
+        your application for purposes of quota management. Learn how to [get a
+        key](https://developers.google.com/maps/documentation/geolocation/get-api-key).
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                homeMobileCountryCode: <integer>
+                homeMobileNetworkCode: <integer>
+                radioType: <string>
+                carrier: <string>
+                considerIp: <string>
+                cellTowers:
+                  - cellId: <integer>
+                    locationAreaCode: <integer>
+                    mobileCountryCode: <integer>
+                    mobileNetworkCode: <integer>
+                    age: <integer>
+                    signalStrength: <number>
+                    timingAdvance: <number>
+                  - cellId: <integer>
+                    locationAreaCode: <integer>
+                    mobileCountryCode: <integer>
+                    mobileNetworkCode: <integer>
+                    age: <integer>
+                    signalStrength: <number>
+                    timingAdvance: <number>
+                wifiAccessPoints:
+                  - macAddress: <string>
+                    signalStrength: <integer>
+                    signalToNoiseRatio: <integer>
+                    age: <integer>
+                    channel: <integer>
+                  - macAddress: <string>
+                    signalStrength: <integer>
+                    signalToNoiseRatio: <integer>
+                    age: <integer>
+                    channel: <integer>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                location:
+                  lat: 37.421925
+                  lng: -122.0841293
+                accuracy: 30
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 400
+                  message: >-
+                    Invalid value at 'cell_tower'
+                    (type.googleapis.com/maps_api.CellTower), "foo"
+                  errors:
+                    - message: >-
+                        Invalid value at 'cell_tower'
+                        (type.googleapis.com/maps_api.CellTower), "foo"
+                      reason: invalid
+                  status: INVALID_ARGUMENT
+                  details:
+                    - '@type': type.googleapis.com/google.rpc.BadRequest
+                      fieldViolations:
+                        - field: cell_tower
+                          description: >-
+                            Invalid value at 'cell_tower'
+                            (type.googleapis.com/maps_api.CellTower), "foo"
+        '404':
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 404
+                  message: Not Found
+                  errors:
+                    - message: Not Found
+                      domain: geolocation
+                      reason: notFound
+  /maps/api/directions/json:
+    get:
+      tags:
+        - Directions API
+      summary: directions
+      description: >-
+        The Directions API is a web service that uses an HTTP request to return
+        JSON or XML-formatted directions between locations. You can receive
+        directions for several modes of transportation, such as transit,
+        driving, walking, or cycling.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: destination
+          in: query
+          schema:
+            type: string
+          description: >-
+            (Required) The place ID, address, or textual latitude/longitude
+            value to which you wish to calculate directions. The options for the
+            destination parameter are the same as for the origin parameter.
+          example: <string>
+        - name: origin
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The place ID, address, or textual latitude/longitude
+            value from which you wish to calculate directions.
+
+            * Place IDs must be prefixed with `place_id:`. You can retrieve
+            place IDs from the Geocoding API and the Places API (including Place
+            Autocomplete). For an example using place IDs from Place
+            Autocomplete, see [Place Autocomplete and
+            Directions](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-directions).
+            For more about place IDs, see the [Place ID
+            overview](https://developers.google.com/maps/documentation/places/web-service/place-id).
+              
+              ```
+              origin=place_id:ChIJ3S-JXmauEmsRUcIaWtf4MzE
+              ```
+              
+            * If you pass an address, the Directions service geocodes the string
+            and converts it to a latitude/longitude coordinate to calculate
+            directions. This coordinate may be different from that returned by
+            the Geocoding API, for example a building entrance rather than its
+            center.
+              
+              ```
+              origin=24+Sussex+Drive+Ottawa+ON
+              ```
+              
+              Using place IDs is preferred over using addresses or latitude/longitude coordinates. Using coordinates will always result in the point being snapped to the road nearest to those coordinates - which may not be an access point to the property, or even a road that will quickly or safely lead to the destination.
+            * If you pass coordinates, the point will snap to the nearest road.
+            Passing a place ID is preferred. If you do pass coordinates, ensure
+            that no space exists between the latitude and longitude values.
+              
+              ```
+              origin=41.43206,-81.38992
+              ```
+
+            * Plus codes must be formatted as a global code or a compound code.
+            Format plus codes as shown here (plus signs are url-escaped to `%2B`
+            and spaces are url-escaped to `%20`). 
+              
+              * **Global code** is a 4 character area code and 6 character or longer local code (849VCWC8+R9 is `849VCWC8%2BR9`). 
+              * **Compound code** is a 6 character or longer local code with an explicit location (CWC8+R9 Mountain View, CA, USA is `CWC8%2BR9%20Mountain%20View%20CA%20USA`).
+
+            <div class="note">Note: For efficiency and accuracy, use place ID's
+            when possible. These ID's are uniquely explicit like a lat/lng value
+            pair and provide geocoding benefits for routing such as access
+            points and traffic variables. Unlike an address, ID's do not require
+            the service to perform a search or an intermediate request for place
+            details; therefore, performance is better.</div>
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                geocoded_waypoints:
+                  - geocoder_status: OK
+                    place_id: ChIJwZNMti1fawwRO2aVVVX2yKg
+                    types:
+                      - locality
+                      - political
+                  - geocoder_status: OK
+                    place_id: ChIJ3aPgQGtXawwRLYeiBMUi7bM
+                    types:
+                      - locality
+                      - political
+                routes:
+                  - bounds:
+                      northeast:
+                        lat: 27.7564327
+                        lng: -17.9710024
+                      southwest:
+                        lat: 27.6411131
+                        lng: -18.0481367
+                    copyrights: Map data ©2022 Inst. Geogr. Nacional
+                    legs:
+                      - distance:
+                          text: 38.5 km
+                          value: 38482
+                        duration:
+                          text: 55 mins
+                          value: 3312
+                        end_address: 38917 La Restinga, Santa Cruz de Tenerife, Spain
+                        end_location:
+                          lat: 27.6412095
+                          lng: -17.9818845
+                        start_address: >-
+                          38911 La Frontera, Santa Cruz de Tenerife, Santa Cruz
+                          de Tenerife, Spain
+                        start_location:
+                          lat: 27.7548015
+                          lng: -18.0095701
+                        steps:
+                          - distance:
+                              text: 64 m
+                              value: 64
+                            duration:
+                              text: 1 min
+                              value: 9
+                            end_location:
+                              lat: 27.7550564
+                              lng: -18.0089896
+                            html_instructions: >-
+                              Head <b>northeast</b> on <b>C. el Rumbaso</b>
+                              toward <b>C. Cruz Alta</b>/<wbr/><b>C. Frontera
+                              Dos</b>
+                            polyline:
+                              points: ozkhDxn|lBIWi@{A
+                            start_location:
+                              lat: 27.7548015
+                              lng: -18.0095701
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 0.3 km
+                              value: 302
+                            duration:
+                              text: 1 min
+                              value: 54
+                            end_location:
+                              lat: 27.7531414
+                              lng: -18.0093196
+                            html_instructions: >-
+                              Turn <b>right</b> onto <b>C. Cruz
+                              Alta</b>/<wbr/><b>C. Frontera Dos</b><div
+                              style="font-size:0.9em">Continue to follow C.
+                              Frontera Dos</div>
+                            maneuver: turn-right
+                            polyline:
+                              points: c|khDdk|lBJE^Q`@Q~@a@z@]BA\OZO^QLd@V|@Rp@\hA
+                            start_location:
+                              lat: 27.7550564
+                              lng: -18.0089896
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 50 m
+                              value: 50
+                            duration:
+                              text: 1 min
+                              value: 15
+                            end_location:
+                              lat: 27.7530963
+                              lng: -18.0088163
+                            html_instructions: Sharp <b>left</b> onto <b>C. Amador</b>
+                            maneuver: turn-sharp-left
+                            polyline:
+                              points: cpkhDfm|lBBE?C?C@E@g@?g@
+                            start_location:
+                              lat: 27.7531414
+                              lng: -18.0093196
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 61 m
+                              value: 61
+                            duration:
+                              text: 1 min
+                              value: 13
+                            end_location:
+                              lat: 27.7525596
+                              lng: -18.0089335
+                            html_instructions: >-
+                              Turn <b>right</b> onto <b>C.
+                              Constitución</b>/<wbr/><b>Tr.ª Amador</b>
+                            maneuver: turn-right
+                            polyline:
+                              points: '{okhDbj|lBfALb@F'
+                            start_location:
+                              lat: 27.7530963
+                              lng: -18.0088163
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 16.7 km
+                              value: 16666
+                            duration:
+                              text: 23 mins
+                              value: 1363
+                            end_location:
+                              lat: 27.7372254
+                              lng: -17.9937641
+                            html_instructions: >-
+                              Turn <b>left</b> onto <b>C. el
+                              Congreso</b>/<wbr/><b>HI-1</b><div
+                              style="font-size:0.9em">Continue to follow
+                              HI-1</div>
+                            maneuver: turn-left
+                            polyline:
+                              points: >-
+                                olkhDxj|lBCu@QkC?AGo@?AE[Ie@CIACKa@IUEMOe@Mc@Oc@Oc@Mc@Oe@}@qCEMYy@Uq@IOAECCMUOOCCOIICGACAWCG?EA[ESESEQGIECCMMCCKKMQW]KO}BkDCCGKOSGKGOEMCMCM?K?IBK@GBGFKJONKLIVK`@O@?RGDABAB?FAFAL?@?D@H@H@HB^NLVDFPXh@fAPZRb@BBHLJHJJh@d@NLf@d@@@XTZXXTX`@V^JLl@|@`@j@LPJLTVRL@@NJDBdB|@p@^JF^Ph@XZN`@TTLHDFDHFDDDB@@JLHJRXBD@@NVJLJNBDHJJTFNDJRh@@D\`ANd@Nb@Nb@^fANb@\bAb@lANb@BJVt@@FN`@@@P`@Pb@N^Pd@DHLVLVFHDFPPf@d@NRDHHNFPDRFx@?@Df@Bn@F^F`@BDLb@FTPj@FLDJLRHJTNTLRJJFd@RXRLNFHJPDL@BJTDLNb@HVJVP`@PTFJNPV\RXBBV\BBNTBBDHFNDVBT@VARABKh@ENALAR?P?T?T@J@V?BFf@LrADb@BNBVHdARxA@NBTFf@?BHv@@R@H?R?J?LCTKv@[tACNWfAABG^AFALAR@TF|@@@Df@NpAJlABT@PBV?R?JCRARE`@Ef@KdACTIx@MnAGd@Ef@Gf@ANCVGd@Ef@Gf@CZAJGf@Ef@Eb@AB?NAT?@?N@R@BBRDR?@Jb@Ld@Ld@Jd@H\BFJd@Lb@DPDRZjADTHZDX@PPlD@JBf@?FB^Bj@FlAHbBNlC?FB^@VFv@ThE@f@Bf@?BBZ@T?RAPCRCLCPENYz@ELIXCHKXAFA@?F?H?L@J@FBFDBBBD?F?F?DADCBA@A@ABIBK@UBg@@]@KBOBM@EDKHM@AHMJQJOFQF]FWb@kC@KRqAJq@@M?E@M?}@@oA?[@K?k@@a@BsB?S@M@KBQDULi@Lm@b@gBBGLi@T_ANq@F]D]DW@U?A@[?Y?Y?M@Y?CBUBQF[Lg@\kAd@sALY`@aAL]FOBEDGDEDC?AFENGRGPEHCJGFCBE@?LQFK@Cp@uADMDKBS@E?I?MAKCQCOMg@EWAIAG?C?M?O@M@UBSBODQDY\mBJq@Ha@DSHUFODMHSHQLYDIRe@P]FOFKBEFGTOJIFGDIBKFYJe@R{@R_ATaA@I^cBDYBO?C?K?GACAICICGs@sAa@u@CKAECI?I?G@C@CBGDCBEBAD?BAD?D@FBDBDBFFNVR`@Zp@HNBFTf@FTDRBRBNBZ@\?VAXCRCREPCPEV?NAB?R@Z?T?Z@\?TARAZCRCPETERIZYpAKb@ADERGV?H?F@NDZRnBBf@BP?D?F?FCJAFCFGJQZORGFCDCFADABAFAFAL@J@FBFBFDFDFPNf@f@XVZXHHDFBDBDBJ@F@H?R@V?XGtFA^?HAJAB?@A@ADA@CDGBEDE@C@M?I@WAcAEQAGA[AK?O?E@A?I@EBIDEDEDGHINWl@ADCDAHAHAFAB?D?D?F@L@R@L@Z?J?L?DAJAHCLALA@Y~AShAG^AJAFAF?J?L@P@T@RBXBTBL@JDPBLFRDJDJFHNXLPRTNLVTd@`@NLJJDDJPPXJPDJDP?@@L@V?VAPANAVC`@Ef@ADANKh@K^Kn@Gh@CNAFEZ?BCRAR?HA\?FA^?JAZAVEj@Ch@?JEv@AZ?PAL@D?HBXD`@BFBNFT@DDLBBBDDDHFh@`@BBd@`@LFXNZLLFDDDD@F@F?H?@?FCJINIVADADABAH?F@H@D@FBDDFDDJNLXBJDT?@?H?PCXAJEJCNKTM^ABGRM^GTCHALCL?BCT?LANCPCTCNEJGRKVELAHAB?H?DBP?@BP?H@J?@?N?X?H@HBHFLFHHJ@BTX@DDH@H@L?JCPGJGFMPGNCLCJ?L?JAPAPERAFEHEHILGHGHEJCHGb@CLOx@In@In@G^Gp@?@ANETAFGPAHEHGLGNEH?DAB?D?FFLHDF@HC@ADEBIDQ?AHg@@c@@C@WBO@GBMBO@EDSDKBGN[FOLSLUDENQFIHKLIDCDCDCHEFEHIHKDKLUBGBILWL[FMDOFMDIDIDM?ADW@M?S?S?]AWAOC]AUAECa@?CAa@AO?O?Q@M@OBKBIBKBG@CFQDKDILW?AFKFKBIBEBEFEDCBC^QB?\ONGNGf@SXMPINIHGHIFC?AVQZYJKHMDGDGBKDQ@IG[GMGMAKCIAU@C?CDKFIDC@C@C@E@GAM?U?QASEe@AY?ACe@Ec@AQEOCUKy@AIGc@AAKi@AMAU?ACOCSAQAQ?O?O@Q@S@M@C@GBQBUH[L[DGFMNM@Ar@[j@WLINKVSBAFGHGDODSDQ@ADSBMDSFKDIFGJKTOJIx@m@@?ZW\UDERUHINQV]DGRUX[f@s@DGFKFS@CLa@@CDWBM@KBUJi@?AD]@IFUFMFQDSFQDSBMBWBW@O@K?Q?c@AQAWAMCQCOESCKCI?ACOAW?IAY?SAY?Y?M?AAa@?U?Y@_@@Q@S@EHWFMH]@E@MDW@AHk@Fc@H_@D[@O?A?M?O?I?E?OAOAM?O@E?E?E@G@GBK@C@CFMJO@CNW@CLQHMHKJOFGBGBIBI?CLa@Lc@Nc@Le@Ne@LYPe@BELYDM?E?EAGACAGCGGKCEEGCECGCGCGAE?A?C?G?K?GBE@EDIFGDEDEHEJILOJMDQDU?MA[?C?QCYCYAEE[GYG[GUCIA?AEAGAEAGAG?A?G?E@I@G@IDIHWBKBO@G@KAK?K?W?M?A@G@M@EBEDKDEHK@CFMHUHUFKJSFM@GDM@M@S?U?AAg@AIA]AYCMAIG]?EGa@Mu@CWMs@CICGUg@KYEIi@aAQ]AAU]IQIQGOCQACAKCU?EGm@Gk@E]?KUyBKy@G]AKACCIGOEGEGKQcB_CEGYe@i@u@_@i@MSGKEKACAGCKCMCSCQ?EAUE[E}@ASAS?GAGCMGOAGQYGKKSGMIMCMCMESEQCQAAEKMOOQGGIGEIEGCKEQCK?EE_@AKCKGOSYEGUWCCKQ[_@IMGIEGCGEKCIEOAAISEOACKYGSCIAK?A?G@I@IBK@GBQDUDS@IBGFU@EFO`@eAFYJa@BKDS?G?E?SAQGi@Ga@CUIi@EMIa@ACCGCKIK?AEIMMKIIGIEIEMGGCEEEIAEAG?I?C?K?Q?G?O?W?SAS?AEe@Cc@Gk@AMGU?CCGCGEIEEEGEIEIAECMCYCU?QASAS?U@S@k@@Y@]@_@A}@?sBAqA?MEoB?ICc@?CAQEYCSCOIe@ACMa@?AGOGQGOESMe@U}@c@sBKe@CKGY_@gBCIwAuFGQKc@?AMe@Me@
+                            start_location:
+                              lat: 27.7525596
+                              lng: -18.0089335
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 4.1 km
+                              value: 4058
+                            duration:
+                              text: 6 mins
+                              value: 370
+                            end_location:
+                              lat: 27.7196513
+                              lng: -17.9933045
+                            html_instructions: Turn <b>right</b> onto <b>HI-40</b>
+                            maneuver: turn-right
+                            polyline:
+                              points: >-
+                                ulhhD~kylB\EFAXEPCPAFAD?D?D?F@@?@?B@DBFDHF@@\P^RJDHBD@D@D?Z?X?Z@P@B?NDLB@@LDF@HD?@JFLHBBFHJJDDDDDJBDDHBNBJ?L@L?F?H?BAHCLAFAF?F@D@F@BBBBDDFDBJHHDJBJBDAD?JALC@?`@M@?JKJK@APWDEDEPGF?B?h@Bn@?LATAL?^ARCXEZKZMBADAH?H?D@B@D@B@PRRR~@v@RNBDB@B@D@D@D?DADCBCDILc@FWHe@?ADU@M@Q@O?G?C@a@B[?M?GASASCOI[GOAIAC?C?QAKAAAQCKESUs@CG?A?G?M@Q?ADe@@AFo@B]@K?U@E?GAM?IAE?ACMEMCGGOCGAE?I?C@E@EBEBEDCDCDAHCJC@?LAP?@?NBNDLFNH`@X`@ZDBHDD@F?B@BCDABE@I?A?C@MAKAMCYEo@M_AAECGCECECCOOQQGG[Wq@o@ECAACCACCCAEGKCIIWAAOc@Uk@Se@Yk@GKQa@uAuCKSGQCIAI?E?G@G?G@EBIFGBG^i@FILUT_@HMn@cAj@_ATc@FIDGBC@CBA@ADADAHAF?D@HBHDHHFFFFVTLLDDDHHRBFDLJTFLBFBFHFLJb@Z^R`@RDBZJHDF@NDZHf@HB@f@BZ@F@R?h@Bb@Bx@BJ@\DD?TBTDJDB?@@@@@@@@BDBJDR@@FXBD@@B@@@B@B?D?BABCFELONQFKDE@C@AJGFCHANAP@@?`@?@?d@D^DfAJ`@D@?^BB?LBD@D@FBBBDDHJHJFLNVNRLPHJHHh@b@DBZTZXDDRVNNHLJFRDLQBI?K@C?U?WA]C}@AOAGACCECEAC?EAE?A?E?I@G@EDCFCFAJ@D@B?FBB@NLRPV^BHHPDN?@FP?F@DAD?JAV?B?B@DBDBDBBB@D@D@XHL@D@B@FF?@FFNT@BZp@Th@Vv@Xv@BBR`@R`@@@Tf@BLBN@?@Z@JBf@Df@@FD^D^@FBLDNBDBJBFFFDB\TDDTPVRBDDBDHDLBL@PBPBV@HBH@HBD@B\b@
+                            start_location:
+                              lat: 27.7372254
+                              lng: -17.9937641
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 1.3 km
+                              value: 1327
+                            duration:
+                              text: 2 mins
+                              value: 129
+                            end_location:
+                              lat: 27.7192528
+                              lng: -17.9809011
+                            html_instructions: Turn <b>left</b> to stay on <b>HI-40</b>
+                            maneuver: turn-left
+                            polyline:
+                              points: >-
+                                y~dhDbiylBh@_@BC?A@E@C?A?C@E?A?CO_@EOCGAC?AAC?C?EAa@C_@?GEqA?u@AOAIEQIQOa@GOGQEKAEAE?GAE?I?IBW@K?MAKAIAGCGGUCKEQESAI?I?C@MBQ?CFUDQDKBEFK@?NQVWlAuAFK@CDGTq@BIDODYFm@Ba@?]?ICg@AMCYEc@?CGg@[qCEa@AM?EAG?C@C?C@GNq@@E?C@E?G?EAIW}@Oq@CIMq@EQy@}DCKAMA]?Q@]Di@Fu@HaA@OBQBQ@CDKHOBEDGRSXa@
+                            start_location:
+                              lat: 27.7196513
+                              lng: -17.9933045
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 2.4 km
+                              value: 2418
+                            duration:
+                              text: 3 mins
+                              value: 209
+                            end_location:
+                              lat: 27.7098322
+                              lng: -17.977762
+                            html_instructions: Turn <b>right</b> onto <b>HI-4</b>
+                            maneuver: turn-right
+                            polyline:
+                              points: >-
+                                i|dhDr{vlBNZLVJZDRb@xBDNFTH\FLFNDFFFPHFBJDNBJ?J?JGJGl@o@HKFGDCBA@ALGNI\St@_@^QHAJ?J@HFj@ZHDrAv@HBFBLDL@P?VCXGHARELAJ@H@JDFBHFb@XbBhAZRVHPBN@N?VE`@IfB]b@ITEj@KVEF?J?H@B?\Jb@J`@J@?^JRFLB^H@?b@J`@Hb@HD@ZF`@Hb@J`@H`@H@?`@HL@H?FCFCBCDEDQBO?E?ECGEOQUGIEIGOEGAEEOAOAII{@Gq@AIEeACi@Ae@Aa@CKCGEIIICESSY[m@q@QUKQM]EWKm@CKE_@ESK_@KSGKSSSQa@_@UYAAWY[_@MIMIi@YSK_B}@KIKOA?EMCI?K@E@GBEDEFEHEFAN?nAZTRNHH@J@^E\CJAB?L?P?JBr@PxA^`@JfB`@
+                            start_location:
+                              lat: 27.7192528
+                              lng: -17.9809011
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 0.9 km
+                              value: 890
+                            duration:
+                              text: 2 mins
+                              value: 108
+                            end_location:
+                              lat: 27.7035054
+                              lng: -17.9812712
+                            html_instructions: >-
+                              Turn <b>left</b> onto <b>C. Tr.ª del
+                              Pino</b>/<wbr/><b>HI-4</b>
+                            maneuver: turn-left
+                            polyline:
+                              points: >-
+                                machD~gvlB\_@z@cAd@i@RUHGJEH?J?VFf@T`A`@`Bp@`@Pp@XTJHFHFPRT^lA|ANHLF\JFBJFDD~@t@z@p@NNBB`@l@JPHJPVLLRPRLTRDBVRdAt@TRZXBBZ^TZNT
+                            start_location:
+                              lat: 27.7098322
+                              lng: -17.977762
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 0.2 km
+                              value: 232
+                            duration:
+                              text: 1 min
+                              value: 47
+                            end_location:
+                              lat: 27.7022429
+                              lng: -17.9794795
+                            html_instructions: Turn <b>left</b> onto <b>C. el Chamorro</b>
+                            maneuver: turn-left
+                            polyline:
+                              points: >-
+                                }yahD|}vlBVQDELMJK@?BCDCTGDCBCBEFQNc@Pc@@E@CD[@GFSDGR_@@AHOFKPU@CTY
+                            start_location:
+                              lat: 27.7035054
+                              lng: -17.9812712
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 7 m
+                              value: 7
+                            duration:
+                              text: 1 min
+                              value: 2
+                            end_location:
+                              lat: 27.7021815
+                              lng: -17.9794959
+                            html_instructions: Turn <b>right</b> onto <b>C. San Antón</b>
+                            maneuver: turn-right
+                            polyline:
+                              points: _rahDvrvlBJB
+                            start_location:
+                              lat: 27.7022429
+                              lng: -17.9794795
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 0.1 km
+                              value: 137
+                            duration:
+                              text: 1 min
+                              value: 26
+                            end_location:
+                              lat: 27.7011231
+                              lng: -17.9790166
+                            html_instructions: Turn <b>left</b> onto <b>C. D. Eloy Quintero</b>
+                            maneuver: turn-left
+                            polyline:
+                              points: >-
+                                sqahDzrvlBTUFEDCLAD@\@B?@?BADABABGDKFKFKDC@AHALAZCRA
+                            start_location:
+                              lat: 27.7021815
+                              lng: -17.9794959
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 1.3 km
+                              value: 1312
+                            duration:
+                              text: 2 mins
+                              value: 148
+                            end_location:
+                              lat: 27.6926438
+                              lng: -17.9724029
+                            html_instructions: Continue onto <b>C. la Goronita</b>
+                            polyline:
+                              points: >-
+                                _kahDzovlBRGJGPKb@WFCDCFENMBCHIBGDG@CHQDKRa@@?HKFGHEj@Y~Aq@JCHAb@Cz@An@ETALCHAHCBCDC?A@CTi@DIFI@AZYd@a@n@g@VSDCZUROBCb@WNKHKHMHMPUDGTY@CDIJUFKJYFIDEFCDAx@Gl@IFAFCBCBGDGBCFODMDKFGDEBALGXMZKTMFEZYd@_@FGDG@C@G@G@I?KCi@Cc@Ae@?GAg@AACKCEECIGEGAGBGBCBA?AD?D?F?FBF@HBBBFDFDJHJBJBP?tA@h@@F?HAHELMJMFILQVU
+                            start_location:
+                              lat: 27.7011231
+                              lng: -17.9790166
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 10.6 km
+                              value: 10604
+                            duration:
+                              text: 12 mins
+                              value: 739
+                            end_location:
+                              lat: 27.6422902
+                              lng: -17.9796272
+                            html_instructions: Continue onto <b>HI-4</b>
+                            polyline:
+                              points: >-
+                                _v_hDnfulB?KDMFIFGFEF?F?HBFDPLLLXVZZDDPXZd@h@r@d@n@p@bAFD@@HDFBF@D?@AHAHEDE@CBCBE@I?I?GAIEKEMEIU_@Ye@KQU_@EGMWAEO_@EUCUCOCOAIO]o@gAMUEIEKEK?A?E?EBGBIBCDCBAD?B?FBFB\RBB~@r@f@^HDl@Xd@RXHf@Nl@XRJJFjAl@HFHFHJHPNXDHDFFDJFRHLDLDh@PHBNFNJHD\Tf@\b@VDB^RVRBBDDRV@B^p@FJFJDLDLHZLd@Rn@P`@PZLP^b@JLJJBDJPFNDFHLJHPLRLZPVLz@b@B@VNRNNJBBTVHH`@d@^f@TVPRVTNLHHNL^TVJVHNBB?NBRBB?T?TARCBALCREHCJG\OPIFCLEJ?F?F?H@HBHBJFFFFFPJJDJBL?H?JALC\KDAVKLELGRIFELEHCF?D?H@HFFDTXRZLXDFBFJT@BFPJZHZ?@Jb@BHLj@FJBFDHLR@@LJLJPHVHLDj@Hj@HvATl@J@?^BZBV?LAJ?ZCREPARCR@H?LBL@NFVHTHTFJBRFF?j@HJ@\@X?V?L?J?TAZ?Z@ZBPBXFFBJDRH`@Tb@TFD`@TJHNJTJXJHBJBJ@H?@?\?B?b@AHAP?RBNBLDJFPNRR@@LJHDLDNDF@ZHHBJDFFDDDH@D@F@F?FAD?DKXGPCF?HAH?F@F?B?BBHBHLPHJ\d@Z`@LNf@p@DBDFFDFFDBFBFBB@D@PF^XDFDDh@|@NXBDv@rALTLPHHNLFD@@JDLDx@NFBF@FBJHDBBB@@HLj@`AV`@LVFNBJ@H@JFt@Bj@D|@@N?J?PALAJCL?@CJIREHYd@CHAFCN?J?N@N@HBH@BBFVz@Z~@Tn@Rn@Lb@Nd@L`@h@|ADPh@|ANb@Tp@HVn@bBr@rBTp@HTLXBHDJFLl@hAJRFLFLLRR^?@pAbCBD~@dBR^NXR`@BDNXT`@LXLXFPb@pARh@HR^lADNBPBL@R?LALALABKp@CPU`BG\G\?BADCR?H?H@@BJDJFFDBFDD@J@JAFAFCDC@ADGDGFSDSFOBIFMBG@AFKHK~@aARS^_@X[RY\e@NUP[P[LSPQTSNITM\O@AZQ\UPMRSPQBEPW?ALSFKBGHSBEDIDOBK@EDUBI@GDW@G@IBS@GBIBQBK@EBQBM@ADMDM@EDGHMFIHIHKDCDEJILGNGJCBADAJEJEJENILGHELMNMFKHILSLUFK@CHSFQDUFWP}@Je@F[@KLs@N{@Jg@Hg@@AH]@EDQLa@Rm@r@{BHUDMPi@Nc@J_@F_@@GBO@Y@[?WAY?ECWAICUCQEUCQE]AGWaBWaBAOAEG_@AGCQCM?GCOCOAECUCIAGAIAO?E?G?KBMBI@ABEBEHIFEBCJCHAJ?F?B?HBHBFDJHFDLHNLJHJFRPRLRLBBXLb@NXHTBNBH@@?J@N@L?F?P?@?N?FA\CTCTGTGRGZMPMJGRMLKBCFGNOBCRWDELSNSXa@n@{@PUBAHIDC@AHE@ADCDABA@?HAPEF?J?J?L?J@NDJBHDHDJDDD@?FHBDDBDFDDNNNNPHNJLDDBF@HBH@@?F@ZBH?B@D?@?F@F@F@NDFDFBHFFBHHHJJNJVJTN^HZF`@@@@L@FBRBRDd@Jv@VfAVv@Xv@@@DLBDP\\h@f@p@^b@DHDDDJDFJXHXHVFP@FLb@FPRZd@p@f@l@HL@@FHDFBBFLHLFLDNBLDNBRFTDL@H@@HRh@`ABDb@r@Xd@b@r@d@v@HLPZFFFFB@FBDBBBLB@?F@D?D?N?LCLELGLIDGBCDGDKDIBK@IBIBI@IBKBG@KBEDQFMHOLOLKBCNMVYLOJKHQHSFODUBQBU@Q@SDu@?E@QDg@HsAF_A@K@W@C@KBUD_@F]D[Lo@J_@Rw@Ng@Vo@JYTi@Vi@Te@Ve@DIFMDGJQDMDK?A@K?E@A?M?G?E?MCICQGa@Ie@Kk@AGGQAAOc@KWAMAA?I?I?G?E@I@ODQFYDa@B[@[?W?[E]Ii@ESCOCGKk@Km@Ie@ACE]?ECSEo@@[?Y@UBWBWHa@J]r@}A~@oB`@y@NYLS@ADEVWHIDEDCBAFC@AB?B?DAB?D@D@D@B@DBDB
+                            start_location:
+                              lat: 27.6926438
+                              lng: -17.9724029
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 0.1 km
+                              value: 118
+                            duration:
+                              text: 1 min
+                              value: 19
+                            end_location:
+                              lat: 27.642195
+                              lng: -17.9808183
+                            html_instructions: Turn <b>right</b> onto <b>C. las Calmas</b>
+                            maneuver: turn-right
+                            polyline:
+                              points: i{ugDtsvlB@J@`@@^D|@?NFpA
+                            start_location:
+                              lat: 27.6422902
+                              lng: -17.9796272
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 0.1 km
+                              value: 106
+                            duration:
+                              text: 1 min
+                              value: 34
+                            end_location:
+                              lat: 27.6412427
+                              lng: -17.9807285
+                            html_instructions: >-
+                              Turn <b>left</b> onto <b>C. Juan Gutiérrez
+                              Monteverde</b>
+                            maneuver: turn-left
+                            polyline:
+                              points: uzugDb{vlBRA`@Ct@CD?\CJ?`@C
+                            start_location:
+                              lat: 27.642195
+                              lng: -17.9808183
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 0.1 km
+                              value: 115
+                            duration:
+                              text: 1 min
+                              value: 18
+                            end_location:
+                              lat: 27.6410709
+                              lng: -17.9818738
+                            html_instructions: Turn <b>right</b> onto <b>C. el Carmen</b>
+                            maneuver: turn-right
+                            polyline:
+                              points: wtugDpzvlBDl@?T?L@FDj@Jr@BT?DBL
+                            start_location:
+                              lat: 27.6412427
+                              lng: -17.9807285
+                            travel_mode: DRIVING
+                          - distance:
+                              text: 15 m
+                              value: 15
+                            duration:
+                              text: 1 min
+                              value: 9
+                            end_location:
+                              lat: 27.6412095
+                              lng: -17.9818845
+                            html_instructions: >-
+                              Turn <b>right</b> onto <b>C. el Rancho</b><div
+                              style="font-size:0.9em">Destination will be on the
+                              left</div>
+                            maneuver: turn-right
+                            polyline:
+                              points: usugDtawlB[@
+                            start_location:
+                              lat: 27.6410709
+                              lng: -17.9818738
+                            travel_mode: DRIVING
+                        traffic_speed_entry: []
+                        via_waypoint: []
+                    overview_polyline:
+                      points: >-
+                        ozkhDxn|lBs@sBj@W`DsAx@_@l@RlArD@M@oAjBT]sFSmA{A{E}CkJgA}@_Ca@qGoJX{AvB}@|@@~CtEfJbKfLbHpCrDpGfR`F`JhB`KbDxBjAdCdEnHDbKbAvMqA~Gn@fIkAfPs@|J|CrMlBb^HjD_ApDKvAn@H~@qEtAaGd@oINmG|ByJtA_LzBqFxAm@|AoC@kBUaChAgHhDyGlCoMiBaETm@|CtEEjIuAhLb@lFs@fBY|@pAjBrAbBGzJqDXyAJ}@hBAjDy@rJf@zBvC~CfAnBK`EeAhJCxJxEbEUpCr@`Bi@rCiAbGI~D|@zAe@jBcA~DiBpKPv@f@uBlBmF`CyCz@oF@kGtBsCfGsDL}DmAeQZcCzC_CvB}DbHqGzBwHh@sH]wGpAcJFkDlBiDvBkIWuBhAsACiCm@uDb@_E~AgEeAsJkDkJ{@wHgDiFmBcD[}DaBsFeBiEyCcFBgEpAmE_@_E}B}C]sG}@yDGiSoC{LgDiNMg@Nk@dAMh@@lBbAxDb@vA|Cd@jB`BMjAeAzHi@pDbC`AsGcAcGRqFEwBnAGfCxAZY_@_E_DeDmFqMhFaJh@QjAz@`AjBjCjBvKjAfB`BfBkA`If@|EdFx@|@d@a@IiDKm@n@SzApBDnA~A`AfE|Kb@|DrArAv@fBJt@DHfABFO@M]iAgAkJ_@gEPcBpCiDx@aEO_DUuIaAmEaAuFNoCh@{CX[h@EbA`EfAzBn@LpA_AxAaAjBs@jAj@rBdApAI~AJzD`ChA?zGiAbJpBdEt@b@_Ay@_Bg@qGs@iCiCeFuByDeDoCaCaCt@a@~Bz@tAIfIbB~DqDvIpDrKdKdC|BzBfBp@z@f@B`@_@^Oz@qB|@}BfBqAz@IpAq@~BcAx@mAhEkCfEUzFsFxDaFlCi@n@eAjDwBD_C]uBN_@|Fl@pA_B~@[tHpIf@g@cAeCuD_JJs@~@\tHzDbDhC|GtD~BjCbBvEbB~BnDxBjH|GjB`@zB]jBa@xAt@jEgA|AnBz@rCjAvBvGnAzHXhId@dH|CxBArBfAhBn@Nx@WzAfBlCzEbFzB`D|Br@lBjDVbFw@zEhIrVtHrPpHhQ{@bJr@n@v@q@rGaJtG{FrAsEhAcDnDoBpAqBjA_GtEaQo@_KeAoHLy@bA_@bEfC`G\zCuAvAeBrD}ClC~@pDtAbA\xArCf@~DdCtG`GpK|A`EnGlJnAOl@_AxBeEbAoCb@oH^cDnCmI|AwEqAyG\wDu@iFYgEtDmKxBiB`@zA`@|CzBKl@CDbARtBSj@
+                    summary: HI-1 and HI-4
+                    warnings: []
+                    waypoint_order: []
+                status: OK
+  /maps/api/elevation/json:
+    get:
+      tags:
+        - Elevation API
+      summary: elevation
+      description: >
+        The Elevation API provides a simple interface to query locations on the
+        earth for elevation data. Additionally, you may request sampled
+        elevation data along paths, allowing you to calculate elevation changes
+        along routes. With the Elevation API, you can develop hiking and biking
+        applications, positioning applications, or low resolution surveying
+        applications.
+
+
+        Elevation data is available for all locations on the surface of the
+        earth, including depth locations on the ocean floor (which return
+        negative values). In those cases where Google does not possess exact
+        elevation measurements at the precise location you request, the service
+        interpolates and returns an averaged value using the four nearest
+        locations. Elevation values are expressed relative to local mean sea
+        level (LMSL).
+
+
+        Requests to the Elevation API utilize different parameters based on
+        whether the request is for discrete locations or for an ordered path.
+        For discrete locations, requests for elevation return data on the
+        specific locations passed in the request; for paths, elevation requests
+        are instead sampled along the given path.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                results:
+                  - elevation: 1608.637939453125
+                    location:
+                      lat: 39.7391536
+                      lng: -104.9847034
+                    resolution: 4.771975994110107
+                status: OK
+  /maps/api/geocode/json:
+    get:
+      tags:
+        - Geocoding API
+      summary: geocode
+      description: >-
+        The Geocoding API is a service that provides geocoding and reverse
+        geocoding of addresses.
+
+
+        **Geocoding** is the process of converting addresses (like a street
+        address) into geographic coordinates (like latitude and longitude),
+        which you can use to place markers on a map, or position the map.
+
+
+        **Reverse geocoding** is the process of converting geographic
+        coordinates into a human-readable address.
+
+
+        You can also use the Geocoding API to find the address for a given place
+        ID.
+
+
+        To see countries currently supported by the Google Maps Platform
+        Geocoding API, please consult the [Google Maps coverage
+        data](https://developers.google.com/maps/coverage). The accuracy of
+        geocoded locations may vary per country, so you should consider using
+        the returned `location_type` field to determine if a good enough match
+        has been found for the purposes of your application. Please note that
+        the availability of geocoding data depends on our contracts with data
+        providers, so it is subject to change.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                results:
+                  - address_components:
+                      - long_name: High Street
+                        short_name: High St
+                        types:
+                          - route
+                      - long_name: Hastings
+                        short_name: Hastings
+                        types:
+                          - postal_town
+                      - long_name: East Sussex
+                        short_name: East Sussex
+                        types:
+                          - administrative_area_level_2
+                          - political
+                      - long_name: England
+                        short_name: England
+                        types:
+                          - administrative_area_level_1
+                          - political
+                      - long_name: United Kingdom
+                        short_name: GB
+                        types:
+                          - country
+                          - political
+                      - long_name: TN34
+                        short_name: TN34
+                        types:
+                          - postal_code
+                          - postal_code_prefix
+                    formatted_address: High St, Hastings TN34, UK
+                    geometry:
+                      bounds:
+                        northeast:
+                          lat: 50.86038139999999
+                          lng: 0.596206
+                        southwest:
+                          lat: 50.8558471
+                          lng: 0.5904904
+                      location:
+                        lat: 50.8584228
+                        lng: 0.5926006
+                      location_type: GEOMETRIC_CENTER
+                      viewport:
+                        northeast:
+                          lat: 50.86038139999999
+                          lng: 0.596206
+                        southwest:
+                          lat: 50.8558471
+                          lng: 0.5904904
+                    place_id: ChIJ-Ws929sa30cRKgsMNVkPyws
+                    types:
+                      - route
+                status: OK
+  /maps/api/timezone/json:
+    get:
+      tags:
+        - Time Zone API
+      summary: timezone
+      description: >
+        The Time Zone API provides a simple interface to request the time zone
+        for locations on the surface of the earth, as well as the time offset
+        from UTC for each of those locations. You request the time zone
+        information for a specific latitude/longitude pair and date. The API
+        returns the name of that time zone, the time offset from UTC, and the
+        daylight savings offset.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: location
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) A comma-separated latitude,longitude tuple,
+            `location=39.6034810,-119.6822510`, representing the location to
+            look up.
+          example: <string>
+        - name: timestamp
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The desired time as seconds since midnight, January 1,
+            1970 UTC. The Time Zone API uses the `timestamp` to determine
+            whether or not Daylight Savings should be applied, based on the time
+            zone of the `location`. 
+
+
+            Note that the API does not take historical time zones into account.
+            That is, if you specify a past timestamp, the API does not take into
+            account the possibility that the location was previously in a
+            different time zone.
+          example: <number>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                dstOffset: 0
+                rawOffset: -28800
+                status: OK
+                timeZoneId: America/Los_Angeles
+                timeZoneName: Pacific Standard Time
+  /v1/snaptoroads:
+    get:
+      tags:
+        - Roads API
+      summary: snap To Roads
+      description: >-
+        This service returns the best-fit road geometry for a given set of GPS
+        coordinates. This service takes up to 100 GPS points collected along a
+        route, and returns a similar set of data with the points snapped to the
+        most likely roads the vehicle was traveling along. Optionally, you can
+        request that the points be interpolated, resulting in a path that
+        smoothly follows the geometry of the road.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: path
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The path to be snapped. The path parameter accepts a list
+            of latitude/longitude pairs. Latitude and longitude values should be
+            separated by commas. Coordinates should be separated by the pipe
+            character: "|". For example:
+            `path=60.170880,24.942795|60.170879,24.942796|60.170877,24.942796`.
+
+            <div class="note">Note: The snapping algorithm works best for points
+            that are not too far apart. If you observe odd snapping behavior,
+            try creating paths that have points closer together. To ensure the
+            best snap-to-road quality, you should aim to provide paths on which
+            consecutive pairs of points are within 300m of each other. This will
+            also help in handling any isolated, long jumps between consecutive
+            points caused by GPS signal loss, or noise.</div>
+          example: <string>|<string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                snappedPoints:
+                  - location:
+                      latitude: -35.27800489993019
+                      longitude: 149.129531998742
+                    originalIndex: 0
+                    placeId: ChIJr_xl0GdNFmsRsUtUbW7qABM
+                  - location:
+                      latitude: -35.280323564795005
+                      longitude: 149.1290903128365
+                    originalIndex: 1
+                    placeId: ChIJOyypT2hNFmsRZBtscGL0htw
+                  - location:
+                      latitude: -35.28101395754623
+                      longitude: 149.1292430025548
+                    originalIndex: 2
+                    placeId: ChIJv5r0smlNFmsR5nunau79Fv4
+                  - location:
+                      latitude: -35.28146506991143
+                      longitude: 149.12978858234607
+                    originalIndex: 3
+                    placeId: ChIJ601MoWlNFmsR5mvkfPp2ovA
+                  - location:
+                      latitude: -35.28194399606459
+                      longitude: 149.1299842294294
+                    originalIndex: 4
+                    placeId: ChIJ601MoWlNFmsR5mvkfPp2ovA
+                  - location:
+                      latitude: -35.28282136229385
+                      longitude: 149.12956142620385
+                    originalIndex: 5
+                    placeId: ChIJaUpThGlNFmsRMHWxoH7EOsc
+                  - location:
+                      latitude: -35.28313383700836
+                      longitude: 149.12893500604946
+                    originalIndex: 6
+                    placeId: ChIJWSb8ImpNFmsRp_4JAxJFE1A
+                  - location:
+                      latitude: -35.284728747199374
+                      longitude: 149.12834860726772
+                    originalIndex: 7
+                    placeId: ChIJtWxAZmpNFmsRlbUCkc6VtnA
+  /v1/nearestRoads:
+    get:
+      tags:
+        - Roads API
+      summary: nearest Roads
+      description: >-
+        This service returns individual road segments for a given set of GPS
+        coordinates. This services takes up to 100 GPS points and returns the
+        closest road segment for each point. The points passed do not need to be
+        part of a continuous path.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: points
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The path to be snapped. The path parameter accepts a list
+            of latitude/longitude pairs. Latitude and longitude values should be
+            separated by commas. Coordinates should be separated by the pipe
+            character: "|". For example:
+            `path=60.170880,24.942795|60.170879,24.942796|60.170877,24.942796`.
+
+            <div class="note">Note: The snapping algorithm works best for points
+            that are not too far apart. If you observe odd snapping behavior,
+            try creating paths that have points closer together. To ensure the
+            best snap-to-road quality, you should aim to provide paths on which
+            consecutive pairs of points are within 300m of each other. This will
+            also help in handling any isolated, long jumps between consecutive
+            points caused by GPS signal loss, or noise.</div>
+          example: <string>|<string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                snappedPoints:
+                  - location:
+                      latitude: 88441122.26690334
+                      longitude: 12352141.930863738
+                    placeId: do consequat id
+                    originalIndex: -12608215.018332243
+                  - location:
+                      latitude: -94456748.83172014
+                      longitude: 42911047.81595835
+                    placeId: laborum u
+                    originalIndex: -23092839.797481135
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  code: 400
+                  message: '"points" is a required parameter.'
+                  status: INVALID_ARGUMENT
+  /maps/api/distancematrix/json:
+    get:
+      tags:
+        - Distance Matrix API
+      summary: distance Matrix
+      description: >-
+        The Distance Matrix API is a service that provides travel distance and
+        time for a matrix of origins and destinations. The API returns
+        information based on the recommended route between start and end points,
+        as calculated by the Google Maps API, and consists of rows containing
+        duration and distance values for each pair.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: destinations
+          in: query
+          schema:
+            type: string
+          description: >-
+            (Required) One or more locations to use as the finishing point for
+            calculating travel distance and time. The options for the
+            destinations parameter are the same as for the origins parameter.
+          example: <string>|<string>
+        - name: origins
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The starting point for calculating travel distance and
+            time. You can supply one or more locations separated by the pipe
+            character (|), in the form of a place ID, an address, or
+            latitude/longitude coordinates:
+
+            - **Place ID**: If you supply a place ID, you must prefix it with
+            `place_id:`.
+
+            - **Address**: If you pass an address, the service geocodes the
+            string and converts it to a latitude/longitude coordinate to
+            calculate distance. This coordinate may be different from that
+            returned by the Geocoding API, for example a building entrance
+            rather than its center.
+              <div class="note">Note: using place IDs is preferred over using addresses or latitude/longitude coordinates. Using coordinates will always result in the point being snapped to the road nearest to those coordinates - which may not be an access point to the property, or even a road that will quickly or safely lead to the destination. Using the address will provide the distance to the center of the building, as opposed to an entrance to the building.</div>
+            - **Coordinates**: If you pass latitude/longitude coordinates, they
+            they will snap to the nearest road. Passing a place ID is preferred.
+            If you do pass coordinates, ensure that no space exists between the
+            latitude and longitude values.
+
+            - **Plus codes** must be formatted as a global code or a compound
+            code. Format plus codes as shown here (plus signs are url-escaped to
+            %2B and spaces are url-escaped to %20):
+              - **global code** is a 4 character area code and 6 character or longer local code (`849VCWC8+R9` is encoded to `849VCWC8%2BR9`).
+              - **compound code** is a 6 character or longer local code with an explicit location (`CWC8+R9 Mountain View, CA, USA` is encoded to `CWC8%2BR9%20Mountain%20View%20CA%20USA`).
+            - **Encoded Polyline** Alternatively, you can supply an encoded set
+            of coordinates using the [Encoded Polyline
+            Algorithm](https://developers.google.com/maps/documentation/utilities/polylinealgorithm).
+            This is particularly useful if you have a large number of origin
+            points, because the URL is significantly shorter when using an
+            encoded polyline.
+              - Encoded polylines must be prefixed with `enc:` and followed by a colon `:`. For example: `origins=enc:gfo}EtohhU:`
+              - You can also include multiple encoded polylines, separated by the pipe character `|`. For example: 
+                ```
+                origins=enc:wc~oAwquwMdlTxiKtqLyiK:|enc:c~vnAamswMvlTor@tjGi}L:|enc:udymA{~bxM:
+                ```
+          example: <string>|<string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                destination_addresses:
+                  - Victoria, BC, Canada
+                origin_addresses:
+                  - Seattle, WA, USA
+                rows:
+                  - elements:
+                      - distance:
+                          text: 341 km
+                          value: 341123
+                        duration:
+                          text: 5 hours 36 mins
+                          value: 20168
+                        status: OK
+                status: OK
+  /maps/api/place/details/json:
+    get:
+      tags:
+        - Places API
+      summary: place Details
+      description: >-
+        The Places API is a service that returns information about places using
+        HTTP requests. Places are defined within this API as establishments,
+        geographic locations, or prominent points of interest.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: place_id
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) A textual identifier that uniquely identifies a place,
+            returned from a [Place
+            Search](https://developers.google.com/maps/documentation/places/web-service/search).
+
+            For more information about place IDs, see the [place ID
+            overview](https://developers.google.com/maps/documentation/places/web-service/place-id).
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                html_attributions: []
+                result:
+                  address_components:
+                    - long_name: '48'
+                      short_name: '48'
+                      types:
+                        - street_number
+                    - long_name: Pirrama Road
+                      short_name: Pirrama Rd
+                      types:
+                        - route
+                    - long_name: Pyrmont
+                      short_name: Pyrmont
+                      types:
+                        - locality
+                        - political
+                    - long_name: City of Sydney
+                      short_name: City of Sydney
+                      types:
+                        - administrative_area_level_2
+                        - political
+                    - long_name: New South Wales
+                      short_name: NSW
+                      types:
+                        - administrative_area_level_1
+                        - political
+                    - long_name: Australia
+                      short_name: AU
+                      types:
+                        - country
+                        - political
+                    - long_name: '2009'
+                      short_name: '2009'
+                      types:
+                        - postal_code
+                  adr_address: >-
+                    <span class="street-address">48 Pirrama Rd</span>, <span
+                    class="locality">Pyrmont</span> <span
+                    class="region">NSW</span> <span
+                    class="postal-code">2009</span>, <span
+                    class="country-name">Australia</span>
+                  business_status: OPERATIONAL
+                  formatted_address: 48 Pirrama Rd, Pyrmont NSW 2009, Australia
+                  formatted_phone_number: (02) 9374 4000
+                  geometry:
+                    location:
+                      lat: -33.866489
+                      lng: 151.1958561
+                    viewport:
+                      northeast:
+                        lat: -33.8655112697085
+                        lng: 151.1971156302915
+                      southwest:
+                        lat: -33.86820923029149
+                        lng: 151.1944176697085
+                  icon: >-
+                    https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                  icon_background_color: '#7B9EB0'
+                  icon_mask_base_uri: >-
+                    https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                  international_phone_number: +61 2 9374 4000
+                  name: Google Workplace 6
+                  opening_hours:
+                    open_now: false
+                    periods:
+                      - close:
+                          day: 1
+                          time: '1700'
+                        open:
+                          day: 1
+                          time: '0900'
+                      - close:
+                          day: 2
+                          time: '1700'
+                        open:
+                          day: 2
+                          time: '0900'
+                      - close:
+                          day: 3
+                          time: '1700'
+                        open:
+                          day: 3
+                          time: '0900'
+                      - close:
+                          day: 4
+                          time: '1700'
+                        open:
+                          day: 4
+                          time: '0900'
+                      - close:
+                          day: 5
+                          time: '1700'
+                        open:
+                          day: 5
+                          time: '0900'
+                    weekday_text:
+                      - 'Monday: 9:00 AM – 5:00 PM'
+                      - 'Tuesday: 9:00 AM – 5:00 PM'
+                      - 'Wednesday: 9:00 AM – 5:00 PM'
+                      - 'Thursday: 9:00 AM – 5:00 PM'
+                      - 'Friday: 9:00 AM – 5:00 PM'
+                      - 'Saturday: Closed'
+                      - 'Sunday: Closed'
+                  photos:
+                    - height: 3024
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/117600448889234589608">Cynthia
+                          Wei</a>
+                      photo_reference: >-
+                        Aap_uEC6jqtpflLS8GxQqPHBjlcwBf2sri0ZErk9q1ciHGZ6Zx5HBiiiEsPEO3emtB1PGyWbBQhgPL2r9CshoVlJEG4xzB71QMhGBTqqeaCNk1quO3vTTiP50aM1kmOaBQ-DF1ER7zpu6BQOEtnusKMul0m4KA45wfE3h6Xh2IxjLNzx-IiX
+                      width: 4032
+                    - height: 3264
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/102493344958625549078">Heyang
+                          Li</a>
+                      photo_reference: >-
+                        Aap_uECyRjHhOQgGaKTW6Z3ZfTEaDhNc44m0F6GrNSFIMffixwI5xqD35QhecdzVY-FUuDtVE1huu8-2HkxgI9Gwvy6W18fU-_E3UUkdSFBQqGK8_slKlT8BZZc66sTX53IEcTDrZfT-E5_YUBYBOm13yxOTOfWfEDABhaxCGC5Hu_XYh0fI
+                      width: 4912
+                    - height: 3036
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/104829437842034782235">Anna
+                          Linetsky</a>
+                      photo_reference: >-
+                        Aap_uEAumTzSdhRHDutPAj6wVPSZZmBV-brI6TPFwI0tcQlbSR74z44mUPr4aXMQKck_AzHaKmbfR3P2c1qsu45i1RQPHrcpIXxrA78FmDjCdWYYZWUnFozdcmEj9OQ_V0G08adpKivMKZyeaQ1NuwRy9GhSopeKpzkzkFZG5vXMYPPSgpa1
+                      width: 4048
+                    - height: 4016
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/107755640736541028674">Jonah
+                          Dell</a>
+                      photo_reference: >-
+                        Aap_uECC7cSbDkh-TdmXr6m5d5pgVXJmvXg8dF2jzhL0b0Ko4CtnVll6-tIvdz7vhbCsd3hl2u9EgZ4Y30FBxKmFcimfeYUgW2XJyv8JY5IYGuXsKkCLqpV3QH9dIGwoUv2uX0eosDsUsTN2DOlyOasUgVxcYqzIzEmrL5ofIssThQWZeozD
+                      width: 6016
+                    - height: 3024
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/115886271727815775491">Anthony
+                          Huynh</a>
+                      photo_reference: >-
+                        Aap_uEDTdw58CglFmZZAR9iZ05x3y2oK9r5_dRqKWnbZKSS9gs6gp9AeBa1QDvBL6dzZyQAZfN8H2Eppu6y4NBaPOp-GkulZYiKRM7Yww8sUEv-8dmcq35Tx38pe4LEX2wIicFkQHedRgMc0FfV9aFtgosQ5ps5-HCjJSApg8eLGyuxxqPm9
+                      width: 4032
+                    - height: 3024
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/102939237947063969663">Jasen
+                          Baker</a>
+                      photo_reference: >-
+                        Aap_uEAGqslqZPhZUk0T2Y6l7mkCYnY7JN9li4g5NkZsE0N4Cdy7_cZ-fZWyV02VhpQR4Ph4fLUL6_WTXrlGMXXzUJXUcSmSTs2d_Dzf3Q_A1y07Dm-vtv7pS3JXsWyrWETGIoT1pIj81PPdUc1vlR2i3GFMWAbx9rCC472ZJclY8JlvMg-x
+                      width: 4032
+                    - height: 3024
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/100678816592586275978">Jeremy
+                          Hsiao</a>
+                      photo_reference: >-
+                        Aap_uEBaGxeN90YFjD-AUjxZqM44kpMcICKKBBhb0RQQS7DHHFaay8RRAwjWsAt8GEmmB5QnxrbQWHU3TwhVXXHP0m-YNp9Ds3ihpiFan0moNv4QB7kern5cfjWhhrWe8B0dz_vYvmPssJE24P-24YfWWHubOo0L2MjQyueZfDv57N_RvDZk
+                      width: 4032
+                    - height: 1515
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/112343109286948028063">Andrew
+                          W</a>
+                      photo_reference: >-
+                        Aap_uEBDzJlmTeNUreMop6_hkC1HKTCRLyPs5fikJi58qCejtkWp5PIM6vzNN3HErkSWUwnamTr_WLyT7jXMAIdByR-hx8dG-OHjj5JxzmcPvuT_VeVLmdSbNPeIlpmp6EUcPOhaVrhEKojSd44QXkl0za29eZ0oj1KDOnAsGxmhanDFW7lI
+                      width: 2048
+                    - height: 3024
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/100678816592586275978">Jeremy
+                          Hsiao</a>
+                      photo_reference: >-
+                        Aap_uEBvYFpzCDQzvQ0kdBxxB70lTkLbTM0yH3xF-BCHsb7DQ63cuWnutvwv8oVLDSbA14_kns3WVlEInTyy2elvmH5lzQteb6zzRu3exkwE65_55TgJqdLO7RYYiPFliWk4ocszn9nn5ELv5uP2BQmqr9QET5vwgxR-0eshyVmcdM42jb39
+                      width: 4032
+                    - height: 4032
+                      html_attributions:
+                        - >-
+                          <a
+                          href="https://maps.google.com/maps/contrib/100678816592586275978">Jeremy
+                          Hsiao</a>
+                      photo_reference: >-
+                        Aap_uECQynuD_EnSnbz8sJQ6-B6uR-j2tuu4Z1tuGUjq8xnxFDk-W8OdeLzWBX8suNKTCsPlkzTqC22BXf_hX33XclGPL4SS9xnPmHcMrLoUl0H_xHYevFvT17Hgw5DZpSyVmLvDvxzzJ1rsZTh55QwopmAty083a1r1ZIfL32iXh_q8FUas
+                      width: 3024
+                  place_id: ChIJN1t_tDeuEmsRUsoyG83frY4
+                  plus_code:
+                    compound_code: 45MW+C8 Pyrmont NSW, Australia
+                    global_code: 4RRH45MW+C8
+                  rating: 4
+                  reference: ChIJN1t_tDeuEmsRUsoyG83frY4
+                  reviews:
+                    - author_name: Luke Archibald
+                      author_url: >-
+                        https://www.google.com/maps/contrib/113389359827989670652/reviews
+                      language: en
+                      profile_photo_url: >-
+                        https://lh3.googleusercontent.com/a-/AOh14GhGGmTmvtD34HiRgwHdXVJUTzVbxpsk5_JnNKM5MA=s128-c0x00000000-cc-rp-mo
+                      rating: 1
+                      relative_time_description: a week ago
+                      text: >-
+                        Called regarding paid advertising google pages to the
+                        top of its site of a scam furniture website misleading
+                        and taking peoples money without ever sending a product
+                        - explained the situation,  explained I'd spoken to an
+                        ombudsman regarding it.  Listed ticket numbers etc.
+
+
+                        They left the advertisement running.
+                      time: 1652286798
+                    - author_name: Tevita Taufoou
+                      author_url: >-
+                        https://www.google.com/maps/contrib/105937236918123663309/reviews
+                      language: en
+                      profile_photo_url: >-
+                        https://lh3.googleusercontent.com/a/AATXAJwZANdRSSg96QeZG--6BazG5uv_BJMIvpZGqwSz=s128-c0x00000000-cc-rp-mo
+                      rating: 1
+                      relative_time_description: 6 months ago
+                      text: >-
+                        I need help.  Google Australia is taking my money. Money
+                        I don't have any I am having trouble sorting this issue
+                        out
+                      time: 1637215605
+                    - author_name: Jordy Baker
+                      author_url: >-
+                        https://www.google.com/maps/contrib/102582237417399865640/reviews
+                      language: en
+                      profile_photo_url: >-
+                        https://lh3.googleusercontent.com/a/AATXAJwgg1tM4aVA4nJCMjlfJtHtFZuxF475Vb6tT74S=s128-c0x00000000-cc-rp-mo
+                      rating: 1
+                      relative_time_description: 4 months ago
+                      text: >-
+                        I have literally never been here in my life, I am 17 and
+                        they are taking money I don't have for no reason.
+
+
+                        This is not ok. I have rent to pay and my own expenses
+                        to deal with and now this.
+                      time: 1641389490
+                    - author_name: Prem Rathod
+                      author_url: >-
+                        https://www.google.com/maps/contrib/115981614018592114142/reviews
+                      language: en
+                      profile_photo_url: >-
+                        https://lh3.googleusercontent.com/a/AATXAJyEQpqs4YvPPzMPG2dnnRTFPC4jxJfn8YXnm2gz=s128-c0x00000000-cc-rp-mo
+                      rating: 1
+                      relative_time_description: 4 months ago
+                      text: >-
+                        Terrible service. all reviews are fake and irrelevant.
+                        This is about reviewing google as business not the
+                        building/staff etc.
+                      time: 1640159655
+                    - author_name: Husuni Hamza
+                      author_url: >-
+                        https://www.google.com/maps/contrib/102167316656574288776/reviews
+                      language: en
+                      profile_photo_url: >-
+                        https://lh3.googleusercontent.com/a/AATXAJwRkyvoSlgd06ahkF9XI9D39o6Zc_Oycm5EKuRg=s128-c0x00000000-cc-rp-mo
+                      rating: 5
+                      relative_time_description: 7 months ago
+                      text: >-
+                        Nice site. Please I want to work with you. Am Alhassan
+                        Haruna, from Ghana. Contact me +233553851616
+                      time: 1633197305
+                  types:
+                    - point_of_interest
+                    - establishment
+                  url: https://maps.google.com/?cid=10281119596374313554
+                  user_ratings_total: 939
+                  utc_offset: 600
+                  vicinity: 48 Pirrama Road, Pyrmont
+                  website: http://google.com/
+                status: OK
+  /maps/api/place/findplacefromtext/json:
+    get:
+      tags:
+        - Places API
+      summary: find Place From Text
+      description: >
+        A Find Place request takes a text input and returns a place. The input
+        can be any kind of Places text data, such as a name, address, or phone
+        number. The request must be a string. A Find Place request using
+        non-string data such as a lat/lng coordinate or plus code generates an
+        error.
+
+        <div class="note">Note: If you omit the fields parameter from a Find
+        Place request, only the place_id for the result will be returned.</div>
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: input
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The text string on which to search, for example:
+            "restaurant" or "123 Main Street". This must be a place name,
+            address, or category of establishments. Any other types of input can
+            generate errors
+
+            and are not guaranteed to return valid results. The Places API will
+            return candidate matches based on this string and order the results
+            based on their perceived relevance.
+          example: <string>
+        - name: inputtype
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The type of input. This can be one of either `textquery`
+            or `phonenumber`. Phone numbers must be in international format
+            (prefixed by a plus sign ("+"), followed by the country code, then
+            the phone number itself). See [E.164 ITU
+            recommendation](https://en.wikipedia.org/wiki/E.164) for more
+            information.
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                candidates:
+                  - formatted_address: 140 George St, The Rocks NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8599358
+                        lng: 151.2090295
+                      viewport:
+                        northeast:
+                          lat: -33.85824377010728
+                          lng: 151.2104386798927
+                        southwest:
+                          lat: -33.86094342989272
+                          lng: 151.2077390201073
+                    name: Museum of Contemporary Art Australia
+                    opening_hours:
+                      open_now: false
+                    rating: 4.4
+                status: OK
+  /maps/api/place/nearbysearch/json:
+    get:
+      tags:
+        - Places API
+      summary: nearby Search
+      description: >-
+        A Nearby Search lets you search for places within a specified area. You
+        can refine your search request by supplying keywords or specifying the
+        type of place you are searching for.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: location
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The point around which to retrieve place information.
+            This must be specified as `latitude,longitude`.
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                html_attributions: []
+                results:
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8587323
+                        lng: 151.2100055
+                      viewport:
+                        northeast:
+                          lat: -33.85739847010727
+                          lng: 151.2112436298927
+                        southwest:
+                          lat: -33.86009812989271
+                          lng: 151.2085439701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/bar-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/bar_pinlet
+                    name: Cruise Bar
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 608
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/112582655193348962755">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uECvJIZuXT-uLDYm4DPbrV7gXVPeplbTWUgcOJ6rnfc4bUYCEAwPU_AmXGIaj0PDhWPbmrjQC8hhuXRJQjnA1-iREGEn7I0ZneHg5OP1mDT7lYVpa1hUPoz7cn8iCGBN9MynjOPSUe-UooRrFw2XEXOLgRJ-uKr6tGQUp77CWVocpcoG
+                        width: 1080
+                    place_id: ChIJi6C1MxquEmsR9-c-3O48ykI
+                    plus_code:
+                      compound_code: 46R6+G2 The Rocks, New South Wales
+                      global_code: 4RRH46R6+G2
+                    price_level: 2
+                    rating: 4
+                    reference: ChIJi6C1MxquEmsR9-c-3O48ykI
+                    scope: GOOGLE
+                    types:
+                      - bar
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 1269
+                    vicinity: >-
+                      Level 1, 2 and 3, Overseas Passenger Terminal, Circular
+                      Quay W, The Rocks
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8675219
+                        lng: 151.2016502
+                      viewport:
+                        northeast:
+                          lat: -33.86614532010728
+                          lng: 151.2031259298927
+                        southwest:
+                          lat: -33.86884497989272
+                          lng: 151.2004262701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Sydney Harbour Dinner Cruises
+                    opening_hours:
+                      open_now: true
+                    photos:
+                      - height: 835
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/109764923610545394994">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEBVsYnNcrpRixtrlHBztigZh70CwYkNWZzQnqJ39SjeBo_wvgKf-kXc6tgaMLBdQrRKmxmSKjOezoZrv-sHKVbTX0OI48HBqYYVnQiZQ-WGeuQDsLEPwX7LaVPa68nUAxX114Zpqt7bryoO9wL4qXdgEnopbOp5WWLALhKEHoIEH7f7
+                        width: 1200
+                    place_id: ChIJM1mOVTS6EmsRKaDzrTsgids
+                    plus_code:
+                      compound_code: 46J2+XM Sydney, New South Wales
+                      global_code: 4RRH46J2+XM
+                    rating: 4.8
+                    reference: ChIJM1mOVTS6EmsRKaDzrTsgids
+                    scope: GOOGLE
+                    types:
+                      - tourist_attraction
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 9
+                    vicinity: 32 The Promenade, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8676569
+                        lng: 151.2017213
+                      viewport:
+                        northeast:
+                          lat: -33.86629922010728
+                          lng: 151.2031712798927
+                        southwest:
+                          lat: -33.86899887989272
+                          lng: 151.2004716201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Clearview Sydney Harbour Cruises
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 685
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/114394575270272775071">Clearview
+                            Glass Boat Cruises</a>
+                        photo_reference: >-
+                          Aap_uEAlExjnXA0VWyb_oYwCJ8utWG_Ennhwmn_xadpgenMNUgTuxrvgf1Xdw4bsbL6kFSWH7bhbpVHK1esdNY37ancJvbL_Gnsc7EZ5KEBNPvYZ_ZEyLco4a5v34LFkodxfFZbJ-ejO3zN4W_0C37P5jAmTnLWMNFYUPvoU3UMi70qHRNF5
+                        width: 1024
+                    place_id: ChIJNQfwZTiuEmsR1m1x9w0E2V0
+                    plus_code:
+                      compound_code: 46J2+WM Sydney, New South Wales
+                      global_code: 4RRH46J2+WM
+                    rating: 3.8
+                    reference: ChIJNQfwZTiuEmsR1m1x9w0E2V0
+                    scope: GOOGLE
+                    types:
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 49
+                    vicinity: 32 The Promenade King Street Wharf 5, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8677035
+                        lng: 151.2017297
+                      viewport:
+                        northeast:
+                          lat: -33.86634597010728
+                          lng: 151.2031781298927
+                        southwest:
+                          lat: -33.86904562989272
+                          lng: 151.2004784701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Sydney Harbour Lunch Cruise
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 545
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/102428257696490257922">Sydney
+                            Harbour Lunch Cruise</a>
+                        photo_reference: >-
+                          Aap_uEBFyQ2xDzHk7dGF_FTvNeJ01NQD6GROq89rufdGQl5Gi0zVfpnETBjPK2v7UEDl_6F-m8aR5FcEWJMqPaH4Oh_CQh2jaUAUAesUInucpCe7OFdleSYJ_8kgunhsIvGf1D1s_pes6Rk2JMVEs8rEs6ZHSTmUQXX2Yh-Gt9MuPQdYNuNv
+                        width: 969
+                    place_id: ChIJUbf3iDiuEmsROJxXbhYO7cM
+                    plus_code:
+                      compound_code: 46J2+WM Sydney, New South Wales
+                      global_code: 4RRH46J2+WM
+                    rating: 3.9
+                    reference: ChIJUbf3iDiuEmsROJxXbhYO7cM
+                    scope: GOOGLE
+                    types:
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 23
+                    vicinity: 5/32 The Promenade, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8675883
+                        lng: 151.2016452
+                      viewport:
+                        northeast:
+                          lat: -33.86623847010728
+                          lng: 151.2029950298927
+                        southwest:
+                          lat: -33.86893812989273
+                          lng: 151.2002953701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Sydney Showboats - Dinner Cruise With Show
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 4912
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/105311284660389698992">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uED1aGaMs8xYfiuzeBqVcFsk3yguUujdE4S3rNThMpLtoU0RukF40KCt0CAxgHP1HoY8Z7NYcWvax6qmMMVPBbmzGhoaiwiAAyv2GGA9vhcgsJ5w0LweT0y1lgRGZxU3nZIdNLiYAp9JHM171UkN04H6UqYSxKVZ8N_f2aslkqOaBF_e
+                        width: 7360
+                    place_id: ChIJjRuIiTiuEmsRCHhYnrWiSok
+                    plus_code:
+                      compound_code: 46J2+XM Sydney, New South Wales
+                      global_code: 4RRH46J2+XM
+                    rating: 4.1
+                    reference: ChIJjRuIiTiuEmsRCHhYnrWiSok
+                    scope: GOOGLE
+                    types:
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 119
+                    vicinity: 32 The Promenade, King Street Wharf, 5, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8677035
+                        lng: 151.2017297
+                      viewport:
+                        northeast:
+                          lat: -33.86634597010728
+                          lng: 151.2031781298927
+                        southwest:
+                          lat: -33.86904562989272
+                          lng: 151.2004784701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Magistic Cruises
+                    opening_hours:
+                      open_now: true
+                    photos:
+                      - height: 1536
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/103073818292552522030">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEC8bq-YphfIDcdxANBfgGMBIX2B0ggNep9ddVoePj6sfdcdusIn07x8biaxevZ_6BpzDDRsUL8No5P3ftI4on_pqbAbIEUL5gFGgezpVZ3M9GWvKdJm3njO_aJaghWl4_aQb75c0WGYDRFPhn6fWsLkD7KxodviJeCX4OCGt1eRJnlK
+                        width: 2048
+                    place_id: ChIJxRjqYTiuEmsRGebAA_chDLE
+                    plus_code:
+                      compound_code: 46J2+WM Sydney, New South Wales
+                      global_code: 4RRH46J2+WM
+                    rating: 3.9
+                    reference: ChIJxRjqYTiuEmsRGebAA_chDLE
+                    scope: GOOGLE
+                    types:
+                      - tourist_attraction
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 99
+                    vicinity: King Street Wharf, 32 The Promenade, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8609391
+                        lng: 151.2098735
+                      viewport:
+                        northeast:
+                          lat: -33.85958927010727
+                          lng: 151.2112233298927
+                        southwest:
+                          lat: -33.86228892989272
+                          lng: 151.2085236701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Australian Cruise Group
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 1536
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/113088009011192061895">Keith
+                            Bauman</a>
+                        photo_reference: >-
+                          Aap_uED7aBwIbN6iuoZi8e9xCrt6F_EhppGCBfzYCgypetw8cGn4Ui0Y3JZe3QJ0buf0zc54BtPz-SWXxecPd6kDvNNZD5Eu_ZzTP13rXMzSDJa6UcwFiXU4y3qYrWAyJ6mtYrd2PJgw0KzvYaZoPze7Ka6zG6k3IOjeSICDYH6YOzkXhelj
+                        width: 2048
+                    place_id: ChIJpU8KgUKuEmsRKErVGEaa11w
+                    plus_code:
+                      compound_code: 46Q5+JW Sydney, New South Wales
+                      global_code: 4RRH46Q5+JW
+                    rating: 4.4
+                    reference: ChIJpU8KgUKuEmsRKErVGEaa11w
+                    scope: GOOGLE
+                    types:
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 5
+                    vicinity: 6 Cirular Quay, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8686058
+                        lng: 151.2018206
+                      viewport:
+                        northeast:
+                          lat: -33.86730002010728
+                          lng: 151.2032717798927
+                        southwest:
+                          lat: -33.86999967989272
+                          lng: 151.2005721201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Rhythmboat Cruises
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 2269
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/104066891898402903288">Rhythmboat
+                            Sydney Harbour Cruises</a>
+                        photo_reference: >-
+                          Aap_uEAT8eop-IsfSAQ3KP6YXRNRsFkESXDecsaPnaVhq5bZzny5guvhS4smciianRGbZgDtFtAcU-ZXTaBfuh80CFw8vpJyKaB4grgW_CW64rU1JF9FDy_M8HtEk3rOrMhPDiF8ns-mc16E4rWSuAQIc76Du_eCd63ofoErESOtSWAQVcew
+                        width: 4032
+                    place_id: ChIJyWEHuEmuEmsRm9hTkapTCrk
+                    plus_code:
+                      compound_code: 46J2+HP Sydney, New South Wales
+                      global_code: 4RRH46J2+HP
+                    rating: 3.9
+                    reference: ChIJyWEHuEmuEmsRm9hTkapTCrk
+                    scope: GOOGLE
+                    types:
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 30
+                    vicinity: King Street Wharf, King St, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8712692
+                        lng: 151.1898651
+                      viewport:
+                        northeast:
+                          lat: -33.86952792010727
+                          lng: 151.1914560298927
+                        southwest:
+                          lat: -33.87222757989272
+                          lng: 151.1887563701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Glass Island
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 4480
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/117745044320706972021">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEAaToCBaHP7Gfdjc740gwIkQcjeUD97NO0TKXJ5IXB0CLGQA6slEpHn4k9LwyhoAzzbSTXJduYyFIkHVmQWGp34NggRxrtOWp7sJf5N6j0ASYlJPmAtWUaaCWnbx_pxdndsopeJ7PYn9kTiMgFcSs-GeipI8hDZgAJswMBnfsO0xWQ-
+                        width: 6720
+                    place_id: ChIJnScuboavEmsRyh-FGxhc3pw
+                    plus_code:
+                      compound_code: 45HQ+FW Pyrmont, New South Wales
+                      global_code: 4RRH45HQ+FW
+                    rating: 4.1
+                    reference: ChIJnScuboavEmsRyh-FGxhc3pw
+                    scope: GOOGLE
+                    types:
+                      - bar
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 90
+                    vicinity: 37 Bank St, Pyrmont
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.85876140000001
+                        lng: 151.2100004
+                      viewport:
+                        northeast:
+                          lat: -33.85737742010728
+                          lng: 151.2111319298927
+                        southwest:
+                          lat: -33.86007707989272
+                          lng: 151.2084322701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Junk Lounge
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 608
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/104473997089847488714">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEDaHF9VZFV88tQqFyIgmPlcbCsK-ScCGuUVGh0mTAP4OzWh_0q0T5rPbeC7bas7vD5vC9oS95jtdr4oOnQmhGDAIbHkv4E6UHrQIl0f3XZ-3-RRDjn293w4qQb_BfhbPPO3nokU7npfMfVvCcelWf9WHiWNHT4EEHrFtvuhAWKobTnC
+                        width: 1080
+                    place_id: ChIJq9W3HZOvEmsRYtKNTRmq34M
+                    plus_code:
+                      compound_code: 46R6+F2 The Rocks, New South Wales
+                      global_code: 4RRH46R6+F2
+                    price_level: 2
+                    rating: 4.1
+                    reference: ChIJq9W3HZOvEmsRYtKNTRmq34M
+                    scope: GOOGLE
+                    types:
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 63
+                    vicinity: >-
+                      Level 2, Overseas Passenger Terminal, Circular Quay W, The
+                      Rocks
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8677035
+                        lng: 151.2017297
+                      viewport:
+                        northeast:
+                          lat: -33.86634597010728
+                          lng: 151.2031781298927
+                        southwest:
+                          lat: -33.86904562989272
+                          lng: 151.2004784701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#7B9EB0'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: Sydney New Year's Eve Cruises
+                    opening_hours:
+                      open_now: true
+                    photos:
+                      - height: 1600
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/115281801304517408477">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEDceKHtQ9Hf2eHwnQYXLqrwZ1X2LYVhsfXbqrpIm3_lXZ9apURjAXtVgRVTGxJPD7BtaqR8C7bwaSTakmi0Pazn7g3suj8ZaQRBqheT3KVJDhZ9_GwVInLkWbxqnhivEXs1a-MC_J8XF1SL_5AQ3mAETgiLRQ04116IAEV5vHyIGRsa
+                        width: 2400
+                    place_id: ChIJ__8_hziuEmsR27ucFXECfOg
+                    plus_code:
+                      compound_code: 46J2+WM Sydney, New South Wales
+                      global_code: 4RRH46J2+WM
+                    rating: 5
+                    reference: ChIJ__8_hziuEmsR27ucFXECfOg
+                    scope: GOOGLE
+                    types:
+                      - travel_agency
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 5
+                    vicinity: King Street Wharf 5, 32 The Promenade, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.8669866
+                        lng: 151.2017231
+                      viewport:
+                        northeast:
+                          lat: -33.86563197010727
+                          lng: 151.2031347298927
+                        southwest:
+                          lat: -33.86833162989272
+                          lng: 151.2004350701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png
+                    icon_background_color: '#13B5C7'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet
+                    name: King Street Wharf Darling Harbour
+                    opening_hours:
+                      open_now: true
+                    photos:
+                      - height: 3024
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/101920674986627213698">朱品貞</a>
+                        photo_reference: >-
+                          Aap_uEDwKXVOjIaCj3LptOdd86B5umsdG7Z3jcvqcpUVLwHS6w8VGEkphgC8-shAx95CrsuXpnKz-XVIixVmgagQHKPH3vSLLqJ6LOAR7Q-_jiyx3ELXD0pm7AARiAtQAMBN9A-oqbtvGbE27yDpvBS1lKe9PCm-dMfrHIIcsS91Qeq2E4b6
+                        width: 4032
+                    place_id: ChIJkfDzJ72vEmsR8xtYbk5f0p0
+                    plus_code:
+                      compound_code: 46M2+6M Sydney, New South Wales
+                      global_code: 4RRH46M2+6M
+                    rating: 4.4
+                    reference: ChIJkfDzJ72vEmsR8xtYbk5f0p0
+                    scope: GOOGLE
+                    types:
+                      - tourist_attraction
+                      - convenience_store
+                      - bowling_alley
+                      - travel_agency
+                      - bar
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - store
+                      - establishment
+                    user_ratings_total: 3213
+                    vicinity: The Promenade, Lime St, Sydney
+                  - business_status: OPERATIONAL
+                    geometry:
+                      location:
+                        lat: -33.870383
+                        lng: 151.1979245
+                      viewport:
+                        northeast:
+                          lat: -33.86901092010727
+                          lng: 151.1991702798927
+                        southwest:
+                          lat: -33.87171057989271
+                          lng: 151.1964706201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: The Little Snail Restaurant
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 900
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/114727320476039103791">The
+                            Little Snail</a>
+                        photo_reference: >-
+                          Aap_uEA9aHKkB_6VoFx4VHRSp19PCwnTOuGfpmDYw1NdYNbzncfdjjfEmiiFz-E4tIJ6iGVZjR_bejX6wNr5thJjqlcdQ2PvPyTTo1jGtxk31JG9b6Vd0vu_v4Ep7yutzf3KTzBjYFBIGsYPf3Pj0DptMWPLP7fn33SBT7YmRqDEoGcUsBzw
+                        width: 1350
+                    place_id: ChIJtwapWjeuEmsRcxV5JARHpSk
+                    plus_code:
+                      compound_code: 45HX+R5 Pyrmont, New South Wales
+                      global_code: 4RRH45HX+R5
+                    price_level: 2
+                    rating: 4.5
+                    reference: ChIJtwapWjeuEmsRcxV5JARHpSk
+                    scope: GOOGLE
+                    types:
+                      - restaurant
+                      - food
+                      - point_of_interest
+                      - establishment
+                    user_ratings_total: 1916
+                    vicinity: 3/50 Murray St, Pyrmont
+                status: OK
+  /maps/api/place/textsearch/json:
+    get:
+      tags:
+        - Places API
+      summary: text Search
+      description: >
+        The Google Places API Text Search Service is a web service that returns
+        information about a set of places based on a string — for example "pizza
+        in New York" or "shoe stores near Ottawa" or "123 Main Street". The
+        service responds with a list of places matching the text string and any
+        location bias that has been set.
+
+
+        The service is especially useful for making [ambiguous
+        address](https://developers.google.com/maps/documentation/geocoding/best-practices)
+        queries in an automated system, and non-address components of the string
+        may match businesses as well as addresses. Examples of ambiguous address
+        queries are incomplete addresses, poorly formatted addresses, or a
+        request that includes non-address components such as business names.
+
+
+        The search response will include a list of places. You can send a Place
+        Details request for more information about any of the places in the
+        response.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: query
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The text string on which to search, for example:
+            "restaurant" or "123 Main Street". This must a place name, address,
+            or category of establishments. Any other types
+
+            of input can generate errors and are not guaranteed to return valid
+            results. The Google Places service will return candidate matches
+            based on this string and order
+
+            the results based on their perceived relevance.
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                html_attributions: []
+                next_page_token: >-
+                  Aap_uEAHsgFErpxZrytW1mgKsefD327VCf0OgNF9vpXPwTOG6AGhEZpGgMgofSzgCahevXhneCe9M9H24SOuE4ZcaE0ZR01gVykQZ6EoDnlWEQvXBXe6z0sgF5MQo7qBb6uD4VHKDLhgR59Lb86BzTHJzTzbm61OAPvyInZoaQxK8-oEf2PShZT7XRJKoF5nISbwvU_-RomwGDVi27oj0fToIyV-Vj2ftJw8ZUPbdGGCbcDolQyAwj11Dy2aaeK4SGwg2mO5Akxa7fCze2RJ0GCAvXXp7omTFDy_47OXsFgDPfzluc7mEb5VlzlIMZ0eWQ8VeNigtv-XZZG0f3HSo81Yeq3QhXedJ5oNE1XCwyMly3YVgw_h3amOzAOuDigF1pgFnfGyzxD8vr2bfbPTNvA9l7IJ8Q
+                results:
+                  - business_status: OPERATIONAL
+                    formatted_address: 1 Macquarie St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8592041
+                        lng: 151.2132635
+                      viewport:
+                        northeast:
+                          lat: -33.85786707010728
+                          lng: 151.2147093298927
+                        southwest:
+                          lat: -33.86056672989272
+                          lng: 151.2120096701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Aria Restaurant Sydney
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 4032
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/112033760018394328606">Dohyun
+                            Kim</a>
+                        photo_reference: >-
+                          Aap_uED7B83PoQ1wNgzYcFZEOw1P2DqNjlaqiXxo-r4F_NaR27uV2OiIvijkI6RYyfiiHYo9UqjnZkRtZaNTk4C6Ickh3k3stsSvBU0KfLtFow-oRujSYYChYwiYhVyP27omLzQQjafhJ2N3LJbjcMxSePKXsQzYCqmOLWg0E9mSExMJ4aM
+                        width: 3024
+                    place_id: ChIJdxxU1WeuEmsR11c4fswX-Io
+                    plus_code:
+                      compound_code: 46R7+88 Sydney, New South Wales, Australia
+                      global_code: 4RRH46R7+88
+                    price_level: 4
+                    rating: 4.5
+                    reference: ChIJdxxU1WeuEmsR11c4fswX-Io
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 1681
+                  - business_status: OPERATIONAL
+                    formatted_address: 15 Bligh St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8651396
+                        lng: 151.2104533
+                      viewport:
+                        northeast:
+                          lat: -33.86384167010728
+                          lng: 151.2118993298927
+                        southwest:
+                          lat: -33.86654132989272
+                          lng: 151.2091996701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Restaurant Hubert
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 683
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/113719639442868633401">Ashley
+                            Hughes</a>
+                        photo_reference: >-
+                          Aap_uEB41WOb_Nl8I8py4D6uXoLHzVYtFZZcucYdYAN1FtzXBnAu59xXrxk5tekoktAbklwmHeSFfdnTCWgHRZ1C5Azp9AMCP9GRGV1f2Z1-5kjsVgnYPiq82JoueSUdCSQJFabyL0cagtcGaFKetVi7DmUIHDQknEPCh_cpCbdOMw4Bkq5q
+                        width: 1024
+                    place_id: ChIJF5-RdGquEmsR5rN_H74uSqQ
+                    plus_code:
+                      compound_code: 46M6+W5 Sydney, New South Wales, Australia
+                      global_code: 4RRH46M6+W5
+                    price_level: 3
+                    rating: 4.6
+                    reference: ChIJF5-RdGquEmsR5rN_H74uSqQ
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 2393
+                  - business_status: OPERATIONAL
+                    formatted_address: 529 Kent St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8751241
+                        lng: 151.2049722
+                      viewport:
+                        northeast:
+                          lat: -33.87375712010727
+                          lng: 151.2065098798927
+                        southwest:
+                          lat: -33.87645677989271
+                          lng: 151.2038102201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Tetsuya's Restaurant
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 1536
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/104244205094808346734">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEABxcDNSMAz51CRsIr5ejvKYb61EQ94XxZTVO_mGdB8OcnoywPCx8f9e6xeAJjPzCcW_2ds6GfObP5l1gkq9lily-rVi5z2x2Ue7CvLwKyquIJnrF6offeY79I-jeiL153aXMNcunfpA2ERTkzl8SX9jSh7T5wZ49oSKL-0F8fh8kVF
+                        width: 2304
+                    place_id: ChIJxXSgfDyuEmsR3X5VXGjBkFg
+                    plus_code:
+                      compound_code: 46F3+XX Sydney, New South Wales, Australia
+                      global_code: 4RRH46F3+XX
+                    price_level: 4
+                    rating: 4.6
+                    reference: ChIJxXSgfDyuEmsR3X5VXGjBkFg
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 1127
+                  - business_status: OPERATIONAL
+                    formatted_address: 98 Clarence St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8679688
+                        lng: 151.2053027
+                      viewport:
+                        northeast:
+                          lat: -33.86662567010728
+                          lng: 151.2065763298927
+                        southwest:
+                          lat: -33.86932532989272
+                          lng: 151.2038766701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Bistro Papillon
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 2880
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/115283784392961129380">kate
+                            Kwak</a>
+                        photo_reference: >-
+                          Aap_uEDTgSYN79L90iMhL-g9lZX-52myIvxBj82nYBA2MTVnSNbuqBwnDBkjHuiLHMG_0e4na2UxV8EpxZCHoisxLHRTFkr8ahDCVhgK9cxhnEgSjmqIPAQh7n23JqfHAzSp-2ksgg9FaK2NYNyAfhC_MtSFUXyVd0aNLdEsj95pWuFWlRyi
+                        width: 2160
+                    place_id: ChIJywXDWT-uEmsRxyuZ0Inwi04
+                    plus_code:
+                      compound_code: 46J4+R4 Sydney, New South Wales, Australia
+                      global_code: 4RRH46J4+R4
+                    price_level: 3
+                    rating: 4.5
+                    reference: ChIJywXDWT-uEmsRxyuZ0Inwi04
+                    types:
+                      - meal_takeaway
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 498
+                  - business_status: OPERATIONAL
+                    formatted_address: Ground Floor, 199 George St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8616781
+                        lng: 151.2077174
+                      viewport:
+                        northeast:
+                          lat: -33.86039142010728
+                          lng: 151.2091855798927
+                        southwest:
+                          lat: -33.86309107989273
+                          lng: 151.2064859201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Mode Kitchen & Bar
+                    opening_hours:
+                      open_now: true
+                    photos:
+                      - height: 1536
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/104492734984758109746">Mode
+                            Kitchen &amp; Bar</a>
+                        photo_reference: >-
+                          Aap_uECCCAhdFqO1rCWXBXK2Ub1UloT6k5-VfS_J3HSNB_Znw1gEd78ltmokAt_g5kBa2dKrVKt_ob4rSJBvrREXUykDzRWChaXHIacM8KJix6J97T2P2WrzEP5FpNRsnfim8f4biVSNKSwmXGX_ZynFSmgBQOgDt1iVpdZ0IZ1beSPLHPL3
+                        width: 2048
+                    place_id: ChIJL2r6S0KuEmsRxzk0sfWZYnU
+                    plus_code:
+                      compound_code: 46Q5+83 Sydney, New South Wales, Australia
+                      global_code: 4RRH46Q5+83
+                    price_level: 2
+                    rating: 4.4
+                    reference: ChIJL2r6S0KuEmsRxzk0sfWZYnU
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 217
+                  - business_status: OPERATIONAL
+                    formatted_address: >-
+                      Colonial Mutual Life Building, Angel Pl, Sydney NSW 2000,
+                      Australia
+                    geometry:
+                      location:
+                        lat: -33.8671138
+                        lng: 151.2083642
+                      viewport:
+                        northeast:
+                          lat: -33.86574872010727
+                          lng: 151.2097876798927
+                        southwest:
+                          lat: -33.86844837989272
+                          lng: 151.2070880201072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Long Chim Sydney
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 4480
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/106160289014902493250">Long
+                            Chim Sydney</a>
+                        photo_reference: >-
+                          Aap_uECawW_4NulE_MO_wdqh5WwoX9oIMSVnhkjv73J87-xfYE0zYMeUX23RY3F45RPyREWucZeF5KY8Ty_Vir3uQ01EglcwQq_unavJ5wM1CUpLamMyuY4ifMisnNJcbDywnvlKUqcW8WfAD6fPIxeSKxVjsl6E9h9keqyy73DRRm3FuqMd
+                        width: 6720
+                    place_id: ChIJ98SIQkCuEmsRQAStwDCAshw
+                    plus_code:
+                      compound_code: 46M5+58 Sydney, New South Wales, Australia
+                      global_code: 4RRH46M5+58
+                    price_level: 3
+                    rating: 4.1
+                    reference: ChIJ98SIQkCuEmsRQAStwDCAshw
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 1234
+                  - business_status: OPERATIONAL
+                    formatted_address: 17-19 Alberta St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8777986
+                        lng: 151.2105307
+                      viewport:
+                        northeast:
+                          lat: -33.87646642010727
+                          lng: 151.2119536298927
+                        southwest:
+                          lat: -33.87916607989272
+                          lng: 151.2092539701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Alberto's Lounge
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 4000
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/117499940191355312122">Kreeson
+                            Naraidoo</a>
+                        photo_reference: >-
+                          Aap_uEAKwkOCpQ5q8I0mLRMpDLfSe1E6g7umIx6QSy3GrWO-w6Yk533jOo0kCHi1LinjLzbFoSRxNcyvTk0RXj502jGe6VU__UOPjEB6GetV3Dpwgs_xR0Rb52wlx4BFMz8QbsIWOZNzF9Nutk_gLjCPKWk-A_eWjxmQerT7ZWG3OKhDkd_K
+                        width: 6000
+                    place_id: ChIJU_xO9hOvEmsRERZv-itx524
+                    plus_code:
+                      compound_code: 46C6+V6 Sydney, New South Wales, Australia
+                      global_code: 4RRH46C6+V6
+                    rating: 4.6
+                    reference: ChIJU_xO9hOvEmsRERZv-itx524
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 548
+                  - business_status: OPERATIONAL
+                    formatted_address: 25 Bligh St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8654401
+                        lng: 151.2101016
+                      viewport:
+                        northeast:
+                          lat: -33.86417187010728
+                          lng: 151.2115775298928
+                        southwest:
+                          lat: -33.86687152989273
+                          lng: 151.2088778701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Chophouse Sydney
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 3550
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/106047480665428753229">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEAWMbQLzK8Hf4k2UHZZ9bmXF6U8ghWjT4d3r6a3g6Jj0s4i3mDumwH49NWyAZe_gT6Dzmne8UoMPGYBSXDb8sKCUCGQRyMViMEWJCFDuT4Jvjwa_7JXsyj0_VEm9nmua4Sy39K9uk8ZQEUTMCqEIPlYzxRo3VXUm0KkM4TrPnJ8eDG9
+                        width: 5325
+                    place_id: ChIJZ-VZ30GuEmsRwLVCmEo-B2I
+                    plus_code:
+                      compound_code: 46M6+R2 Sydney, New South Wales, Australia
+                      global_code: 4RRH46M6+R2
+                    price_level: 3
+                    rating: 4.3
+                    reference: ChIJZ-VZ30GuEmsRwLVCmEo-B2I
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 1174
+                  - business_status: OPERATIONAL
+                    formatted_address: 46-52 Meagher St, Chippendale NSW 2008, Australia
+                    geometry:
+                      location:
+                        lat: -33.8874605
+                        lng: 151.2008331
+                      viewport:
+                        northeast:
+                          lat: -33.88617642010727
+                          lng: 151.2021869298927
+                        southwest:
+                          lat: -33.88887607989272
+                          lng: 151.1994872701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Ester Restaurant
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 4032
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/105059859896721262581">Angela
+                            Tong</a>
+                        photo_reference: >-
+                          Aap_uEDAVR2ZbxrkwY2XIKsAO_K54A3sLZof-Cc8vjyqKVRXhwoOU8OkOpSG8dFFjJqD0EungtPoFuOAVmrZDA5sdUqgekvLTneFEWvQntR4zE0s8fuaVZf6nnl4FUnAalKWOQwEakMlAFT-PvqHzXaXfvuMJ69euepMNMJCWUCUz9HlzSuB
+                        width: 3024
+                    place_id: ChIJ7WdhetixEmsRzIf7Q-q6ocY
+                    plus_code:
+                      compound_code: 4672+28 Chippendale, New South Wales, Australia
+                      global_code: 4RRH4672+28
+                    price_level: 3
+                    rating: 4.5
+                    reference: ChIJ7WdhetixEmsRzIf7Q-q6ocY
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 956
+                  - business_status: OPERATIONAL
+                    formatted_address: 27 O'Connell St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8652017
+                        lng: 151.2088233
+                      viewport:
+                        northeast:
+                          lat: -33.86401937010727
+                          lng: 151.2103577298927
+                        southwest:
+                          lat: -33.86671902989272
+                          lng: 151.2076580701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Bentley Restaurant + Bar
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 3024
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/110444118100375330898">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEC2sk8YPyjk7yBwj6pWLHMjQea6HkLgzw2VTgxaU9GAR4Z7cKZ-XDixUWpcmtpyKPJzYoVlSv92kxGTOgkAGZEyDdXGJWT5RgLZRi_HOGVtWBrwYqD5IusdvQ4fBZj2j3yDOyM5Rw-fZpl-MiiSjhubuvR0Ra_x5PbDjVvYb5lgN_Yp
+                        width: 3024
+                    place_id: ChIJybJExkGuEmsRmpbxj1gH_-U
+                    plus_code:
+                      compound_code: 46M5+WG Sydney, New South Wales, Australia
+                      global_code: 4RRH46M5+WG
+                    price_level: 4
+                    rating: 4.3
+                    reference: ChIJybJExkGuEmsRmpbxj1gH_-U
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 606
+                  - business_status: OPERATIONAL
+                    formatted_address: 56 Pirrama Rd, Pyrmont NSW 2009, Australia
+                    geometry:
+                      location:
+                        lat: -33.8668159
+                        lng: 151.1973855
+                      viewport:
+                        northeast:
+                          lat: -33.86555562010727
+                          lng: 151.1990430798927
+                        southwest:
+                          lat: -33.86825527989272
+                          lng: 151.1963434201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: LuMi Dining
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 3456
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/111354624612472023397">Qing-Ling
+                            Tran</a>
+                        photo_reference: >-
+                          Aap_uEBWfjS-8EN9i6bl8cflsqTawfHBVe2X7ZZ0BlJC0ri_MMEn-9k7oLhCq5gdozyhx-trWhl_FdrUdUPWerEW_MRa6eLD4cmLL1ZdF418ZtYSOnR3H1aIbmQpGNF7ltXrzaWVFI1MKYzJoat4WnyUyDUPPGx5dynj_rC4ufTTFTLqV2jb
+                        width: 4608
+                    place_id: ChIJDZzo5DeuEmsRsi1wzrIp6HY
+                    plus_code:
+                      compound_code: 45MW+7X Pyrmont, New South Wales, Australia
+                      global_code: 4RRH45MW+7X
+                    price_level: 4
+                    rating: 4.6
+                    reference: ChIJDZzo5DeuEmsRsi1wzrIp6HY
+                    types:
+                      - bar
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 648
+                  - business_status: OPERATIONAL
+                    formatted_address: 39 Lime St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.867806
+                        lng: 151.2017201
+                      viewport:
+                        northeast:
+                          lat: -33.86646482010728
+                          lng: 151.2031808298927
+                        southwest:
+                          lat: -33.86916447989272
+                          lng: 151.2004811701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: The Malaya
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 885
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/112797482079521405927">The
+                            Malaya</a>
+                        photo_reference: >-
+                          Aap_uEALKL4StbrRJxvVFBPP4bFq7exqB3GLs_qDheVF_MQD9mIq4XG2QeXc1WimxybYSkdl2sj1e9xXzR_ZTTaHC13faCQxY4t2BM2HMJ20sCZZoE2TKDRIwuQ4B7AxnMypKBTUXtkHTtsMJPI8nTIIKoa5b8rM9Pf3HnUacPUg0kKmlfqj
+                        width: 884
+                    place_id: ChIJ4U8HhjiuEmsRyevJVTxWbFo
+                    plus_code:
+                      compound_code: 46J2+VM Sydney, New South Wales, Australia
+                      global_code: 4RRH46J2+VM
+                    price_level: 3
+                    rating: 4.5
+                    reference: ChIJ4U8HhjiuEmsRyevJVTxWbFo
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 1344
+                  - business_status: OPERATIONAL
+                    formatted_address: 60 Carrington St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8668185
+                        lng: 151.2064637
+                      viewport:
+                        northeast:
+                          lat: -33.86546022010727
+                          lng: 151.2076971798927
+                        southwest:
+                          lat: -33.86815987989272
+                          lng: 151.2049975201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Bopp & Tone
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 1179
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/103398240624630529212">Md.
+                            Kurban Ali</a>
+                        photo_reference: >-
+                          Aap_uEDb3R6906_imHTfBq-WvDVaUYWYletbwXZ_lk_pUmdZ6e_ldeX-kmVg470dN7kL0V7fmRlLwblKhEHpcwU9ryWE97boU0u021G9IybZSA7dzM07eUfMNbdBYAU9SJzUihkkKYHXRaGjUQah8hsQHRzoMe0fU6SUD5VJgdOiCfAg3jzA
+                        width: 1772
+                    place_id: ChIJfTxskB6vEmsRXPSIwVlleUA
+                    plus_code:
+                      compound_code: 46M4+7H Sydney, New South Wales, Australia
+                      global_code: 4RRH46M4+7H
+                    price_level: 1
+                    rating: 4.7
+                    reference: ChIJfTxskB6vEmsRXPSIwVlleUA
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 689
+                  - business_status: OPERATIONAL
+                    formatted_address: 17 Bligh St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8653056
+                        lng: 151.2103593
+                      viewport:
+                        northeast:
+                          lat: -33.86401087010728
+                          lng: 151.2117942798927
+                        southwest:
+                          lat: -33.86671052989272
+                          lng: 151.2090946201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Balcón by Tapavino
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 2359
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/116762976445257331541">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uECptqTTZFSmP9ZQ6gZpwBUHd1oPYdpYimtZu0hPlQYsy2dwEirrOnIvzj-bytjVTXPps_462XYekZHVXtXcd68S4HVKcxGOODVskziJFnxqP-gR7ToqWHusnfVmzjeEip_ofrJwIRC9rIeQNfdDdY5bR3EHHg-RBifLT78Hgy_9AmDR
+                        width: 4192
+                    place_id: ChIJTxj0dGquEmsR-6tLuaGJl_M
+                    plus_code:
+                      compound_code: 46M6+V4 Sydney, New South Wales, Australia
+                      global_code: 4RRH46M6+V4
+                    price_level: 3
+                    rating: 4.4
+                    reference: ChIJTxj0dGquEmsR-6tLuaGJl_M
+                    types:
+                      - bar
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 615
+                  - business_status: OPERATIONAL
+                    formatted_address: Shop 100/412/414 George St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8694151
+                        lng: 151.2071166
+                      viewport:
+                        northeast:
+                          lat: -33.86806547010728
+                          lng: 151.2084946798927
+                        southwest:
+                          lat: -33.87076512989272
+                          lng: 151.2057950201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: The Restaurant Pendolino
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 1365
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/115568244243208638832">The
+                            Restaurant Pendolino</a>
+                        photo_reference: >-
+                          Aap_uEDQIyh5y5AoYrcKQewc9VRhruEl5uP9RoCAvSNblDjgl4_noqxRu533JpHJ05JsHmFFGBstVK6VI3liXUT25hItj4XPWmgt82fAWtho-Ug0Y9L7csf2i2xdb28SK4NsyqHA4Vf-J6o2jxPDRu-UM_lPP_wrkCzHdl4owDtXSFB0Yv4T
+                        width: 2048
+                    place_id: ChIJL1zhdD-uEmsRgDPXKOx1JyU
+                    plus_code:
+                      compound_code: 46J4+6R Sydney, New South Wales, Australia
+                      global_code: 4RRH46J4+6R
+                    price_level: 3
+                    rating: 4.6
+                    reference: ChIJL1zhdD-uEmsRgDPXKOx1JyU
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 505
+                  - business_status: OPERATIONAL
+                    formatted_address: 4 Ash St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8669418
+                        lng: 151.2075261
+                      viewport:
+                        northeast:
+                          lat: -33.86557222010728
+                          lng: 151.2089249298927
+                        southwest:
+                          lat: -33.86827187989272
+                          lng: 151.2062252701072
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Mercado
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 3183
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/108000506056576855925">Mercado</a>
+                        photo_reference: >-
+                          Aap_uEA5WUv48wnMuPFig77wsLUcSSckmhgYcvkn3U0C6_VusopaQQYWMpWpi8r_mbwxDST8Y3eKHeqzSOTOy-6Xals5vXGxKM9QG8QloLN9zlk5FpfjCmRiXWFj2hGh5RTXumuBoq2WY5HmKgLXVK3Wa-59thWtv1o6bLJawqM1dad3rPIn
+                        width: 4774
+                    place_id: ChIJCXaGXkCuEmsR_O_xTuWrmT8
+                    plus_code:
+                      compound_code: 46M5+62 Sydney, New South Wales, Australia
+                      global_code: 4RRH46M5+62
+                    price_level: 3
+                    rating: 4.4
+                    reference: ChIJCXaGXkCuEmsR_O_xTuWrmT8
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 572
+                  - business_status: OPERATIONAL
+                    formatted_address: 1 Angel Pl, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8670308
+                        lng: 151.208067
+                      viewport:
+                        northeast:
+                          lat: -33.86563237010727
+                          lng: 151.2094688798927
+                        southwest:
+                          lat: -33.86833202989272
+                          lng: 151.2067692201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Ragazzi Wine and Pasta
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 1000
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/105392127649390940296">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEDfY4kMWk39O1mGg8-nYtl970y3-sr7ex3F5EUu9aL-FL5MGigK4uWf45YFO1a2rF3uaUQ2VTT9W5GjpaTlljko5Brrm5h3XOkS5uPvuYba_mK_K_mx0Byz2WbXh9-7r9jlz075DJMiG7rs42aw26bwffF4aYZpBoQfxipXEMc4_92i
+                        width: 1500
+                    place_id: ChIJTRnbxc6vEmsRnUOl_URYSvs
+                    plus_code:
+                      compound_code: 46M5+56 Sydney, New South Wales, Australia
+                      global_code: 4RRH46M5+56
+                    rating: 4.4
+                    reference: ChIJTRnbxc6vEmsRnUOl_URYSvs
+                    types:
+                      - restaurant
+                      - bar
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 433
+                  - business_status: OPERATIONAL
+                    formatted_address: 5 Kensington St, Chippendale NSW 2008, Australia
+                    geometry:
+                      location:
+                        lat: -33.8848073
+                        lng: 151.2015895
+                      viewport:
+                        northeast:
+                          lat: -33.88340327010728
+                          lng: 151.2029597798927
+                        southwest:
+                          lat: -33.88610292989272
+                          lng: 151.2002601201073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Automata Restaurant
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 3024
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/106155344778912457393">IS
+                            L</a>
+                        photo_reference: >-
+                          Aap_uEDo7q_kvvgqOXdvRb0Uu2Fa3V_UYYFeBq7V9xTwn4353OI9jzFxrCoJk63NUbUZPd4BFbK0dPXNjBZ_-5f9b-8Dh6IKkgW0ynExs4rsfjA5YxqkYKc2WKCAElKKrR8N7G0PfV-y4CqdYc9syC3bzC571VFna2ZUudx_ljlrHXL4jnOW
+                        width: 4032
+                    place_id: ChIJhfcGASeuEmsRmj19JwYiqUo
+                    plus_code:
+                      compound_code: 4682+3J Chippendale, New South Wales, Australia
+                      global_code: 4RRH4682+3J
+                    price_level: 3
+                    rating: 4.4
+                    reference: ChIJhfcGASeuEmsRmj19JwYiqUo
+                    types:
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 474
+                  - business_status: OPERATIONAL
+                    formatted_address: Bennelong Point, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8567498
+                        lng: 151.2152535
+                      viewport:
+                        northeast:
+                          lat: -33.85569109999999
+                          lng: 151.21607855
+                        southwest:
+                          lat: -33.8599259
+                          lng: 151.21277835
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Bennelong
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 3840
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/112111459665476218482">A
+                            Google User</a>
+                        photo_reference: >-
+                          Aap_uEDHg9QjKCjtzVDOOJtqOEHSp2iQ8rykuMNdHDFuviyfbJP9XfxM6x2TdxZYuu4kfSrn79o5DroGRG6NQR5pa3OVlFBVVfD88uUKBlhxnOlq4GqRbgk8W1xT0TxL7fjlKPPqa3hA0ZrweoOknLRDxv8zCKpPZu0gdlJfoKAG_VAnbUv-
+                        width: 5760
+                    place_id: ChIJQcmNYGauEmsR84D5HAJJUhw
+                    plus_code:
+                      compound_code: 46V8+84 Sydney, New South Wales, Australia
+                      global_code: 4RRH46V8+84
+                    price_level: 4
+                    rating: 4.5
+                    reference: ChIJQcmNYGauEmsR84D5HAJJUhw
+                    types:
+                      - bar
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 1230
+                  - business_status: OPERATIONAL
+                    formatted_address: 123 Clarence St, Sydney NSW 2000, Australia
+                    geometry:
+                      location:
+                        lat: -33.8671505
+                        lng: 151.2049296
+                      viewport:
+                        northeast:
+                          lat: -33.86582657010727
+                          lng: 151.2063577298927
+                        southwest:
+                          lat: -33.86852622989272
+                          lng: 151.2036580701073
+                    icon: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
+                    icon_background_color: '#FF9E67'
+                    icon_mask_base_uri: >-
+                      https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet
+                    name: Machiavelli
+                    opening_hours:
+                      open_now: false
+                    photos:
+                      - height: 605
+                        html_attributions:
+                          - >-
+                            <a
+                            href="https://maps.google.com/maps/contrib/110393729963013157229">Nikhil
+                            Kuchroo</a>
+                        photo_reference: >-
+                          Aap_uEBKwIZhaQQgPdMT72V5LBm4ELL7a9SZOtIObjmvn_mYzY1fFq3lIHrzg8NRas-h4fhWdNfC8QC4qVrPUP6VpnIRheN9jdBteNRjWiFRyCSQFEDsW2JUU3h4kCTnf90Uw0KcWyXPACm9ZXq1Wp-m2Dkx4AbSYpo17chLhDCQlLBmSDjP
+                        width: 1280
+                    place_id: ChIJgVcAr0CuEmsRJjJm03tgFtE
+                    plus_code:
+                      compound_code: 46M3+4X Sydney, New South Wales, Australia
+                      global_code: 4RRH46M3+4X
+                    price_level: 3
+                    rating: 4.5
+                    reference: ChIJgVcAr0CuEmsRJjJm03tgFtE
+                    types:
+                      - meal_takeaway
+                      - restaurant
+                      - point_of_interest
+                      - food
+                      - establishment
+                    user_ratings_total: 529
+                status: OK
+  /maps/api/place/photo:
+    get:
+      tags:
+        - Places API
+      summary: place Photo
+      description: >
+        The Place Photo service, part of the Places API, is a read- only API
+        that allows you to add high quality photographic content to your
+        application. The Place Photo service gives you access to the millions of
+        photos stored in the Places database. When you get place information
+        using a Place Details request, photo references will be returned for
+        relevant photographic content. Find Place, Nearby Search, and Text
+        Search requests also return a single photo reference per place, when
+        relevant. Using the Photo service you can then access the referenced
+        photos and resize the image to the optimal size for your application.
+
+
+        Photos returned by the Photo service are sourced from a variety of
+        locations, including business owners and user contributed photos. In
+        most cases, these photos can be used without attribution, or will have
+        the required attribution included as a part of the image. However, if
+        the returned photo element includes a value in the html_attributions
+        field, you will have to include the additional attribution in your
+        application wherever you display the image.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: image/*
+        - name: photo_reference
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) A string identifier that uniquely identifies a photo.
+            Photo references are returned from either a Place Search or Place
+            Details request.
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: image/*
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: sint cillum
+  /maps/api/place/queryautocomplete/json:
+    get:
+      tags:
+        - Places API
+      summary: query Autocomplete
+      description: >
+        The Query Autocomplete service can be used to provide a query prediction
+        for text-based geographic searches, by returning suggested queries as
+        you type.
+
+
+        The Query Autocomplete service allows you to add on-the-fly geographic
+        query predictions to your application. Instead of searching for a
+        specific location, a user can type in a categorical search, such as
+        "pizza near New York" and the service responds with a list of suggested
+        queries matching the string. As the Query Autocomplete service can match
+        on both full words and substrings, applications can send queries as the
+        user types to provide on-the-fly predictions.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: input
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The text string on which to search. The Place
+            Autocomplete service will return candidate matches based on this
+            string and order results based on their perceived relevance.
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                predictions:
+                  - description: pizza near Paris, France
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                      - length: 3
+                        offset: 11
+                    structured_formatting:
+                      main_text: pizza
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: near Paris, France
+                      secondary_text_matched_substrings:
+                        - length: 3
+                          offset: 5
+                    terms:
+                      - offset: 0
+                        value: pizza
+                      - offset: 6
+                        value: near
+                      - offset: 11
+                        value: Paris
+                      - offset: 18
+                        value: France
+                  - description: >-
+                      pizza near Pari Chowk, NRI City, Omega II, Noida, Uttar
+                      Pradesh, India
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                      - length: 3
+                        offset: 11
+                    structured_formatting:
+                      main_text: pizza
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: >-
+                        near Pari Chowk, NRI City, Omega II, Noida, Uttar
+                        Pradesh, India
+                      secondary_text_matched_substrings:
+                        - length: 3
+                          offset: 5
+                    terms:
+                      - offset: 0
+                        value: pizza
+                      - offset: 6
+                        value: near
+                      - offset: 11
+                        value: Pari Chowk
+                      - offset: 23
+                        value: NRI City
+                      - offset: 33
+                        value: Omega II
+                      - offset: 43
+                        value: Noida
+                      - offset: 50
+                        value: Uttar Pradesh
+                      - offset: 65
+                        value: India
+                  - description: >-
+                      pizza near Disneyland Park, Disneyland Drive, Anaheim, CA,
+                      USA
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                      - length: 3
+                        offset: 22
+                    structured_formatting:
+                      main_text: pizza
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: near Disneyland Park, Disneyland Drive, Anaheim, CA, USA
+                      secondary_text_matched_substrings:
+                        - length: 3
+                          offset: 16
+                    terms:
+                      - offset: 0
+                        value: pizza
+                      - offset: 6
+                        value: near
+                      - offset: 11
+                        value: Disneyland Park
+                      - offset: 28
+                        value: Disneyland Drive
+                      - offset: 46
+                        value: Anaheim
+                      - offset: 55
+                        value: CA
+                      - offset: 59
+                        value: USA
+                  - description: >-
+                      pizza near Cathédrale Notre-Dame de Paris, Parvis
+                      Notre-Dame - place Jean-Paul-II, Paris, France
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                      - length: 3
+                        offset: 36
+                    structured_formatting:
+                      main_text: pizza
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: >-
+                        near Cathédrale Notre-Dame de Paris, Parvis Notre-Dame -
+                        place Jean-Paul-II, Paris, France
+                      secondary_text_matched_substrings:
+                        - length: 3
+                          offset: 30
+                    terms:
+                      - offset: 0
+                        value: pizza
+                      - offset: 6
+                        value: near
+                      - offset: 11
+                        value: Cathédrale Notre-Dame de Paris
+                      - offset: 43
+                        value: Parvis Notre-Dame - place Jean-Paul-II
+                      - offset: 83
+                        value: Paris
+                      - offset: 90
+                        value: France
+                  - description: >-
+                      pizza near Paris Beauvais Airport, Route de l'Aéroport,
+                      Tillé, France
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                      - length: 3
+                        offset: 11
+                    structured_formatting:
+                      main_text: pizza
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: >-
+                        near Paris Beauvais Airport, Route de l'Aéroport, Tillé,
+                        France
+                      secondary_text_matched_substrings:
+                        - length: 3
+                          offset: 5
+                    terms:
+                      - offset: 0
+                        value: pizza
+                      - offset: 6
+                        value: near
+                      - offset: 11
+                        value: Paris Beauvais Airport
+                      - offset: 35
+                        value: Route de l'Aéroport
+                      - offset: 56
+                        value: Tillé
+                      - offset: 63
+                        value: France
+                status: OK
+  /maps/api/place/autocomplete/json:
+    get:
+      tags:
+        - Places API
+      summary: autocomplete
+      description: >
+        The Place Autocomplete service is a web service that returns place
+        predictions in response to an HTTP request. The request specifies a
+        textual search string and optional geographic bounds. The service can be
+        used to provide autocomplete functionality for text-based geographic
+        searches, by returning places such as businesses, addresses and points
+        of interest as a user types.
+
+        <div class="note">Note: You can use Place Autocomplete even without a
+        map. If you do show a map, it must be a Google map. When you display
+        predictions from the Place Autocomplete service without a map, you must
+        include the ['Powered by
+        Google'](https://developers.google.com/maps/documentation/places/web-service/policies#logo_requirementshttps://developers.google.com/maps/documentation/places/web-service/policies#logo_requirements)
+        logo.</div>
+
+
+        The Place Autocomplete service can match on full words and substrings,
+        resolving place names, addresses, and plus codes. Applications can
+        therefore send queries as the user types, to provide on-the-fly place
+        predictions.
+
+
+        The returned predictions are designed to be presented to the user to aid
+        them in selecting the desired place. You can send a [Place
+        Details](https://developers.google.com/maps/documentation/places/web-service/details#PlaceDetailsRequests)
+        request for more information about any of the places which are returned.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: input
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) The text string on which to search. The Place
+            Autocomplete service will return candidate matches based on this
+            string and order results based on their perceived relevance.
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                predictions:
+                  - description: Paris, France
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                    place_id: ChIJD7fiBh9u5kcRYJSMaMOCCwQ
+                    reference: ChIJD7fiBh9u5kcRYJSMaMOCCwQ
+                    structured_formatting:
+                      main_text: Paris
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: France
+                    terms:
+                      - offset: 0
+                        value: Paris
+                      - offset: 7
+                        value: France
+                    types:
+                      - locality
+                      - political
+                      - geocode
+                  - description: Paris, TX, USA
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                    place_id: ChIJmysnFgZYSoYRSfPTL2YJuck
+                    reference: ChIJmysnFgZYSoYRSfPTL2YJuck
+                    structured_formatting:
+                      main_text: Paris
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: TX, USA
+                    terms:
+                      - offset: 0
+                        value: Paris
+                      - offset: 7
+                        value: TX
+                      - offset: 11
+                        value: USA
+                    types:
+                      - locality
+                      - political
+                      - geocode
+                  - description: Paris, TN, USA
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                    place_id: ChIJ4zHP-Sije4gRBDEsVxunOWg
+                    reference: ChIJ4zHP-Sije4gRBDEsVxunOWg
+                    structured_formatting:
+                      main_text: Paris
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: TN, USA
+                    terms:
+                      - offset: 0
+                        value: Paris
+                      - offset: 7
+                        value: TN
+                      - offset: 11
+                        value: USA
+                    types:
+                      - locality
+                      - political
+                      - geocode
+                  - description: Paris, Brant, ON, Canada
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                    place_id: ChIJsamfQbVtLIgR-X18G75Hyi0
+                    reference: ChIJsamfQbVtLIgR-X18G75Hyi0
+                    structured_formatting:
+                      main_text: Paris
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: Brant, ON, Canada
+                    terms:
+                      - offset: 0
+                        value: Paris
+                      - offset: 7
+                        value: Brant
+                      - offset: 14
+                        value: 'ON'
+                      - offset: 18
+                        value: Canada
+                    types:
+                      - neighborhood
+                      - political
+                      - geocode
+                  - description: Paris, KY, USA
+                    matched_substrings:
+                      - length: 5
+                        offset: 0
+                    place_id: ChIJsU7_xMfKQ4gReI89RJn0-RQ
+                    reference: ChIJsU7_xMfKQ4gReI89RJn0-RQ
+                    structured_formatting:
+                      main_text: Paris
+                      main_text_matched_substrings:
+                        - length: 5
+                          offset: 0
+                      secondary_text: KY, USA
+                    terms:
+                      - offset: 0
+                        value: Paris
+                      - offset: 7
+                        value: KY
+                      - offset: 11
+                        value: USA
+                    types:
+                      - locality
+                      - political
+                      - geocode
+                status: OK
+  /maps/api/streetview:
+    get:
+      tags:
+        - Street View API
+      summary: street View
+      description: >
+        The Street View Static API lets you embed a static (non-interactive)
+        Street View panorama or thumbnail into your web page, without the use of
+        JavaScript. The viewport is defined with URL parameters sent through a
+        standard HTTP request, and is returned as a static image.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: image/*
+        - name: size
+          in: query
+          schema:
+            type: string
+          description: >
+            (Required) Specifies the output size of the image in pixels. Size is
+            specified as `{width}x{height}` - for example, `size=600x400`
+            returns an image 600 pixels wide, and 400 high.
+          example: <string>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: image/*
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: sint cillum
+  /maps/api/streetview/metadata:
+    get:
+      tags:
+        - Street View API
+      summary: street View Metadata
+      description: >
+        The Street View Static API metadata requests provide data about Street
+        View panoramas. Using the metadata, you can find out if a Street View
+        image is available at a given location, as well as getting programmatic
+        access to the latitude and longitude, the panorama ID, the date the
+        photo was taken, and the copyright information for the image. Accessing
+        this metadata allows you to customize error behavior in your
+        application.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                copyright: © Google
+                date: 2014-04
+                location:
+                  lat: 46.41434210086409
+                  lng: 10.01400595356193
+                pano_id: vPnURflnc8AZu5NMLYRddw
+                status: OK

@@ -1,0 +1,1591 @@
+openapi: 3.0.0
+info:
+  title: Okta API
+  description: |-
+    Allows customers to easily access the Okta API
+
+    Contact Support:
+     Name: No Contact
+     Email: email@example.com
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+tags:
+  - name: api/v1
+  - name: api/v1 > apps
+  - name: api/v1 > apps > {app Id}
+  - name: api/v1 > apps > {app Id} > credentials/keys
+  - name: api/v1 > apps > {app Id} > credentials/keys > {key Id}
+  - name: api/v1 > apps > {app Id} > groups
+  - name: api/v1 > apps > {app Id} > lifecycle
+  - name: api/v1 > apps > {app Id} > users
+  - name: api/v1 > groups
+  - name: api/v1 > groups > rules
+  - name: api/v1 > groups > rules > {rule Id}
+  - name: api/v1 > groups > rules > {rule Id} > lifecycle
+  - name: api/v1 > groups > {group Id}
+  - name: api/v1 > groups > {group Id} > users
+  - name: api/v1 > sessions
+  - name: api/v1 > sessions > {session Id}
+  - name: api/v1 > users
+  - name: api/v1 > users > {user Id}
+  - name: api/v1 > users > {user Id} > credentials
+  - name: api/v1 > users > {user Id} > factors
+  - name: api/v1 > users > {user Id} > factors > {factor Id}
+  - name: api/v1 > users > {user Id} > lifecycle
+  - name: api/v1 > users > {user Id} > roles
+  - name: api/v1 > users > {user Id} > roles > {role Id}
+  - name: api/v1 > users > {user Id} > roles > {role Id} > targets/groups
+paths:
+  /api/v1/apps/{appId}/credentials/keys/{keyId}:
+    get:
+      tags:
+        - api/v1 > apps > {app Id} > credentials/keys > {key Id}
+      summary: Get Key Credential for Application
+      description: >-
+        Gets a specific [application key
+        credential](#application-key-credential-model) by `kid`
+      parameters:
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: keyId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/credentials/keys/{keyId}/clone:
+    post:
+      tags:
+        - api/v1 > apps > {app Id} > credentials/keys > {key Id}
+      summary: Clone Application Key Credential
+      description: >-
+        Clones a X.509 certificate for an application key credential from a
+        source application to target application.
+      requestBody:
+        content: {}
+      parameters:
+        - name: targetAid
+          in: query
+          schema:
+            type: string
+          description: Unique key of the target Application
+          example: <string>
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: keyId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/credentials/keys:
+    get:
+      tags:
+        - api/v1 > apps > {app Id} > credentials/keys
+      summary: List Key Credentials for Application
+      description: Enumerates key credentials for an application
+      parameters:
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/groups:
+    get:
+      tags:
+        - api/v1 > apps > {app Id} > groups
+      summary: List Groups Assigned to Application
+      description: Enumerates group assignments for an application.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: expand
+          in: query
+          schema:
+            type: string
+          description: >-
+            Traverses users link relationship and optionally embeds Application
+            User resource
+          example: <string>
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/groups/{groupId}:
+    delete:
+      tags:
+        - api/v1 > apps > {app Id} > groups
+      summary: Remove Group from Application
+      description: Removes a group assignment from an application.
+      parameters:
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: groupId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/lifecycle/activate:
+    post:
+      tags:
+        - api/v1 > apps > {app Id} > lifecycle
+      summary: Activate Application
+      description: Activates an inactive application.
+      requestBody:
+        content: {}
+      parameters:
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/lifecycle/deactivate:
+    post:
+      tags:
+        - api/v1 > apps > {app Id} > lifecycle
+      summary: Deactivate Application
+      description: Deactivates an active application.
+      requestBody:
+        content: {}
+      parameters:
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/users:
+    get:
+      tags:
+        - api/v1 > apps > {app Id} > users
+      summary: List Users Assigned to Application
+      description: >-
+        Enumerates all assigned [application users](#application-user-model) for
+        an application.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: query_scope
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: filter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filters apps by status, user.id, group.id or credentials.signing.kid
+            expression
+          example: <string>
+        - name: expand
+          in: query
+          schema:
+            type: string
+          description: >-
+            Traverses users link relationship and optionally embeds Application
+            User resource
+          example: <string>
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}/users/{userId}:
+    delete:
+      tags:
+        - api/v1 > apps > {app Id} > users
+      summary: Remove User from Application
+      description: Removes an assignment for a user from an application.
+      parameters:
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps/{appId}:
+    delete:
+      tags:
+        - api/v1 > apps > {app Id}
+      summary: Delete Application
+      description: Removes an inactive application.
+      parameters:
+        - name: appId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/apps:
+    get:
+      tags:
+        - api/v1 > apps
+      summary: List Applications
+      description: >-
+        Enumerates apps added to your organization with pagination. A subset of
+        apps can be returned that match a supported filter expression or query.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: filter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filters apps by status, user.id, group.id or credentials.signing.kid
+            expression
+          example: <string>
+        - name: expand
+          in: query
+          schema:
+            type: string
+          description: >-
+            Traverses users link relationship and optionally embeds Application
+            User resource
+          example: <string>
+        - name: includeNonDeleted
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups/rules/{ruleId}/lifecycle/activate:
+    post:
+      tags:
+        - api/v1 > groups > rules > {rule Id} > lifecycle
+      summary: Activate a group Rule
+      description: Activates a specific group rule by id from your organization
+      requestBody:
+        content: {}
+      parameters:
+        - name: ruleId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups/rules/{ruleId}/lifecycle/deactivate:
+    post:
+      tags:
+        - api/v1 > groups > rules > {rule Id} > lifecycle
+      summary: Deactivate a group Rule
+      description: Deactivates a specific group rule by id from your organization
+      requestBody:
+        content: {}
+      parameters:
+        - name: ruleId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups/rules/{ruleId}:
+    delete:
+      tags:
+        - api/v1 > groups > rules > {rule Id}
+      summary: Delete a group Rule
+      description: Removes a specific group rule by id from your organization
+      parameters:
+        - name: removeUsers
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: ruleId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups/rules:
+    get:
+      tags:
+        - api/v1 > groups > rules
+      summary: List Group Rules
+      description: Lists all group rules for your organization.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: expand
+          in: query
+          schema:
+            type: string
+          description: >-
+            Traverses users link relationship and optionally embeds Application
+            User resource
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups/{groupId}/users:
+    get:
+      tags:
+        - api/v1 > groups > {group Id} > users
+      summary: List Group Members
+      description: >-
+        Enumerates all [users](/docs/api/resources/users.html#user-model) that
+        are a member of a group.
+      parameters:
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: managedBy
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: groupId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups/{groupId}/users/{userId}:
+    delete:
+      tags:
+        - api/v1 > groups > {group Id} > users
+      summary: Remove User from Group
+      description: >-
+        Removes a [user](users.html#user-model) from a group with `OKTA_GROUP`
+        type.
+      parameters:
+        - name: groupId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups/{groupId}:
+    delete:
+      tags:
+        - api/v1 > groups > {group Id}
+      summary: Remove Group
+      description: Removes a group with `OKTA_GROUP` type from your organization.
+      parameters:
+        - name: groupId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/groups:
+    get:
+      tags:
+        - api/v1 > groups
+      summary: List Groups
+      description: >-
+        Enumerates groups in your organization with pagination. A subset of
+        groups can be returned that match a supported filter expression or
+        query.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: filter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filters apps by status, user.id, group.id or credentials.signing.kid
+            expression
+          example: <string>
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: expand
+          in: query
+          schema:
+            type: string
+          description: >-
+            Traverses users link relationship and optionally embeds Application
+            User resource
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/sessions/{sessionId}:
+    delete:
+      tags:
+        - api/v1 > sessions > {session Id}
+      summary: Close Session
+      parameters:
+        - name: sessionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/sessions/{sessionId}/lifecycle/refresh:
+    post:
+      tags:
+        - api/v1 > sessions > {session Id}
+      summary: Refresh Session
+      requestBody:
+        content: {}
+      parameters:
+        - name: sessionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/sessions:
+    post:
+      tags:
+        - api/v1 > sessions
+      summary: Create Session with Session Token
+      description: >-
+        Creates a new session for a user with a valid session token. Use this
+        API if, for example, you want to set the session cookie yourself instead
+        of allowing Okta to set it, or want to hold the session ID in order to
+        delete a session via the API instead of visiting the logout URL.
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/credentials/change_password:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > credentials
+      summary: Change Password
+      description: >-
+        Changes a user's password by validating the user's current password. 
+        This operation can only be performed on users in `STAGED`, `ACTIVE`,
+        `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid [password
+        credential](#password-object)
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/credentials/change_recovery_question:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > credentials
+      summary: Change Recovery Question
+      description: >-
+        Changes a user's recovery question & answer credential by validating the
+        user's current password.  This operation can only be performed on users
+        in **STAGED**, **ACTIVE** or **RECOVERY** `status` that have a valid
+        [password credential](#password-object)
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/credentials/forgot_password:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > credentials
+      summary: Forgot Password
+      description: >-
+        Generates a one-time token (OTT) that can be used to reset a user's
+        password.  The user will be required to validate their security
+        question's answer when visiting the reset link.  This operation can only
+        be performed on users with a valid [recovery question
+        credential](#recovery-question-object) and have an `ACTIVE` status.
+      requestBody:
+        content: {}
+      parameters:
+        - name: sendEmail
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/factors/{factorId}:
+    delete:
+      tags:
+        - api/v1 > users > {user Id} > factors > {factor Id}
+      summary: delete Factor
+      description: >-
+        Unenrolls an existing factor for the specified user, allowing the user
+        to enroll a new factor.
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: factorId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/factors/{factorId}/lifecycle/activate:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > factors > {factor Id}
+      summary: Activate Factor
+      description: >-
+        The `sms` and `token:software:totp` [factor types](#factor-type) require
+        activation to complete the enrollment process.
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: factorId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/factors/{factorId}/verify:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > factors > {factor Id}
+      summary: Verify MFA Factor
+      description: Verifies an OTP for a `token` or `token:hardware` factor
+      requestBody:
+        content: {}
+      parameters:
+        - name: templateId
+          in: query
+          schema:
+            type: string
+          description: id of SMS template (only for SMS factor)
+          example: <string>
+        - name: tokenLifetimeSeconds
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: factorId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/factors:
+    get:
+      tags:
+        - api/v1 > users > {user Id} > factors
+      summary: list Factors
+      description: Enumerates all the enrolled factors for the specified user
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/factors/catalog:
+    get:
+      tags:
+        - api/v1 > users > {user Id} > factors
+      summary: list Supported Factors
+      description: >-
+        Enumerates all the [supported factors](#supported-factors-for-providers)
+        that can be enrolled for the specified user
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/factors/questions:
+    get:
+      tags:
+        - api/v1 > users > {user Id} > factors
+      summary: list Supported Security Questions
+      description: >-
+        Enumerates all available security questions for a user's `question`
+        factor
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/activate:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Activate User
+      description: >-
+        Activates a user.  This operation can only be performed on users with a
+        `STAGED` status.  Activation of a user is an asynchronous operation. 
+        The user will have the `transitioningToStatus` property with a value of
+        `ACTIVE` during activation to indicate that the user hasn't completed
+        the asynchronous operation.  The user will have a status of `ACTIVE`
+        when the activation process is complete.
+      requestBody:
+        content: {}
+      parameters:
+        - name: sendEmail
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/deactivate:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Deactivate User
+      description: >-
+        Deactivates a user.  This operation can only be performed on users that
+        do not have a `DEPROVISIONED` status.  Deactivation of a user is an
+        asynchronous operation.  The user will have the `transitioningToStatus`
+        property with a value of `DEPROVISIONED` during deactivation to indicate
+        that the user hasn't completed the asynchronous operation.  The user
+        will have a status of `DEPROVISIONED` when the deactivation process is
+        complete.
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/expire_password:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Expire Password
+      description: >-
+        This operation transitions the user to the status of `PASSWORD_EXPIRED`
+        so that the user is required to change their password at their next
+        login.
+      requestBody:
+        content: {}
+      parameters:
+        - name: tempPassword
+          in: query
+          schema:
+            type: string
+          description: Sets the user's password to a temporary password,  if true
+          example: <object>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/reset_factors:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Reset Factors
+      description: >-
+        This operation resets all factors for the specified user. All MFA factor
+        enrollments returned to the unenrolled state. The user's status remains
+        ACTIVE. This link is present only if the user is currently enrolled in
+        one or more MFA factors.
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/reset_password:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Reset Password
+      description: >-
+        Generates a one-time token (OTT) that can be used to reset a user's
+        password.  The OTT link can be automatically emailed to the user or
+        returned to the API caller and distributed using a custom flow.
+      requestBody:
+        content: {}
+      parameters:
+        - name: provider
+          in: query
+          schema:
+            type: string
+          description: >-
+            Indicates whether to create a user with a specified authentication
+            provider
+          example: <object>
+        - name: sendEmail
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/suspend:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Suspend User
+      description: >-
+        Suspends a user.  This operation can only be performed on users with an
+        `ACTIVE` status.  The user will have a status of `SUSPENDED` when the
+        process is complete.
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/unlock:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Unlock User
+      description: >-
+        Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE`
+        status.  Users will be able to login with their current password.
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/lifecycle/unsuspend:
+    post:
+      tags:
+        - api/v1 > users > {user Id} > lifecycle
+      summary: Unsuspend User
+      description: >-
+        Unsuspends a user and returns them to the `ACTIVE` state.  This
+        operation can only be performed on users that have a `SUSPENDED` status.
+      requestBody:
+        content: {}
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/roles/{roleId}/targets/groups:
+    get:
+      tags:
+        - api/v1 > users > {user Id} > roles > {role Id} > targets/groups
+      summary: list Group Targets For Role
+      parameters:
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: roleId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}:
+    delete:
+      tags:
+        - api/v1 > users > {user Id} > roles > {role Id} > targets/groups
+      summary: remove Group Target From Role
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: roleId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: groupId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/roles/{roleId}:
+    delete:
+      tags:
+        - api/v1 > users > {user Id} > roles > {role Id}
+      summary: remove Role From User
+      description: Unassigns a role from a user.
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+        - name: roleId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/roles:
+    get:
+      tags:
+        - api/v1 > users > {user Id} > roles
+      summary: list Assigned Roles
+      description: Lists all roles assigned to a user.
+      parameters:
+        - name: expand
+          in: query
+          schema:
+            type: string
+          description: >-
+            Traverses users link relationship and optionally embeds Application
+            User resource
+          example: <string>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}:
+    delete:
+      tags:
+        - api/v1 > users > {user Id}
+      summary: Delete User
+      description: >-
+        Deletes a user permanently.  This operation can only be performed on
+        users that have a `DEPROVISIONED` status.  **This action cannot be
+        recovered!**
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/appLinks:
+    get:
+      tags:
+        - api/v1 > users > {user Id}
+      summary: Get Assigned App Links
+      description: >-
+        Fetches appLinks for all direct or indirect (via group membership)
+        assigned applications.
+      parameters:
+        - name: showAll
+          in: query
+          schema:
+            type: string
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/groups:
+    get:
+      tags:
+        - api/v1 > users > {user Id}
+      summary: Get Member Groups
+      description: Fetches the groups of which the user is a member.
+      parameters:
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/{userId}/sessions:
+    delete:
+      tags:
+        - api/v1 > users > {user Id}
+      summary: end All User Sessions
+      description: >-
+        Removes all active identity provider sessions. This forces the user to
+        authenticate on the next operation. Optionally revokes OpenID Connect
+        and OAuth refresh and access tokens issued to the user.
+      parameters:
+        - name: oauthTokens
+          in: query
+          schema:
+            type: string
+          description: Revoke issued OpenID Connect and OAuth refresh and access tokens
+          example: <boolean>
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+          description:
+            content: ''
+            type: text/plain
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users:
+    get:
+      tags:
+        - api/v1 > users
+      summary: List Users
+      description: >-
+        Lists users in your organization with pagination in most cases.  A
+        subset of users can be returned that match a supported filter expression
+        or search criteria.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: filter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filters apps by status, user.id, group.id or credentials.signing.kid
+            expression
+          example: <string>
+        - name: format
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: >-
+            Searches for users with a supported filtering  expression for most
+            properties
+          example: <string>
+        - name: expand
+          in: query
+          schema:
+            type: string
+          description: >-
+            Traverses users link relationship and optionally embeds Application
+            User resource
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/logs:
+    get:
+      tags:
+        - api/v1
+      summary: Fetch a list of events from your Okta organization system log.
+      description: >-
+        The Okta System Log API provides read access to your organization’s
+        system log. This API provides more functionality than the Events API
+      parameters:
+        - name: until
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: since
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: filter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filters apps by status, user.id, group.id or credentials.signing.kid
+            expression
+          example: <string>
+        - name: q
+          in: query
+          schema:
+            type: string
+          example: <string>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Specifies the number of results for a page
+          example: <integer>
+        - name: sortOrder
+          in: query
+          schema:
+            type: string
+          example: <integer>
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Specifies the pagination cursor for the next page of apps
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

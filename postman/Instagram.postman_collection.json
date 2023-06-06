@@ -1,0 +1,837 @@
+{
+	"info": {
+		"_postman_id": "e2e2501d-8339-4a48-97c8-c5ab15e26155",
+		"name": "Instagram",
+		"description": "Description of Instagram RESTful API.\n\nCurrent limitations:\n  * Instagram service does not support [cross origin headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)\n  for security reasons, therefore it is not possible to use Swagger UI and make API calls directly from browser.\n  * Modification API requests (`POST`, `DELETE`) require additional security [scopes](https://instagram.com/developer/authorization/)\n  that are available for Apps [created on or after Nov 17, 2015](http://instagram.com/developer/review/) and\n  started in [Sandbox Mode](http://instagram.com/developer/sandbox/).\n  * Consider the [Instagram limitations](https://instagram.com/developer/limits/) for API calls that depends on App Mode.\n\n**Warning:** For Apps [created on or after Nov 17, 2015](http://instagram.com/developer/changelog/) API responses\ncontaining media objects no longer return the `data` field in `comments` and `likes` nodes.\n\nLast update: 2015-11-28\n\n\nContact Support:\n Name: No Contact\n Email: email@example.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27825666",
+		"_collection_link": "https://www.postman.com/api-evangelist/workspace/images/collection/35240-e2e2501d-8339-4a48-97c8-c5ab15e26155?action=share&creator=27825666&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "locations",
+			"item": [
+				{
+					"name": "{location-id}",
+					"item": [
+						{
+							"name": "Get information about a location.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/locations/:location-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"locations",
+										":location-id"
+									],
+									"variable": [
+										{
+											"key": "location-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The location ID."
+										}
+									]
+								},
+								"description": "Get information about a location."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of recent media objects from a given location.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/locations/:location-id/media/recent?min_timestamp=<integer>&max_timestamp=<integer>&min_id=<string>&max_id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"locations",
+										":location-id",
+										"media",
+										"recent"
+									],
+									"query": [
+										{
+											"key": "min_timestamp",
+											"value": "<integer>",
+											"description": "Return media after this UNIX timestamp."
+										},
+										{
+											"key": "max_timestamp",
+											"value": "<integer>",
+											"description": "Return media before this UNIX timestamp."
+										},
+										{
+											"key": "min_id",
+											"value": "<string>",
+											"description": "Return media before this `min_id`."
+										},
+										{
+											"key": "max_id",
+											"value": "<string>",
+											"description": "Return media after this `max_id`."
+										}
+									],
+									"variable": [
+										{
+											"key": "location-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The location ID."
+										}
+									]
+								},
+								"description": "Get a list of recent media objects from a given location."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search for a location by geographic coordinate.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations/search?distance=<integer>&facebook_places_id=<string>&foursquare_id=<string>&lat=<number>&lng=<number>&foursquare_v2_id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"search"
+							],
+							"query": [
+								{
+									"key": "distance",
+									"value": "<integer>",
+									"description": "Default is 1000m (distance=1000), max distance is 5000."
+								},
+								{
+									"key": "facebook_places_id",
+									"value": "<string>",
+									"description": "Returns a location mapped off of a Facebook places id. If used, a Foursquare id and `lat`, `lng` are not required."
+								},
+								{
+									"key": "foursquare_id",
+									"value": "<string>",
+									"description": "Returns a location mapped off of a foursquare v1 api location id. If used, you are not required to use\n`lat` and `lng`. Note that this method is deprecated; you should use the new foursquare IDs with V2 of their API.\n"
+								},
+								{
+									"key": "lat",
+									"value": "<number>",
+									"description": "Latitude of the center search coordinate. If used, `lng` is required."
+								},
+								{
+									"key": "lng",
+									"value": "<number>",
+									"description": "Longitude of the center search coordinate. If used, `lat` is required."
+								},
+								{
+									"key": "foursquare_v2_id",
+									"value": "<string>",
+									"description": "Returns a location mapped off of a foursquare v2 api location id. If used, you are not required to use\n`lat` and `lng`.\n"
+								}
+							]
+						},
+						"description": "Search for a location by geographic coordinate."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "media",
+			"item": [
+				{
+					"name": "{media-id}",
+					"item": [
+						{
+							"name": "comments",
+							"item": [
+								{
+									"name": "Get a list of recent comments on a media object.",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/media/:media-id/comments",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"media",
+												":media-id",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "media-id",
+													"value": "<string>",
+													"type": "string",
+													"description": "The ID of the media resource."
+												}
+											]
+										},
+										"description": "Get a list of recent comments on a media object."
+									},
+									"response": []
+								},
+								{
+									"name": "Remove a comment.",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/media/:media-id/comments/:comment-id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"media",
+												":media-id",
+												"comments",
+												":comment-id"
+											],
+											"variable": [
+												{
+													"key": "media-id",
+													"value": "<string>",
+													"type": "string",
+													"description": "The ID of the media resource."
+												},
+												{
+													"key": "comment-id",
+													"value": "<string>",
+													"type": "string",
+													"description": "The ID of the comment entry."
+												}
+											]
+										},
+										"description": "Remove a comment either on the authenticated user's media object or authored by the authenticated user.\n"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get information about a media object.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/media/:media-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"media",
+										":media-id"
+									],
+									"variable": [
+										{
+											"key": "media-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The ID of the media resource."
+										}
+									]
+								},
+								"description": "Get information about a media object. The returned type key will allow you to differentiate between image and\nvideo media.\n\n**Note:** if you authenticate with an OAuth Token, you will receive the user_has_liked key which quickly tells\nyou whether the current user has liked this media item.\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a like on this media by the current user.",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/media/:media-id/likes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"media",
+										":media-id",
+										"likes"
+									],
+									"variable": [
+										{
+											"key": "media-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The ID of the media resource."
+										}
+									]
+								},
+								"description": "Remove a like on this media by the currently authenticated user."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get a list of currently popular media.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/media/popular",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"media",
+								"popular"
+							]
+						},
+						"description": "Get a list of what media is most popular at the moment. Can return mix of `image` and `video` types.\n\n**Warning:** [Deprecated](http://instagram.com/developer/changelog/) for Apps created **on or after** Nov 17, 2015\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Search for media in a given area.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/media/search?lat=<number>&lng=<number>&min_timestamp=<integer>&max_timestamp=<integer>&distance=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"media",
+								"search"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "<number>",
+									"description": "Latitude of the center search coordinate. If used, `lng` is required."
+								},
+								{
+									"key": "lng",
+									"value": "<number>",
+									"description": "Longitude of the center search coordinate. If used, `lat` is required."
+								},
+								{
+									"key": "min_timestamp",
+									"value": "<integer>",
+									"description": "Return media after this UNIX timestamp."
+								},
+								{
+									"key": "max_timestamp",
+									"value": "<integer>",
+									"description": "Return media before this UNIX timestamp."
+								},
+								{
+									"key": "distance",
+									"value": "<integer>",
+									"description": "Default is 1000m (distance=1000), max distance is 5000."
+								}
+							]
+						},
+						"description": "Search for media in a given area. The default time span is set to 5 days. The time span must not exceed 7 days.\nDefaults time stamps cover the last 5 days. Can return mix of `image` and `video` types.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get information about a media object.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/media/shortcode/:shortcode",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"media",
+								"shortcode",
+								":shortcode"
+							],
+							"variable": [
+								{
+									"key": "shortcode",
+									"value": "<string>",
+									"type": "string",
+									"description": "The short code of the media resource."
+								}
+							]
+						},
+						"description": "This endpoint returns the same response as `GET /media/{media-id}`.\n\nA media object's shortcode can be found in its shortlink URL. An example shortlink is\n`http://instagram.com/p/D/`, its corresponding shortcode is `D`.\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tags",
+			"item": [
+				{
+					"name": "{tag-name}",
+					"item": [
+						{
+							"name": "Get information about a tag object.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tags/:tag-name",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tags",
+										":tag-name"
+									],
+									"variable": [
+										{
+											"key": "tag-name",
+											"value": "<string>",
+											"type": "string",
+											"description": "The tag name."
+										}
+									]
+								},
+								"description": "Get information about a tag object."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a list of recently tagged media.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tags/:tag-name/media/recent?count=<integer>&min_tag_id=<string>&max_tag_id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tags",
+										":tag-name",
+										"media",
+										"recent"
+									],
+									"query": [
+										{
+											"key": "count",
+											"value": "<integer>",
+											"description": "Max number of media to return."
+										},
+										{
+											"key": "min_tag_id",
+											"value": "<string>",
+											"description": "Return media before this `min_tag_id`."
+										},
+										{
+											"key": "max_tag_id",
+											"value": "<string>",
+											"description": "Return media after this `max_tag_id`."
+										}
+									],
+									"variable": [
+										{
+											"key": "tag-name",
+											"value": "<string>",
+											"type": "string",
+											"description": "The tag name."
+										}
+									]
+								},
+								"description": "Get a list of recently tagged media. Use the `max_tag_id` and `min_tag_id` parameters in the pagination\nresponse to paginate through these objects.\n"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search for tags by name.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tags/search?q=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tags",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "<string>",
+									"description": "A valid tag name without a leading \\#. (eg. snowy, nofilter)"
+								}
+							]
+						},
+						"description": "Search for tags by name."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "self",
+					"item": [
+						{
+							"name": "See the authenticated user's feed.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/self/feed?count=<integer>&min_id=<string>&max_id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"self",
+										"feed"
+									],
+									"query": [
+										{
+											"key": "count",
+											"value": "<integer>",
+											"description": "Max number of media to return."
+										},
+										{
+											"key": "min_id",
+											"value": "<string>",
+											"description": "Return media before this `min_id`."
+										},
+										{
+											"key": "max_id",
+											"value": "<string>",
+											"description": "Return media after this `max_id`."
+										}
+									]
+								},
+								"description": "See the authenticated user's feed.\n\n**Warning:** [Deprecated](http://instagram.com/developer/changelog/) for Apps created **on or after** Nov 17, 2015\n"
+							},
+							"response": []
+						},
+						{
+							"name": "See the list of media liked by the authenticated user.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/self/media/liked?count=<integer>&max_like_id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"self",
+										"media",
+										"liked"
+									],
+									"query": [
+										{
+											"key": "count",
+											"value": "<integer>",
+											"description": "Max number of media to return."
+										},
+										{
+											"key": "max_like_id",
+											"value": "<string>",
+											"description": "Return media liked before this id."
+										}
+									]
+								},
+								"description": "See the list of media liked by the authenticated user. Private media is returned as long as the authenticated\nuser has permission to view that media. Liked media lists are only available for the currently authenticated\nuser.\n"
+							},
+							"response": []
+						},
+						{
+							"name": "List the users who have requested this user's permission to follow.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/self/requested-by",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"self",
+										"requested-by"
+									]
+								},
+								"description": "List the users who have requested this user's permission to follow."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "{user-id}",
+					"item": [
+						{
+							"name": "Get basic information about a user.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:user-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user-id"
+									],
+									"variable": [
+										{
+											"key": "user-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The ID of a user to get information about, or **self** to retrieve information about authenticated user."
+										}
+									]
+								},
+								"description": "Get basic information about a user. To get information about the owner of the access token, you can use\n**self** instead of the `user-id`.\n\nSecurity scope `public_content` is required to read information about other users.\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Get the list of users this user is followed by.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:user-id/followed-by",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user-id",
+										"followed-by"
+									],
+									"variable": [
+										{
+											"key": "user-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The ID of a user to get information about, or **self** to retrieve information about authenticated user."
+										}
+									]
+								},
+								"description": "Get the list of users this user is followed by. To get users followed by the owner of the access token, you\ncan use **self** instead of the `user-id`.\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Get the list of users this user follows.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:user-id/follows",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user-id",
+										"follows"
+									],
+									"variable": [
+										{
+											"key": "user-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The ID of a user to get information about, or **self** to retrieve information about authenticated user."
+										}
+									]
+								},
+								"description": "Get the list of users this user follows. To get follows of the owner of the access token, you can use **self**\ninstead of the `user-id`.\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Get the most recent media published by a user.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:user-id/media/recent?count=<integer>&max_timestamp=<integer>&min_timestamp=<integer>&min_id=<string>&max_id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user-id",
+										"media",
+										"recent"
+									],
+									"query": [
+										{
+											"key": "count",
+											"value": "<integer>",
+											"description": "Max number of media to return."
+										},
+										{
+											"key": "max_timestamp",
+											"value": "<integer>",
+											"description": "Return media before this UNIX timestamp."
+										},
+										{
+											"key": "min_timestamp",
+											"value": "<integer>",
+											"description": "Return media after this UNIX timestamp."
+										},
+										{
+											"key": "min_id",
+											"value": "<string>",
+											"description": "Return media before this `min_id`."
+										},
+										{
+											"key": "max_id",
+											"value": "<string>",
+											"description": "Return media after this `max_id`."
+										}
+									],
+									"variable": [
+										{
+											"key": "user-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The ID of a user to get information about, or **self** to retrieve information about authenticated user."
+										}
+									]
+								},
+								"description": "Get the most recent media published by a user. To get the most recent media published by the owner of the\naccess token, you can use **self** instead of the `user-id`.\n\nSecurity scope `public_content` is required to read information about other users.\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Get information about a relationship to another user.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:user-id/relationship",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":user-id",
+										"relationship"
+									],
+									"variable": [
+										{
+											"key": "user-id",
+											"value": "<string>",
+											"type": "string",
+											"description": "The ID of a user to get information about, or **self** to retrieve information about authenticated user."
+										}
+									]
+								},
+								"description": "Get information about a relationship to another user."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search for a user by name.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/search?q=<string>&count=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "<string>",
+									"description": "A valid tag name without a leading \\#. (eg. snowy, nofilter)"
+								},
+								{
+									"key": "count",
+									"value": "<integer>",
+									"description": "Max number of media to return."
+								}
+							]
+						},
+						"description": "Search for a user by name."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get recent media from a custom geo-id.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/geographies/:geo-id/media/recent?count=<integer>&min_id=<string>",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"geographies",
+						":geo-id",
+						"media",
+						"recent"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "<integer>",
+							"description": "Max number of media to return."
+						},
+						{
+							"key": "min_id",
+							"value": "<string>",
+							"description": "Return media before this `min_id`."
+						}
+					],
+					"variable": [
+						{
+							"key": "geo-id",
+							"value": "<string>",
+							"type": "string",
+							"description": "The geography ID."
+						}
+					]
+				},
+				"description": "Get recent media from a geography subscription that you created.\n\n**Note:** You can only access Geographies that were explicitly created by your OAuth client. Check the\nGeography Subscriptions section of the [real-time updates page](https://instagram.com/developer/realtime/).\nWhen you create a subscription to some geography that you define, you will be returned a unique `geo-id` that\ncan be used in this query. To backfill photos from the location covered by this geography, use the\n[media search "
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://api.instagram.com/v1",
+			"type": "string"
+		}
+	]
+}

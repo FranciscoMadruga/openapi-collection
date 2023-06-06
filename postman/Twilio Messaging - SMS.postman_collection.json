@@ -1,0 +1,1626 @@
+{
+	"info": {
+		"_postman_id": "194919ce-e80b-44da-8eec-45ea8e74cdfb",
+		"name": "Twilio Messaging / SMS",
+		"description": "Ahoy!\n\nThis Postman collection serves as a toolbelt for you to work with Twilio's [Programmable Messaging API](https://www.twilio.com/messaging).\n\nIt provides functionality to interact with a subset of the Twilio API. For a more complete view of the API, make sure to visit our [Twilio Docs](https://www.twilio.com/docs/sms).\n\nContact Support:\n Name: Twilio Support\n Email: support@twilio.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27825666",
+		"_collection_link": "https://www.postman.com/twilio/workspace/twilio-api/collection/12503610-194919ce-e80b-44da-8eec-45ea8e74cdfb?action=share&creator=27825666&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Getting Started",
+			"item": [
+				{
+					"name": "Find available phone numbers",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{TWILIO_AUTH_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-Local.json-Url}}/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Local.json?SmsEnabled=true",
+							"host": [
+								"{{2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-Local.json-Url}}"
+							],
+							"path": [
+								"2010-04-01",
+								"Accounts",
+								":AccountSid",
+								"AvailablePhoneNumbers",
+								":CountryCode",
+								"Local.json"
+							],
+							"query": [
+								{
+									"key": "AreaCode",
+									"value": "<integer>",
+									"description": "The area code of the phone numbers to read. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "Contains",
+									"value": "<string>",
+									"description": "The pattern on which to match phone numbers. Valid characters are `*`, `0-9`, `a-z`, and `A-Z`. The `*` character matches any single digit. For examples, see [Example 2](https://www.twilio.com/docs/phone-numbers/api/availablephonenumberlocal-resource?code-sample=code-find-phone-numbers-by-number-pattern) and [Example 3](https://www.twilio.com/docs/phone-numbers/api/availablephonenumberlocal-resource?code-sample=code-find-phone-numbers-by-character-pattern). If specified, this value must have at least two characters.",
+									"disabled": true
+								},
+								{
+									"key": "SmsEnabled",
+									"value": "true",
+									"description": "Whether the phone numbers can receive text messages. Can be: `true` or `false`."
+								},
+								{
+									"key": "MmsEnabled",
+									"value": "<boolean>",
+									"description": "Whether the phone numbers can receive MMS messages. Can be: `true` or `false`.",
+									"disabled": true
+								},
+								{
+									"key": "VoiceEnabled",
+									"value": "<boolean>",
+									"description": "Whether the phone numbers can receive calls. Can be: `true` or `false`.",
+									"disabled": true
+								},
+								{
+									"key": "ExcludeAllAddressRequired",
+									"value": "<boolean>",
+									"description": "Whether to exclude phone numbers that require an [Address](https://www.twilio.com/docs/usage/api/address). Can be: `true` or `false` and the default is `false`.",
+									"disabled": true
+								},
+								{
+									"key": "ExcludeLocalAddressRequired",
+									"value": "<boolean>",
+									"description": "Whether to exclude phone numbers that require a local [Address](https://www.twilio.com/docs/usage/api/address). Can be: `true` or `false` and the default is `false`.",
+									"disabled": true
+								},
+								{
+									"key": "ExcludeForeignAddressRequired",
+									"value": "<boolean>",
+									"description": "Whether to exclude phone numbers that require a foreign [Address](https://www.twilio.com/docs/usage/api/address). Can be: `true` or `false` and the default is `false`.",
+									"disabled": true
+								},
+								{
+									"key": "Beta",
+									"value": "<boolean>",
+									"description": "Whether to read phone numbers that are new to the Twilio platform. Can be: `true` or `false` and the default is `true`.",
+									"disabled": true
+								},
+								{
+									"key": "NearNumber",
+									"value": "<string>",
+									"description": "Given a phone number, find a geographically close number within `distance` miles. Distance defaults to 25 miles. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "NearLatLong",
+									"value": "<string>",
+									"description": "Given a latitude/longitude pair `lat,long` find geographically close numbers within `distance` miles. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "Distance",
+									"value": "<integer>",
+									"description": "The search radius, in miles, for a `near_` query.  Can be up to `500` and the default is `25`. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "InPostalCode",
+									"value": "<string>",
+									"description": "Limit results to a particular postal code. Given a phone number, search within the same postal code as that number. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "InRegion",
+									"value": "<string>",
+									"description": "Limit results to a particular region, state, or province. Given a phone number, search within the same region as that number. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "InRateCenter",
+									"value": "<string>",
+									"description": "Limit results to a specific rate center, or given a phone number search within the same rate center as that number. Requires `in_lata` to be set as well. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "InLata",
+									"value": "<string>",
+									"description": "Limit results to a specific local access and transport area ([LATA](https://en.wikipedia.org/wiki/Local_access_and_transport_area)). Given a phone number, search within the same [LATA](https://en.wikipedia.org/wiki/Local_access_and_transport_area) as that number. Applies to only phone numbers in the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "InLocality",
+									"value": "<string>",
+									"description": "Limit results to a particular locality or city. Given a phone number, search within the same Locality as that number.",
+									"disabled": true
+								},
+								{
+									"key": "FaxEnabled",
+									"value": "<boolean>",
+									"description": "Whether the phone numbers can receive faxes. Can be: `true` or `false`.",
+									"disabled": true
+								},
+								{
+									"key": "PageSize",
+									"value": "<integer>",
+									"description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "AccountSid",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"description": "(Required) The SID of the [Account](https://www.twilio.com/docs/iam/api/account) requesting the AvailablePhoneNumber resources."
+								},
+								{
+									"key": "CountryCode",
+									"value": "US",
+									"description": "(Required) The [ISO-3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the country from which to read phone numbers."
+								}
+							]
+						},
+						"description": "To send an SMS with Twilio you'll first need to buy a phone number. For that you have to search the catalog of available phone numbers.\n\nOnce you have the list of available phone numbers, pick one and use it in the next request to buy the number.\n\nLearn more about this in the [Twilio Docs](https://www.twilio.com/docs/phone-numbers/api/availablephonenumberlocal-resource)."
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-Local.json-Url}}/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Local.json?AreaCode=<integer>&Contains=<string>&SmsEnabled=<boolean>&MmsEnabled=<boolean>&VoiceEnabled=<boolean>&ExcludeAllAddressRequired=<boolean>&ExcludeLocalAddressRequired=<boolean>&ExcludeForeignAddressRequired=<boolean>&Beta=<boolean>&NearNumber=<string>&NearLatLong=<string>&Distance=<integer>&InPostalCode=<string>&InRegion=<string>&InRateCenter=<string>&InLata=<string>&InLocality=<string>&FaxEnabled=<boolean>&PageSize=<integer>",
+									"host": [
+										"{{2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-Local.json-Url}}"
+									],
+									"path": [
+										"2010-04-01",
+										"Accounts",
+										":AccountSid",
+										"AvailablePhoneNumbers",
+										":CountryCode",
+										"Local.json"
+									],
+									"query": [
+										{
+											"key": "AreaCode",
+											"value": "<integer>"
+										},
+										{
+											"key": "Contains",
+											"value": "<string>"
+										},
+										{
+											"key": "SmsEnabled",
+											"value": "<boolean>"
+										},
+										{
+											"key": "MmsEnabled",
+											"value": "<boolean>"
+										},
+										{
+											"key": "VoiceEnabled",
+											"value": "<boolean>"
+										},
+										{
+											"key": "ExcludeAllAddressRequired",
+											"value": "<boolean>"
+										},
+										{
+											"key": "ExcludeLocalAddressRequired",
+											"value": "<boolean>"
+										},
+										{
+											"key": "ExcludeForeignAddressRequired",
+											"value": "<boolean>"
+										},
+										{
+											"key": "Beta",
+											"value": "<boolean>"
+										},
+										{
+											"key": "NearNumber",
+											"value": "<string>"
+										},
+										{
+											"key": "NearLatLong",
+											"value": "<string>"
+										},
+										{
+											"key": "Distance",
+											"value": "<integer>"
+										},
+										{
+											"key": "InPostalCode",
+											"value": "<string>"
+										},
+										{
+											"key": "InRegion",
+											"value": "<string>"
+										},
+										{
+											"key": "InRateCenter",
+											"value": "<string>"
+										},
+										{
+											"key": "InLata",
+											"value": "<string>"
+										},
+										{
+											"key": "InLocality",
+											"value": "<string>"
+										},
+										{
+											"key": "FaxEnabled",
+											"value": "<boolean>"
+										},
+										{
+											"key": "PageSize",
+											"value": "<integer>"
+										}
+									],
+									"variable": [
+										{
+											"key": "AccountSid"
+										},
+										{
+											"key": "CountryCode"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"available_phone_numbers\": [\n  {\n   \"address_requirements\": \"aute eiusmod\",\n   \"beta\": true,\n   \"capabilities\": {},\n   \"friendly_name\": \"nisi do\",\n   \"iso_country\": \"voluptate\",\n   \"lata\": \"minim cillum\",\n   \"latitude\": 4649799.109687477,\n   \"locality\": \"in Duis ut anim irure\",\n   \"longitude\": -94614168.65959848,\n   \"phone_number\": \"amet labore\",\n   \"postal_code\": \"deserunt esse cillum ut\",\n   \"rate_center\": \"velit\",\n   \"region\": \"ipsum pariatur cupidatat dolor\"\n  },\n  {\n   \"address_requirements\": \"Ut\",\n   \"beta\": true,\n   \"capabilities\": {},\n   \"friendly_name\": \"ullamco\",\n   \"iso_country\": \"in incididunt\",\n   \"lata\": \"cillum dolor velit sed\",\n   \"latitude\": -21235506.84035504,\n   \"locality\": \"sint\",\n   \"longitude\": -25668838.90140347,\n   \"phone_number\": \"non adipisicing enim incididunt deserunt\",\n   \"postal_code\": \"ut voluptate minim\",\n   \"rate_center\": \"velit aliqua\",\n   \"region\": \"Excepteur aliquip in nisi\"\n  }\n ],\n \"end\": 3504435,\n \"first_page_uri\": \"http://nnYdJBuOCqryvmKnbvBPBnaNMbCqrxw.tdvyHFVoZISsFUqJvqFT0cg+\",\n \"next_page_uri\": \"http://PoqRnDNQHgsSAILsyYutOtNGDj.qqhjm8TRty6qyZnDJAQcH1Djqzpuv,w5pf+hzR.4snyBz\",\n \"page\": 90555719,\n \"page_size\": 88924560,\n \"previous_page_uri\": \"https://ArZjnsEHjpSMJWeIOQAYyTOm.ispdr0ZozBph6JkyS4wCN4KsLijal5vGd-yowauXTc55dxOb\",\n \"start\": -60781383,\n \"uri\": \"http://BJmswSvlkWlnMst.fiODjnzufdg.eBwAEpkSmwiU.e-Ygm,OFGiH\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buy a phone number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable('TWILIO_PHONE_NUMBER', jsonData.phone_number);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{TWILIO_AUTH_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "PhoneNumber",
+									"value": "+12513060906",
+									"description": "The phone number to purchase specified in [E.164](https://www.twilio.com/docs/glossary/what-e164) format.  E.164 phone numbers consist of a + followed by the country code and subscriber number without punctuation characters. For example, +14155551234."
+								},
+								{
+									"key": "AddressSid",
+									"value": "<string>",
+									"description": "The SID of the Address resource we should associate with the new phone number. Some regions require addresses to meet local regulations.",
+									"disabled": true
+								},
+								{
+									"key": "ApiVersion",
+									"value": "<string>",
+									"description": "The API version to use for incoming calls made to the new phone number. The default is `2010-04-01`.",
+									"disabled": true
+								},
+								{
+									"key": "AreaCode",
+									"value": "<string>",
+									"description": "The desired area code for your new incoming phone number. Can be any three-digit, US or Canada area code. We will provision an available phone number within this area code for you. **You must provide an `area_code` or a `phone_number`.** (US and Canada only).",
+									"disabled": true
+								},
+								{
+									"key": "BundleSid",
+									"value": "<string>",
+									"description": "The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations.",
+									"disabled": true
+								},
+								{
+									"key": "EmergencyAddressSid",
+									"value": "<string>",
+									"description": "The SID of the emergency address configuration to use for emergency calling from the new phone number.",
+									"disabled": true
+								},
+								{
+									"key": "EmergencyStatus",
+									"value": "<string>",
+									"description": "The configuration status parameter that determines whether the new phone number is enabled for emergency calling. (This can only be one of Active,Inactive)",
+									"disabled": true
+								},
+								{
+									"key": "FriendlyName",
+									"value": "<string>",
+									"description": "A descriptive string that you created to describe the new phone number. It can be up to 64 characters long. By default, this is a formatted version of the new phone number.",
+									"disabled": true
+								},
+								{
+									"key": "IdentitySid",
+									"value": "<string>",
+									"description": "The SID of the Identity resource that we should associate with the new phone number. Some regions require an identity to meet local regulations.",
+									"disabled": true
+								},
+								{
+									"key": "SmsApplicationSid",
+									"value": "<string>",
+									"description": "The SID of the application that should handle SMS messages sent to the new phone number. If an `sms_application_sid` is present, we ignore all of the `sms_*_url` urls and use those set on the application.",
+									"disabled": true
+								},
+								{
+									"key": "SmsFallbackMethod",
+									"value": "<string>",
+									"description": "The HTTP method that we should use to call `sms_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+									"disabled": true
+								},
+								{
+									"key": "SmsFallbackUrl",
+									"value": "<uri>",
+									"description": "The URL that we should call when an error occurs while requesting or executing the TwiML defined by `sms_url`.",
+									"disabled": true
+								},
+								{
+									"key": "SmsMethod",
+									"value": "<string>",
+									"description": "The HTTP method that we should use to call `sms_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+									"disabled": true
+								},
+								{
+									"key": "SmsUrl",
+									"value": "<uri>",
+									"description": "The URL we should call when the new phone number receives an incoming SMS message.",
+									"disabled": true
+								},
+								{
+									"key": "StatusCallback",
+									"value": "<uri>",
+									"description": "The URL we should call using the `status_callback_method` to send status information to your application.",
+									"disabled": true
+								},
+								{
+									"key": "StatusCallbackMethod",
+									"value": "<string>",
+									"description": "The HTTP method we should use to call `status_callback`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+									"disabled": true
+								},
+								{
+									"key": "TrunkSid",
+									"value": "<string>",
+									"description": "The SID of the Trunk we should use to handle calls to the new phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use only those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.",
+									"disabled": true
+								},
+								{
+									"key": "VoiceApplicationSid",
+									"value": "<string>",
+									"description": "The SID of the application we should use to handle calls to the new phone number. If a `voice_application_sid` is present, we ignore all of the voice urls and use only those set on the application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and vice versa.",
+									"disabled": true
+								},
+								{
+									"key": "VoiceCallerIdLookup",
+									"value": "<boolean>",
+									"description": "Whether to lookup the caller's name from the CNAM database and post it to your app. Can be: `true` or `false` and defaults to `false`.",
+									"disabled": true
+								},
+								{
+									"key": "VoiceFallbackMethod",
+									"value": "<string>",
+									"description": "The HTTP method that we should use to call `voice_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+									"disabled": true
+								},
+								{
+									"key": "VoiceFallbackUrl",
+									"value": "<uri>",
+									"description": "The URL that we should call when an error occurs retrieving or executing the TwiML requested by `url`.",
+									"disabled": true
+								},
+								{
+									"key": "VoiceMethod",
+									"value": "<string>",
+									"description": "The HTTP method that we should use to call `voice_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+									"disabled": true
+								},
+								{
+									"key": "VoiceReceiveMode",
+									"value": "<string>",
+									"description": "The configuration parameter for the new phone number to receive incoming voice calls or faxes. Can be: `fax` or `voice` and defaults to `voice`. (This can only be one of voice,fax)",
+									"disabled": true
+								},
+								{
+									"key": "VoiceUrl",
+									"value": "<uri>",
+									"description": "The URL that we should call to answer a call to the new phone number. The `voice_url` will not be called if a `voice_application_sid` or a `trunk_sid` is set.",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers.json-Url}}/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json",
+							"host": [
+								"{{2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers.json-Url}}"
+							],
+							"path": [
+								"2010-04-01",
+								"Accounts",
+								":AccountSid",
+								"IncomingPhoneNumbers.json"
+							],
+							"variable": [
+								{
+									"key": "AccountSid",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"description": "(Required) The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource."
+								}
+							]
+						},
+						"description": "Purchase a phone-number for your Twilio account. Afterwards you can use this number to send or receive SMS and calls.\n\nRead more about it in the [Twilio Docs](https://www.twilio.com/docs/phone-numbers/api/incomingphonenumber-resource#create-an-incomingphonenumber-resource)"
+					},
+					"response": [
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "AddressSid",
+											"value": "<string>",
+											"description": "The SID of the Address resource we should associate with the new phone number. Some regions require addresses to meet local regulations."
+										},
+										{
+											"key": "ApiVersion",
+											"value": "<string>",
+											"description": "The API version to use for incoming calls made to the new phone number. The default is `2010-04-01`."
+										},
+										{
+											"key": "AreaCode",
+											"value": "<string>",
+											"description": "The desired area code for your new incoming phone number. Can be any three-digit, US or Canada area code. We will provision an available phone number within this area code for you. **You must provide an `area_code` or a `phone_number`.** (US and Canada only)."
+										},
+										{
+											"key": "BundleSid",
+											"value": "<string>",
+											"description": "The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations."
+										},
+										{
+											"key": "EmergencyAddressSid",
+											"value": "<string>",
+											"description": "The SID of the emergency address configuration to use for emergency calling from the new phone number."
+										},
+										{
+											"key": "EmergencyStatus",
+											"value": "<string>",
+											"description": "The configuration status parameter that determines whether the new phone number is enabled for emergency calling. (This can only be one of Active,Inactive)"
+										},
+										{
+											"key": "FriendlyName",
+											"value": "<string>",
+											"description": "A descriptive string that you created to describe the new phone number. It can be up to 64 characters long. By default, this is a formatted version of the new phone number."
+										},
+										{
+											"key": "IdentitySid",
+											"value": "<string>",
+											"description": "The SID of the Identity resource that we should associate with the new phone number. Some regions require an identity to meet local regulations."
+										},
+										{
+											"key": "PhoneNumber",
+											"value": "<string>",
+											"description": "The phone number to purchase specified in [E.164](https://www.twilio.com/docs/glossary/what-e164) format.  E.164 phone numbers consist of a + followed by the country code and subscriber number without punctuation characters. For example, +14155551234."
+										},
+										{
+											"key": "SmsApplicationSid",
+											"value": "<string>",
+											"description": "The SID of the application that should handle SMS messages sent to the new phone number. If an `sms_application_sid` is present, we ignore all of the `sms_*_url` urls and use those set on the application."
+										},
+										{
+											"key": "SmsFallbackMethod",
+											"value": "<string>",
+											"description": "The HTTP method that we should use to call `sms_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)"
+										},
+										{
+											"key": "SmsFallbackUrl",
+											"value": "<uri>",
+											"description": "The URL that we should call when an error occurs while requesting or executing the TwiML defined by `sms_url`."
+										},
+										{
+											"key": "SmsMethod",
+											"value": "<string>",
+											"description": "The HTTP method that we should use to call `sms_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)"
+										},
+										{
+											"key": "SmsUrl",
+											"value": "<uri>",
+											"description": "The URL we should call when the new phone number receives an incoming SMS message."
+										},
+										{
+											"key": "StatusCallback",
+											"value": "<uri>",
+											"description": "The URL we should call using the `status_callback_method` to send status information to your application."
+										},
+										{
+											"key": "StatusCallbackMethod",
+											"value": "<string>",
+											"description": "The HTTP method we should use to call `status_callback`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)"
+										},
+										{
+											"key": "TrunkSid",
+											"value": "<string>",
+											"description": "The SID of the Trunk we should use to handle calls to the new phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use only those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa."
+										},
+										{
+											"key": "VoiceApplicationSid",
+											"value": "<string>",
+											"description": "The SID of the application we should use to handle calls to the new phone number. If a `voice_application_sid` is present, we ignore all of the voice urls and use only those set on the application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and vice versa."
+										},
+										{
+											"key": "VoiceCallerIdLookup",
+											"value": "<boolean>",
+											"description": "Whether to lookup the caller's name from the CNAM database and post it to your app. Can be: `true` or `false` and defaults to `false`."
+										},
+										{
+											"key": "VoiceFallbackMethod",
+											"value": "<string>",
+											"description": "The HTTP method that we should use to call `voice_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)"
+										},
+										{
+											"key": "VoiceFallbackUrl",
+											"value": "<uri>",
+											"description": "The URL that we should call when an error occurs retrieving or executing the TwiML requested by `url`."
+										},
+										{
+											"key": "VoiceMethod",
+											"value": "<string>",
+											"description": "The HTTP method that we should use to call `voice_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)"
+										},
+										{
+											"key": "VoiceReceiveMode",
+											"value": "<string>",
+											"description": "The configuration parameter for the new phone number to receive incoming voice calls or faxes. Can be: `fax` or `voice` and defaults to `voice`. (This can only be one of voice,fax)"
+										},
+										{
+											"key": "VoiceUrl",
+											"value": "<uri>",
+											"description": "The URL that we should call to answer a call to the new phone number. The `voice_url` will not be called if a `voice_application_sid` or a `trunk_sid` is set."
+										}
+									]
+								},
+								"url": {
+									"raw": "{{2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers.json-Url}}/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json",
+									"host": [
+										"{{2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers.json-Url}}"
+									],
+									"path": [
+										"2010-04-01",
+										"Accounts",
+										":AccountSid",
+										"IncomingPhoneNumbers.json"
+									],
+									"variable": [
+										{
+											"key": "AccountSid"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"account_sid\": \"ACB6\",\n \"address_requirements\": \"foreign\",\n \"address_sid\": \"ADeA\",\n \"api_version\": \"reprehenderit laborum Excepteur\",\n \"beta\": false,\n \"bundle_sid\": \"BUB2\",\n \"capabilities\": {},\n \"date_created\": \"incididunt ad\",\n \"date_updated\": \"consequat nostrud non Excepteur\",\n \"emergency_address_sid\": \"ADAd\",\n \"emergency_status\": \"Inactive\",\n \"friendly_name\": \"Excepteur qui aute occaecat\",\n \"identity_sid\": \"RI4F\",\n \"origin\": \"ex sit non\",\n \"phone_number\": \"incididunt\",\n \"sid\": \"PNFd\",\n \"sms_application_sid\": \"APD1\",\n \"sms_fallback_method\": \"put\",\n \"sms_fallback_url\": \"https://sqnVhokvKfX.ggVS\",\n \"sms_method\": \"delete\",\n \"sms_url\": \"http://KvTTK.eixDOBAKnXDodC\",\n \"status\": \"Duis est\",\n \"status_callback\": \"https://lukPySBKCSJZRDfZeLGCQEJiiZlrSGtT.slbsog2f2Byb3SNOpnvFCnKiEUbexVWC5tK9Qaj0IFkIVhVKN+mNB826euAwsZOYNBGrdhphsN\",\n \"status_callback_method\": \"HEAD\",\n \"trunk_sid\": \"TK29\",\n \"uri\": \"http://efvlxkNPQlPFtoHjtYEM.qceW6gOSsyL5X8uZPGhiRrpPWucrUmJlQexyf4Dl9T7ahcoPDgC3k2TRG\",\n \"voice_application_sid\": \"AP5b\",\n \"voice_caller_id_lookup\": true,\n \"voice_fallback_method\": \"head\",\n \"voice_fallback_url\": \"https://YYJSXXIemHJDgyPulvPuSDhUfIJ.ofhsUNmlqzZSTo7nnhXYYLQgunn2ScfFWt4qoJ,M2zYA,\",\n \"voice_method\": \"PATCH\",\n \"voice_receive_mode\": \"voice\",\n \"voice_url\": \"https://lNOljQzheebolftPuuCa.qjzdVdF,m6lXjsq+rV4sijQkntubbHInkrQaJO2zBraF0\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send an SMS",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{TWILIO_AUTH_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Body",
+									"value": "Hello World!",
+									"description": "The text of the message you want to send. Can be up to 1,600 characters in length."
+								},
+								{
+									"key": "To",
+									"value": "{{MY_PHONE_NUMBER}}",
+									"description": "The destination phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format for SMS/MMS or [Channel user address](https://www.twilio.com/docs/sms/channels#channel-addresses) for other 3rd-party channels."
+								},
+								{
+									"key": "From",
+									"value": "{{TWILIO_PHONE_NUMBER}}",
+									"description": "A Twilio phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format, an [alphanumeric sender ID](https://www.twilio.com/docs/sms/send-messages#use-an-alphanumeric-sender-id), or a [Channel Endpoint address](https://www.twilio.com/docs/sms/channels#channel-addresses) that is enabled for the type of message you want to send. Phone numbers or [short codes](https://www.twilio.com/docs/sms/api/short-code) purchased from Twilio also work here. You cannot, for example, spoof messages from a private cell phone number. If you are using `messaging_service_sid`, this parameter must be empty."
+								},
+								{
+									"key": "AddressRetention",
+									"value": "<string>",
+									"description": "Determines if the address can be stored or obfuscated based on privacy settings (This can only be one of retain)",
+									"disabled": true
+								},
+								{
+									"key": "ApplicationSid",
+									"value": "<string>",
+									"description": "The SID of the application that should receive message status. We POST a `message_sid` parameter and a `message_status` parameter with a value of `sent` or `failed` to the [application](https://www.twilio.com/docs/usage/api/applications)'s `message_status_callback`. If a `status_callback` parameter is also passed, it will be ignored and the application's `message_status_callback` parameter will be used.",
+									"disabled": true
+								},
+								{
+									"key": "Attempt",
+									"value": "<integer>",
+									"description": "Total number of attempts made ( including this ) to send out the message regardless of the provider used",
+									"disabled": true
+								},
+								{
+									"key": "ContentRetention",
+									"value": "<string>",
+									"description": "Determines if the message content can be stored or redacted based on privacy settings (This can only be one of retain)",
+									"disabled": true
+								},
+								{
+									"key": "ForceDelivery",
+									"value": "<boolean>",
+									"description": "Reserved",
+									"disabled": true
+								},
+								{
+									"key": "MaxPrice",
+									"value": "<number>",
+									"description": "The maximum total price in US dollars that you will pay for the message to be delivered. Can be a decimal value that has up to 4 decimal places. All messages are queued for delivery and the message cost is checked before the message is sent. If the cost exceeds `max_price`, the message will fail and a status of `Failed` is sent to the status callback. If `MaxPrice` is not set, the message cost is not checked.",
+									"disabled": true
+								},
+								{
+									"key": "MediaUrl",
+									"value": "[\"<uri>\",\"<uri>\"]",
+									"description": "The URL of the media to send with the message. The media can be of type `gif`, `png`, and `jpeg` and will be formatted correctly on the recipient's device. The media size limit is 5MB for supported file types (JPEG, PNG, GIF) and 500KB for [other types](https://www.twilio.com/docs/sms/accepted-mime-types) of accepted media. To send more than one image in the message body, provide multiple `media_url` parameters in the POST request. You can include up to 10 `media_url` parameters per message. You can send images in an SMS message in only the US and Canada.",
+									"disabled": true
+								},
+								{
+									"key": "MessagingServiceSid",
+									"value": "<string>",
+									"description": "The SID of the [Messaging Service](https://www.twilio.com/docs/sms/services#send-a-message-with-copilot) you want to associate with the Message. Set this parameter to use the [Messaging Service Settings and Copilot Features](https://www.twilio.com/console/sms/services) you have configured and leave the `from` parameter empty. When only this parameter is set, Twilio will use your enabled Copilot Features to select the `from` phone number for delivery.",
+									"disabled": true
+								},
+								{
+									"key": "PersistentAction",
+									"value": "[\"<string>\",\"<string>\"]",
+									"description": "Rich actions for Channels Messages.",
+									"disabled": true
+								},
+								{
+									"key": "ProvideFeedback",
+									"value": "<boolean>",
+									"description": "Whether to confirm delivery of the message. Set this value to `true` if you are sending messages that have a trackable user action and you intend to confirm delivery of the message using the [Message Feedback API](https://www.twilio.com/docs/sms/api/message-feedback-resource). This parameter is `false` by default.",
+									"disabled": true
+								},
+								{
+									"key": "SmartEncoded",
+									"value": "<boolean>",
+									"description": "Whether to detect Unicode characters that have a similar GSM-7 character and replace them. Can be: `true` or `false`.",
+									"disabled": true
+								},
+								{
+									"key": "StatusCallback",
+									"value": "<uri>",
+									"description": "The URL we should call using the `status_callback_method` to send status information to your application. If specified, we POST these message status changes to the URL: `queued`, `failed`, `sent`, `delivered`, or `undelivered`. Twilio will POST its [standard request parameters](https://www.twilio.com/docs/sms/twiml#request-parameters) as well as some additional parameters including `MessageSid`, `MessageStatus`, and `ErrorCode`. If you include this parameter with the `messaging_service_sid`, we use this URL instead of the Status Callback URL of the [Messaging Service](https://www.twilio.com/docs/sms/services/api). URLs must contain a valid hostname and underscores are not allowed.",
+									"disabled": true
+								},
+								{
+									"key": "ValidityPeriod",
+									"value": "<integer>",
+									"description": "How long in seconds the message can remain in our outgoing message queue. After this period elapses, the message fails and we call your status callback. Can be between 1 and the default value of 14,400 seconds. After a message has been accepted by a carrier, however, we cannot guarantee that the message will not be queued after this period. We recommend that this value be at least 5 seconds.",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}/2010-04-01/Accounts/:AccountSid/Messages.json",
+							"host": [
+								"{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}"
+							],
+							"path": [
+								"2010-04-01",
+								"Accounts",
+								":AccountSid",
+								"Messages.json"
+							],
+							"variable": [
+								{
+									"key": "AccountSid",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"description": "(Required) The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that will create the resource."
+								}
+							]
+						},
+						"description": "Send a message from the account used to make the request with the phone number you purchased from Twilio in the previous step or with any other Twilio phone number you have associated in your account.\n\nRead more about it in the [Twilio Docs](https://www.twilio.com/docs/sms/api/message-resource#create-a-message-resource)"
+					},
+					"response": [
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "To",
+											"value": "<string>",
+											"description": "The destination phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format for SMS/MMS or [Channel user address](https://www.twilio.com/docs/sms/channels#channel-addresses) for other 3rd-party channels."
+										},
+										{
+											"key": "AddressRetention",
+											"value": "<string>",
+											"description": "Determines if the address can be stored or obfuscated based on privacy settings (This can only be one of retain)"
+										},
+										{
+											"key": "ApplicationSid",
+											"value": "<string>",
+											"description": "The SID of the application that should receive message status. We POST a `message_sid` parameter and a `message_status` parameter with a value of `sent` or `failed` to the [application](https://www.twilio.com/docs/usage/api/applications)'s `message_status_callback`. If a `status_callback` parameter is also passed, it will be ignored and the application's `message_status_callback` parameter will be used."
+										},
+										{
+											"key": "Attempt",
+											"value": "<integer>",
+											"description": "Total number of attempts made ( including this ) to send out the message regardless of the provider used"
+										},
+										{
+											"key": "Body",
+											"value": "<string>",
+											"description": "The text of the message you want to send. Can be up to 1,600 characters in length."
+										},
+										{
+											"key": "ContentRetention",
+											"value": "<string>",
+											"description": "Determines if the message content can be stored or redacted based on privacy settings (This can only be one of retain)"
+										},
+										{
+											"key": "ForceDelivery",
+											"value": "<boolean>",
+											"description": "Reserved"
+										},
+										{
+											"key": "From",
+											"value": "<string>",
+											"description": "A Twilio phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format, an [alphanumeric sender ID](https://www.twilio.com/docs/sms/send-messages#use-an-alphanumeric-sender-id), or a [Channel Endpoint address](https://www.twilio.com/docs/sms/channels#channel-addresses) that is enabled for the type of message you want to send. Phone numbers or [short codes](https://www.twilio.com/docs/sms/api/short-code) purchased from Twilio also work here. You cannot, for example, spoof messages from a private cell phone number. If you are using `messaging_service_sid`, this parameter must be empty."
+										},
+										{
+											"key": "MaxPrice",
+											"value": "<number>",
+											"description": "The maximum total price in US dollars that you will pay for the message to be delivered. Can be a decimal value that has up to 4 decimal places. All messages are queued for delivery and the message cost is checked before the message is sent. If the cost exceeds `max_price`, the message will fail and a status of `Failed` is sent to the status callback. If `MaxPrice` is not set, the message cost is not checked."
+										},
+										{
+											"key": "MediaUrl",
+											"value": "[\"<uri>\",\"<uri>\"]",
+											"description": "The URL of the media to send with the message. The media can be of type `gif`, `png`, and `jpeg` and will be formatted correctly on the recipient's device. The media size limit is 5MB for supported file types (JPEG, PNG, GIF) and 500KB for [other types](https://www.twilio.com/docs/sms/accepted-mime-types) of accepted media. To send more than one image in the message body, provide multiple `media_url` parameters in the POST request. You can include up to 10 `media_url` parameters per message. You can send images in an SMS message in only the US and Canada."
+										},
+										{
+											"key": "MessagingServiceSid",
+											"value": "<string>",
+											"description": "The SID of the [Messaging Service](https://www.twilio.com/docs/sms/services#send-a-message-with-copilot) you want to associate with the Message. Set this parameter to use the [Messaging Service Settings and Copilot Features](https://www.twilio.com/console/sms/services) you have configured and leave the `from` parameter empty. When only this parameter is set, Twilio will use your enabled Copilot Features to select the `from` phone number for delivery."
+										},
+										{
+											"key": "PersistentAction",
+											"value": "[\"<string>\",\"<string>\"]",
+											"description": "Rich actions for Channels Messages."
+										},
+										{
+											"key": "ProvideFeedback",
+											"value": "<boolean>",
+											"description": "Whether to confirm delivery of the message. Set this value to `true` if you are sending messages that have a trackable user action and you intend to confirm delivery of the message using the [Message Feedback API](https://www.twilio.com/docs/sms/api/message-feedback-resource). This parameter is `false` by default."
+										},
+										{
+											"key": "SmartEncoded",
+											"value": "<boolean>",
+											"description": "Whether to detect Unicode characters that have a similar GSM-7 character and replace them. Can be: `true` or `false`."
+										},
+										{
+											"key": "StatusCallback",
+											"value": "<uri>",
+											"description": "The URL we should call using the `status_callback_method` to send status information to your application. If specified, we POST these message status changes to the URL: `queued`, `failed`, `sent`, `delivered`, or `undelivered`. Twilio will POST its [standard request parameters](https://www.twilio.com/docs/sms/twiml#request-parameters) as well as some additional parameters including `MessageSid`, `MessageStatus`, and `ErrorCode`. If you include this parameter with the `messaging_service_sid`, we use this URL instead of the Status Callback URL of the [Messaging Service](https://www.twilio.com/docs/sms/services/api). URLs must contain a valid hostname and underscores are not allowed."
+										},
+										{
+											"key": "ValidityPeriod",
+											"value": "<integer>",
+											"description": "How long in seconds the message can remain in our outgoing message queue. After this period elapses, the message fails and we call your status callback. Can be between 1 and the default value of 14,400 seconds. After a message has been accepted by a carrier, however, we cannot guarantee that the message will not be queued after this period. We recommend that this value be at least 5 seconds."
+										}
+									]
+								},
+								"url": {
+									"raw": "{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}/2010-04-01/Accounts/:AccountSid/Messages.json",
+									"host": [
+										"{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}"
+									],
+									"path": [
+										"2010-04-01",
+										"Accounts",
+										":AccountSid",
+										"Messages.json"
+									],
+									"variable": [
+										{
+											"key": "AccountSid"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"account_sid\": \"ACF8\",\n \"api_version\": \"exercitation eiusmod amet laboris\",\n \"body\": \"consectetur exercitation officia magna\",\n \"date_created\": \"consectetur exercitation proident\",\n \"date_sent\": \"culpa sint labore\",\n \"date_updated\": \"proident\",\n \"direction\": \"outbound-call\",\n \"error_code\": -64742646,\n \"error_message\": \"nostrud sint Ut\",\n \"from\": \"Excepteur cillum aute\",\n \"messaging_service_sid\": \"MGDB\",\n \"num_media\": \"dolor veniam non\",\n \"num_segments\": \"et ut sint ut amet\",\n \"price\": \"Lorem reprehenderit\",\n \"price_unit\": \"Excepteur tempor i\",\n \"sid\": \"MM79\",\n \"status\": \"received\",\n \"subresource_uris\": {},\n \"to\": \"Ut non id\",\n \"uri\": \"magna sit esse\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List all messages sent from your Twilio number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"    <table bgcolor=\"#FFFFFF\">",
+									"        <tr>",
+									"            <th>To</th>",
+									"            <th>Message Body</th>",
+									"            <th>Sent at</th>",
+									"        </tr>",
+									"",
+									"        {{#each messages}}",
+									"            <tr>",
+									"                <td>{{to}}</td>",
+									"                <td>{{body}}</td>",
+									"                <td>{{date_sent}}</td>",
+									"            </tr>",
+									"        {{/each}}",
+									"    </table>",
+									"`;",
+									"",
+									"// Set visualizer",
+									"pm.visualizer.set(template, {",
+									"    // Pass the response body parsed as JSON as `data`",
+									"    messages: pm.response.json().messages",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{TWILIO_AUTH_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}/2010-04-01/Accounts/:AccountSid/Messages.json?From={{TWILIO_PHONE_NUMBER}}",
+							"host": [
+								"{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}"
+							],
+							"path": [
+								"2010-04-01",
+								"Accounts",
+								":AccountSid",
+								"Messages.json"
+							],
+							"query": [
+								{
+									"key": "To",
+									"value": "<string>",
+									"description": "Read messages sent to only this phone number.",
+									"disabled": true
+								},
+								{
+									"key": "From",
+									"value": "{{TWILIO_PHONE_NUMBER}}",
+									"description": "Read messages sent from only this phone number or alphanumeric sender ID."
+								},
+								{
+									"key": "DateSent",
+									"value": "<dateTime>",
+									"description": "The date of the messages to show. Specify a date as `YYYY-MM-DD` in GMT to read only messages sent on this date. For example: `2009-07-06`. You can also specify an inequality, such as `DateSent<=YYYY-MM-DD`, to read messages sent on or before midnight on a date, and `DateSent>=YYYY-MM-DD` to read messages sent on or after midnight on a date.",
+									"disabled": true
+								},
+								{
+									"key": "DateSent<",
+									"value": "<dateTime>",
+									"description": "The date of the messages to show. Specify a date as `YYYY-MM-DD` in GMT to read only messages sent on this date. For example: `2009-07-06`. You can also specify an inequality, such as `DateSent<=YYYY-MM-DD`, to read messages sent on or before midnight on a date, and `DateSent>=YYYY-MM-DD` to read messages sent on or after midnight on a date.",
+									"disabled": true
+								},
+								{
+									"key": "DateSent>",
+									"value": "<dateTime>",
+									"description": "The date of the messages to show. Specify a date as `YYYY-MM-DD` in GMT to read only messages sent on this date. For example: `2009-07-06`. You can also specify an inequality, such as `DateSent<=YYYY-MM-DD`, to read messages sent on or before midnight on a date, and `DateSent>=YYYY-MM-DD` to read messages sent on or after midnight on a date.",
+									"disabled": true
+								},
+								{
+									"key": "PageSize",
+									"value": "<integer>",
+									"description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "AccountSid",
+									"value": "{{TWILIO_ACCOUNT_SID}}",
+									"description": "(Required) The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the Message resources to read."
+								}
+							]
+						},
+						"description": "Retrieve a list of messages belonging to the account used to make the request. You can filter for example for only the messages that were sent from a specific phone number.\n\nRead more about it in the [Twilio Docs](https://www.twilio.com/docs/sms/api/message-resource#read-multiple-message-resources)"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}/2010-04-01/Accounts/:AccountSid/Messages.json?To=<string>&From=<string>&DateSent=<dateTime>&DateSent<=<dateTime>&DateSent>=<dateTime>&PageSize=<integer>",
+									"host": [
+										"{{2010-04-01-Accounts-AccountSid-Messages.json-Url}}"
+									],
+									"path": [
+										"2010-04-01",
+										"Accounts",
+										":AccountSid",
+										"Messages.json"
+									],
+									"query": [
+										{
+											"key": "To",
+											"value": "<string>"
+										},
+										{
+											"key": "From",
+											"value": "<string>"
+										},
+										{
+											"key": "DateSent",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "DateSent<",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "DateSent>",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "PageSize",
+											"value": "<integer>"
+										}
+									],
+									"variable": [
+										{
+											"key": "AccountSid"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"end\": 51142961,\n \"first_page_uri\": \"https://ZvltuXKxENEyvG.fnbzDIxrccIwHE6GxsyHjMd\",\n \"messages\": [\n  {\n   \"account_sid\": \"AC9E\",\n   \"api_version\": \"commodo sint sunt eu\",\n   \"body\": \"ut cillum\",\n   \"date_created\": \"fugiat ipsum enim quis\",\n   \"date_sent\": \"o\",\n   \"date_updated\": \"laborum id esse elit\",\n   \"direction\": \"outbound-reply\",\n   \"error_code\": 89665305,\n   \"error_message\": \"deserunt\",\n   \"from\": \"anim esse\",\n   \"messaging_service_sid\": \"MGC0\",\n   \"num_media\": \"enim et\",\n   \"num_segments\": \"quis qui ipsum\",\n   \"price\": \"exercitation Duis\",\n   \"price_unit\": \"consequat qu\",\n   \"sid\": \"SMe5\",\n   \"status\": \"scheduled\",\n   \"subresource_uris\": {},\n   \"to\": \"nulla\",\n   \"uri\": \"cillum ut in irure\"\n  },\n  {\n   \"account_sid\": \"ACD4\",\n   \"api_version\": \"incididunt in non\",\n   \"body\": \"deserunt incididunt irure eiusmod\",\n   \"date_created\": \"sint ea\",\n   \"date_sent\": \"Ut ut consectetur\",\n   \"date_updated\": \"non dolore\",\n   \"direction\": \"outbound-api\",\n   \"error_code\": -69524035,\n   \"error_message\": \"dolore Ut officia\",\n   \"from\": \"reprehenderit\",\n   \"messaging_service_sid\": \"MGEe\",\n   \"num_media\": \"voluptate fugiat eiusmod qui Ut\",\n   \"num_segments\": \"ea\",\n   \"price\": \"consequat\",\n   \"price_unit\": \"fugiat aliquip\",\n   \"sid\": \"MM38\",\n   \"status\": \"received\",\n   \"subresource_uris\": {},\n   \"to\": \"in tempor labore eiusmod\",\n   \"uri\": \"elit non dol\"\n  }\n ],\n \"next_page_uri\": \"http://fSikGpthYZQbOt.sncsPW4TzW44TkKnuDgx8f2FJz.\",\n \"page\": -43897926,\n \"page_size\": 12121047,\n \"previous_page_uri\": \"https://lSrGpSrECCMzKudcyRlwJdfhlnZEaAQ.hytgI,rCvOIy,x1C6vbgTvc9p6X2hkAdrqkd5jx8JKwJPiCrpsg2w\",\n \"start\": -23084704,\n \"uri\": \"https://USSzIQwA.hvxpmaT2476DlQGIi\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Learn how to get started with Twilio Programmable Messaging by acquiring a phone number and sending your first SMS."
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{TWILIO_AUTH_TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{TWILIO_ACCOUNT_SID}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		},
+		{
+			"key": "2010-04-01-Accounts.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Addresses.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Addresses-AddressSid-DependentPhoneNumbers.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Addresses-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Applications.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Applications-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AuthorizedConnectApps.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AuthorizedConnectApps-ConnectAppSid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-Local.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-MachineToMachine.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-Mobile.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-National.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-SharedCost.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-TollFree.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-AvailablePhoneNumbers-CountryCode-Voip.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Balance.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-FeedbackSummary.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-FeedbackSummary-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-CallSid-Feedback.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-CallSid-Notifications.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-CallSid-Notifications-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-CallSid-Payments.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-CallSid-Payments-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-CallSid-Recordings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-CallSid-Recordings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Calls-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Conferences.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Conferences-ConferenceSid-Participants.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Conferences-ConferenceSid-Participants-CallSid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Conferences-ConferenceSid-Recordings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Conferences-ConferenceSid-Recordings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Conferences-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-ConnectApps.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-ConnectApps-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-Local.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-Mobile.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-TollFree.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-ResourceSid-AssignedAddOns.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-ResourceSid-AssignedAddOns-AssignedAddOnSid-Extensions.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-ResourceSid-AssignedAddOns-AssignedAddOnSid-Extensions-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-ResourceSid-AssignedAddOns-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-IncomingPhoneNumbers-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Keys.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Keys-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Messages.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Messages-MessageSid-Feedback.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Messages-MessageSid-Media.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Messages-MessageSid-Media-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Messages-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Notifications.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Notifications-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-OutgoingCallerIds.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-OutgoingCallerIds-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Queues.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Queues-QueueSid-Members.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Queues-QueueSid-Members-CallSid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Queues-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings-RecordingSid-Transcriptions.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings-RecordingSid-Transcriptions-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings-ReferenceSid-AddOnResults.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings-ReferenceSid-AddOnResults-AddOnResultSid-Payloads.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings-ReferenceSid-AddOnResults-AddOnResultSid-Payloads-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings-ReferenceSid-AddOnResults-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Recordings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-CredentialLists.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-CredentialLists-CredentialListSid-Credentials.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-CredentialLists-CredentialListSid-Credentials-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-CredentialLists-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-Auth-Calls-CredentialListMappings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-Auth-Calls-CredentialListMappings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-Auth-Calls-IpAccessControlListMappings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-Auth-Calls-IpAccessControlListMappings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-Auth-Registrations-CredentialListMappings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-Auth-Registrations-CredentialListMappings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-CredentialListMappings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-CredentialListMappings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-IpAccessControlListMappings.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-DomainSid-IpAccessControlListMappings-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-Domains-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-IpAccessControlLists.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-IpAccessControlLists-IpAccessControlListSid-IpAddresses.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-IpAccessControlLists-IpAccessControlListSid-IpAddresses-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SIP-IpAccessControlLists-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SMS-ShortCodes.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SMS-ShortCodes-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SigningKeys.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-SigningKeys-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Tokens.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Transcriptions.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Transcriptions-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-AllTime.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-Daily.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-LastMonth.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-Monthly.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-ThisMonth.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-Today.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-Yearly.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Records-Yesterday.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Triggers.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-AccountSid-Usage-Triggers-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "2010-04-01-Accounts-Sid.json-Url",
+			"value": "https://api.twilio.com"
+		},
+		{
+			"key": "Sid",
+			"value": "<string>"
+		},
+		{
+			"key": "ConnectAppSid",
+			"value": "<string>"
+		},
+		{
+			"key": "CountryCode",
+			"value": "<string>"
+		},
+		{
+			"key": "CallSid",
+			"value": "<string>"
+		}
+	]
+}

@@ -1,0 +1,2133 @@
+{
+	"info": {
+		"_postman_id": "9a62c01e-3db2-4f66-b90d-a4df9dd9bd07",
+		"name": "Okta API",
+		"description": "Allows customers to easily access the Okta API\n\nContact Support:\n Name: No Contact\n Email: email@example.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27825666",
+		"_collection_link": "https://www.postman.com/api-evangelist/workspace/authentication/collection/35240-9a62c01e-3db2-4f66-b90d-a4df9dd9bd07?action=share&creator=27825666&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "api/v1",
+			"item": [
+				{
+					"name": "apps",
+					"item": [
+						{
+							"name": "{app Id}",
+							"item": [
+								{
+									"name": "credentials/keys",
+									"item": [
+										{
+											"name": "{key Id}",
+											"item": [
+												{
+													"name": "Get Key Credential for Application",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/apps/:appId/credentials/keys/:keyId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"apps",
+																":appId",
+																"credentials",
+																"keys",
+																":keyId"
+															],
+															"variable": [
+																{
+																	"key": "appId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																},
+																{
+																	"key": "keyId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "Gets a specific [application key credential](#application-key-credential-model) by `kid`"
+													},
+													"response": []
+												},
+												{
+													"name": "Clone Application Key Credential",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/apps/:appId/credentials/keys/:keyId/clone?targetAid=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"apps",
+																":appId",
+																"credentials",
+																"keys",
+																":keyId",
+																"clone"
+															],
+															"query": [
+																{
+																	"key": "targetAid",
+																	"value": "<string>",
+																	"description": "Unique key of the target Application"
+																}
+															],
+															"variable": [
+																{
+																	"key": "appId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																},
+																{
+																	"key": "keyId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "Clones a X.509 certificate for an application key credential from a source application to target application."
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "List Key Credentials for Application",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/apps/:appId/credentials/keys",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"apps",
+														":appId",
+														"credentials",
+														"keys"
+													],
+													"variable": [
+														{
+															"key": "appId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Enumerates key credentials for an application"
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "groups",
+									"item": [
+										{
+											"name": "List Groups Assigned to Application",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/apps/:appId/groups?q=<string>&after=<string>&limit=<integer>&expand=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"apps",
+														":appId",
+														"groups"
+													],
+													"query": [
+														{
+															"key": "q",
+															"value": "<string>"
+														},
+														{
+															"key": "after",
+															"value": "<string>",
+															"description": "Specifies the pagination cursor for the next page of apps"
+														},
+														{
+															"key": "limit",
+															"value": "<integer>",
+															"description": "Specifies the number of results for a page"
+														},
+														{
+															"key": "expand",
+															"value": "<string>",
+															"description": "Traverses users link relationship and optionally embeds Application User resource"
+														}
+													],
+													"variable": [
+														{
+															"key": "appId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Enumerates group assignments for an application."
+											},
+											"response": []
+										},
+										{
+											"name": "Remove Group from Application",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/apps/:appId/groups/:groupId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"apps",
+														":appId",
+														"groups",
+														":groupId"
+													],
+													"variable": [
+														{
+															"key": "appId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														},
+														{
+															"key": "groupId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Removes a group assignment from an application."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "lifecycle",
+									"item": [
+										{
+											"name": "Activate Application",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/apps/:appId/lifecycle/activate",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"apps",
+														":appId",
+														"lifecycle",
+														"activate"
+													],
+													"variable": [
+														{
+															"key": "appId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Activates an inactive application."
+											},
+											"response": []
+										},
+										{
+											"name": "Deactivate Application",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/apps/:appId/lifecycle/deactivate",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"apps",
+														":appId",
+														"lifecycle",
+														"deactivate"
+													],
+													"variable": [
+														{
+															"key": "appId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Deactivates an active application."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "users",
+									"item": [
+										{
+											"name": "List Users Assigned to Application",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/apps/:appId/users?q=<string>&query_scope=<string>&after=<string>&limit=<integer>&filter=<string>&expand=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"apps",
+														":appId",
+														"users"
+													],
+													"query": [
+														{
+															"key": "q",
+															"value": "<string>"
+														},
+														{
+															"key": "query_scope",
+															"value": "<string>"
+														},
+														{
+															"key": "after",
+															"value": "<string>",
+															"description": "Specifies the pagination cursor for the next page of apps"
+														},
+														{
+															"key": "limit",
+															"value": "<integer>",
+															"description": "Specifies the number of results for a page"
+														},
+														{
+															"key": "filter",
+															"value": "<string>",
+															"description": "Filters apps by status, user.id, group.id or credentials.signing.kid expression"
+														},
+														{
+															"key": "expand",
+															"value": "<string>",
+															"description": "Traverses users link relationship and optionally embeds Application User resource"
+														}
+													],
+													"variable": [
+														{
+															"key": "appId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Enumerates all assigned [application users](#application-user-model) for an application."
+											},
+											"response": []
+										},
+										{
+											"name": "Remove User from Application",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/apps/:appId/users/:userId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"apps",
+														":appId",
+														"users",
+														":userId"
+													],
+													"variable": [
+														{
+															"key": "appId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														},
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Removes an assignment for a user from an application."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Delete Application",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/apps/:appId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"apps",
+												":appId"
+											],
+											"variable": [
+												{
+													"key": "appId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										},
+										"description": "Removes an inactive application."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List Applications",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/apps?q=<string>&after=<string>&limit=<integer>&filter=<string>&expand=<string>&includeNonDeleted=<boolean>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"apps"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "<string>"
+										},
+										{
+											"key": "after",
+											"value": "<string>",
+											"description": "Specifies the pagination cursor for the next page of apps"
+										},
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "Specifies the number of results for a page"
+										},
+										{
+											"key": "filter",
+											"value": "<string>",
+											"description": "Filters apps by status, user.id, group.id or credentials.signing.kid expression"
+										},
+										{
+											"key": "expand",
+											"value": "<string>",
+											"description": "Traverses users link relationship and optionally embeds Application User resource"
+										},
+										{
+											"key": "includeNonDeleted",
+											"value": "<boolean>"
+										}
+									]
+								},
+								"description": "Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "groups",
+					"item": [
+						{
+							"name": "rules",
+							"item": [
+								{
+									"name": "{rule Id}",
+									"item": [
+										{
+											"name": "lifecycle",
+											"item": [
+												{
+													"name": "Activate a group Rule",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/groups/rules/:ruleId/lifecycle/activate",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"groups",
+																"rules",
+																":ruleId",
+																"lifecycle",
+																"activate"
+															],
+															"variable": [
+																{
+																	"key": "ruleId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "Activates a specific group rule by id from your organization"
+													},
+													"response": []
+												},
+												{
+													"name": "Deactivate a group Rule",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/groups/rules/:ruleId/lifecycle/deactivate",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"groups",
+																"rules",
+																":ruleId",
+																"lifecycle",
+																"deactivate"
+															],
+															"variable": [
+																{
+																	"key": "ruleId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "Deactivates a specific group rule by id from your organization"
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "Delete a group Rule",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/groups/rules/:ruleId?removeUsers=<boolean>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"groups",
+														"rules",
+														":ruleId"
+													],
+													"query": [
+														{
+															"key": "removeUsers",
+															"value": "<boolean>"
+														}
+													],
+													"variable": [
+														{
+															"key": "ruleId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Removes a specific group rule by id from your organization"
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "List Group Rules",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/groups/rules?limit=<integer>&after=<string>&expand=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"groups",
+												"rules"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "Specifies the number of results for a page"
+												},
+												{
+													"key": "after",
+													"value": "<string>",
+													"description": "Specifies the pagination cursor for the next page of apps"
+												},
+												{
+													"key": "expand",
+													"value": "<string>",
+													"description": "Traverses users link relationship and optionally embeds Application User resource"
+												}
+											]
+										},
+										"description": "Lists all group rules for your organization."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "{group Id}",
+							"item": [
+								{
+									"name": "users",
+									"item": [
+										{
+											"name": "List Group Members",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/groups/:groupId/users?after=<string>&limit=<integer>&managedBy=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"groups",
+														":groupId",
+														"users"
+													],
+													"query": [
+														{
+															"key": "after",
+															"value": "<string>",
+															"description": "Specifies the pagination cursor for the next page of apps"
+														},
+														{
+															"key": "limit",
+															"value": "<integer>",
+															"description": "Specifies the number of results for a page"
+														},
+														{
+															"key": "managedBy",
+															"value": "<string>"
+														}
+													],
+													"variable": [
+														{
+															"key": "groupId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Enumerates all [users](/docs/api/resources/users.html#user-model) that are a member of a group."
+											},
+											"response": []
+										},
+										{
+											"name": "Remove User from Group",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/groups/:groupId/users/:userId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"groups",
+														":groupId",
+														"users",
+														":userId"
+													],
+													"variable": [
+														{
+															"key": "groupId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														},
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Removes a [user](users.html#user-model) from a group with `OKTA_GROUP` type."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Remove Group",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/groups/:groupId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"groups",
+												":groupId"
+											],
+											"variable": [
+												{
+													"key": "groupId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										},
+										"description": "Removes a group with `OKTA_GROUP` type from your organization."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List Groups",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/groups?q=<string>&filter=<string>&after=<string>&limit=<integer>&expand=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"groups"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "<string>"
+										},
+										{
+											"key": "filter",
+											"value": "<string>",
+											"description": "Filters apps by status, user.id, group.id or credentials.signing.kid expression"
+										},
+										{
+											"key": "after",
+											"value": "<string>",
+											"description": "Specifies the pagination cursor for the next page of apps"
+										},
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "Specifies the number of results for a page"
+										},
+										{
+											"key": "expand",
+											"value": "<string>",
+											"description": "Traverses users link relationship and optionally embeds Application User resource"
+										}
+									]
+								},
+								"description": "Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sessions",
+					"item": [
+						{
+							"name": "{session Id}",
+							"item": [
+								{
+									"name": "Close Session",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/sessions/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"sessions",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Refresh Session",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/sessions/:sessionId/lifecycle/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"sessions",
+												":sessionId",
+												"lifecycle",
+												"refresh"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create Session with Session Token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/sessions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sessions"
+									]
+								},
+								"description": "Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "{user Id}",
+							"item": [
+								{
+									"name": "credentials",
+									"item": [
+										{
+											"name": "Change Password",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/credentials/change_password",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"credentials",
+														"change_password"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Changes a user's password by validating the user's current password.  This operation can only be performed on users in `STAGED`, `ACTIVE`, `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid [password credential](#password-object)"
+											},
+											"response": []
+										},
+										{
+											"name": "Change Recovery Question",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/credentials/change_recovery_question",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"credentials",
+														"change_recovery_question"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Changes a user's recovery question & answer credential by validating the user's current password.  This operation can only be performed on users in **STAGED**, **ACTIVE** or **RECOVERY** `status` that have a valid [password credential](#password-object)"
+											},
+											"response": []
+										},
+										{
+											"name": "Forgot Password",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/credentials/forgot_password?sendEmail=<boolean>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"credentials",
+														"forgot_password"
+													],
+													"query": [
+														{
+															"key": "sendEmail",
+															"value": "<boolean>"
+														}
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Generates a one-time token (OTT) that can be used to reset a user's password.  The user will be required to validate their security question's answer when visiting the reset link.  This operation can only be performed on users with a valid [recovery question credential](#recovery-question-object) and have an `ACTIVE` status."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "factors",
+									"item": [
+										{
+											"name": "{factor Id}",
+											"item": [
+												{
+													"name": "delete Factor",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:userId/factors/:factorId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":userId",
+																"factors",
+																":factorId"
+															],
+															"variable": [
+																{
+																	"key": "userId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																},
+																{
+																	"key": "factorId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor."
+													},
+													"response": []
+												},
+												{
+													"name": "Activate Factor",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:userId/factors/:factorId/lifecycle/activate",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":userId",
+																"factors",
+																":factorId",
+																"lifecycle",
+																"activate"
+															],
+															"variable": [
+																{
+																	"key": "userId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																},
+																{
+																	"key": "factorId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "The `sms` and `token:software:totp` [factor types](#factor-type) require activation to complete the enrollment process."
+													},
+													"response": []
+												},
+												{
+													"name": "Verify MFA Factor",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:userId/factors/:factorId/verify?templateId=<string>&tokenLifetimeSeconds=<integer>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":userId",
+																"factors",
+																":factorId",
+																"verify"
+															],
+															"query": [
+																{
+																	"key": "templateId",
+																	"value": "<string>",
+																	"description": "id of SMS template (only for SMS factor)"
+																},
+																{
+																	"key": "tokenLifetimeSeconds",
+																	"value": "<integer>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "userId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																},
+																{
+																	"key": "factorId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "Verifies an OTP for a `token` or `token:hardware` factor"
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "list Factors",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/factors",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"factors"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Enumerates all the enrolled factors for the specified user"
+											},
+											"response": []
+										},
+										{
+											"name": "list Supported Factors",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/factors/catalog",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"factors",
+														"catalog"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Enumerates all the [supported factors](#supported-factors-for-providers) that can be enrolled for the specified user"
+											},
+											"response": []
+										},
+										{
+											"name": "list Supported Security Questions",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/factors/questions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"factors",
+														"questions"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Enumerates all available security questions for a user's `question` factor"
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "lifecycle",
+									"item": [
+										{
+											"name": "Activate User",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/activate?sendEmail=<boolean>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"activate"
+													],
+													"query": [
+														{
+															"key": "sendEmail",
+															"value": "<boolean>"
+														}
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation.  The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete."
+											},
+											"response": []
+										},
+										{
+											"name": "Deactivate User",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/deactivate",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"deactivate"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Deactivates a user.  This operation can only be performed on users that do not have a `DEPROVISIONED` status.  Deactivation of a user is an asynchronous operation.  The user will have the `transitioningToStatus` property with a value of `DEPROVISIONED` during deactivation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `DEPROVISIONED` when the deactivation process is complete."
+											},
+											"response": []
+										},
+										{
+											"name": "Expire Password",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/expire_password?tempPassword=<object>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"expire_password"
+													],
+													"query": [
+														{
+															"key": "tempPassword",
+															"value": "<object>",
+															"description": "Sets the user's password to a temporary password,  if true"
+														}
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login."
+											},
+											"response": []
+										},
+										{
+											"name": "Reset Factors",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/reset_factors",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"reset_factors"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors."
+											},
+											"response": []
+										},
+										{
+											"name": "Reset Password",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/reset_password?provider=<object>&sendEmail=<boolean>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"reset_password"
+													],
+													"query": [
+														{
+															"key": "provider",
+															"value": "<object>",
+															"description": "Indicates whether to create a user with a specified authentication provider"
+														},
+														{
+															"key": "sendEmail",
+															"value": "<boolean>"
+														}
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow."
+											},
+											"response": []
+										},
+										{
+											"name": "Suspend User",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/suspend",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"suspend"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Suspends a user.  This operation can only be performed on users with an `ACTIVE` status.  The user will have a status of `SUSPENDED` when the process is complete."
+											},
+											"response": []
+										},
+										{
+											"name": "Unlock User",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/unlock",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"unlock"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password."
+											},
+											"response": []
+										},
+										{
+											"name": "Unsuspend User",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/lifecycle/unsuspend",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"lifecycle",
+														"unsuspend"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Unsuspends a user and returns them to the `ACTIVE` state.  This operation can only be performed on users that have a `SUSPENDED` status."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "roles",
+									"item": [
+										{
+											"name": "{role Id}",
+											"item": [
+												{
+													"name": "targets/groups",
+													"item": [
+														{
+															"name": "list Group Targets For Role",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/users/:userId/roles/:roleId/targets/groups?after=<string>&limit=<integer>",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"users",
+																		":userId",
+																		"roles",
+																		":roleId",
+																		"targets",
+																		"groups"
+																	],
+																	"query": [
+																		{
+																			"key": "after",
+																			"value": "<string>",
+																			"description": "Specifies the pagination cursor for the next page of apps"
+																		},
+																		{
+																			"key": "limit",
+																			"value": "<integer>",
+																			"description": "Specifies the number of results for a page"
+																		}
+																	],
+																	"variable": [
+																		{
+																			"key": "userId",
+																			"value": "<string>",
+																			"type": "string",
+																			"description": {
+																				"content": "",
+																				"type": "text/plain"
+																			}
+																		},
+																		{
+																			"key": "roleId",
+																			"value": "<string>",
+																			"type": "string",
+																			"description": {
+																				"content": "",
+																				"type": "text/plain"
+																			}
+																		}
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "remove Group Target From Role",
+															"request": {
+																"method": "DELETE",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/users/:userId/roles/:roleId/targets/groups/:groupId",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"users",
+																		":userId",
+																		"roles",
+																		":roleId",
+																		"targets",
+																		"groups",
+																		":groupId"
+																	],
+																	"variable": [
+																		{
+																			"key": "userId",
+																			"value": "<string>",
+																			"type": "string",
+																			"description": {
+																				"content": "",
+																				"type": "text/plain"
+																			}
+																		},
+																		{
+																			"key": "roleId",
+																			"value": "<string>",
+																			"type": "string",
+																			"description": {
+																				"content": "",
+																				"type": "text/plain"
+																			}
+																		},
+																		{
+																			"key": "groupId",
+																			"value": "<string>",
+																			"type": "string",
+																			"description": {
+																				"content": "",
+																				"type": "text/plain"
+																			}
+																		}
+																	]
+																}
+															},
+															"response": []
+														}
+													]
+												},
+												{
+													"name": "remove Role From User",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:userId/roles/:roleId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":userId",
+																"roles",
+																":roleId"
+															],
+															"variable": [
+																{
+																	"key": "userId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																},
+																{
+																	"key": "roleId",
+																	"value": "<string>",
+																	"type": "string",
+																	"description": {
+																		"content": "",
+																		"type": "text/plain"
+																	}
+																}
+															]
+														},
+														"description": "Unassigns a role from a user."
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "list Assigned Roles",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:userId/roles?expand=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":userId",
+														"roles"
+													],
+													"query": [
+														{
+															"key": "expand",
+															"value": "<string>",
+															"description": "Traverses users link relationship and optionally embeds Application User resource"
+														}
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"type": "string",
+															"description": {
+																"content": "",
+																"type": "text/plain"
+															}
+														}
+													]
+												},
+												"description": "Lists all roles assigned to a user."
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Delete User",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										},
+										"description": "Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Assigned App Links",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users/:userId/appLinks?showAll=<boolean>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"appLinks"
+											],
+											"query": [
+												{
+													"key": "showAll",
+													"value": "<boolean>"
+												}
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										},
+										"description": "Fetches appLinks for all direct or indirect (via group membership) assigned applications."
+									},
+									"response": []
+								},
+								{
+									"name": "Get Member Groups",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users/:userId/groups?after=<string>&limit=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"groups"
+											],
+											"query": [
+												{
+													"key": "after",
+													"value": "<string>",
+													"description": "Specifies the pagination cursor for the next page of apps"
+												},
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "Specifies the number of results for a page"
+												}
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										},
+										"description": "Fetches the groups of which the user is a member."
+									},
+									"response": []
+								},
+								{
+									"name": "end All User Sessions",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users/:userId/sessions?oauthTokens=<boolean>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"sessions"
+											],
+											"query": [
+												{
+													"key": "oauthTokens",
+													"value": "<boolean>",
+													"description": "Revoke issued OpenID Connect and OAuth refresh and access tokens"
+												}
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"type": "string",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											]
+										},
+										"description": "Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/users?q=<string>&after=<string>&limit=<integer>&filter=<string>&format=<string>&search=<string>&expand=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "<string>"
+										},
+										{
+											"key": "after",
+											"value": "<string>",
+											"description": "Specifies the pagination cursor for the next page of apps"
+										},
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "Specifies the number of results for a page"
+										},
+										{
+											"key": "filter",
+											"value": "<string>",
+											"description": "Filters apps by status, user.id, group.id or credentials.signing.kid expression"
+										},
+										{
+											"key": "format",
+											"value": "<string>"
+										},
+										{
+											"key": "search",
+											"value": "<string>",
+											"description": "Searches for users with a supported filtering  expression for most properties"
+										},
+										{
+											"key": "expand",
+											"value": "<string>",
+											"description": "Traverses users link relationship and optionally embeds Application User resource"
+										}
+									]
+								},
+								"description": "Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fetch a list of events from your Okta organization system log.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/logs?until=<string>&since=<string>&filter=<string>&q=<string>&limit=<integer>&sortOrder=<integer>&after=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "until",
+									"value": "<string>"
+								},
+								{
+									"key": "since",
+									"value": "<string>"
+								},
+								{
+									"key": "filter",
+									"value": "<string>",
+									"description": "Filters apps by status, user.id, group.id or credentials.signing.kid expression"
+								},
+								{
+									"key": "q",
+									"value": "<string>"
+								},
+								{
+									"key": "limit",
+									"value": "<integer>",
+									"description": "Specifies the number of results for a page"
+								},
+								{
+									"key": "sortOrder",
+									"value": "<integer>"
+								},
+								{
+									"key": "after",
+									"value": "<string>",
+									"description": "Specifies the pagination cursor for the next page of apps"
+								}
+							]
+						},
+						"description": "The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://your-subdomain.okta.com/",
+			"type": "string"
+		}
+	]
+}

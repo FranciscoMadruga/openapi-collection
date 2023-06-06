@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  title: Flickr
+  description: |-
+    Explore, upload and organize photos on Flickr
+
+    Contact Support:
+     Name: No Contact
+     Email: email@example.com
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+tags:
+  - name: rest
+paths:
+  /rest/:
+    get:
+      tags:
+        - rest
+      summary: Urls Lookup User
+      description: Returns a user NSID, given the url to a user's photos or profile.
+      parameters:
+        - name: method
+          in: query
+          schema:
+            type: string
+          example: flickr.urls.lookupUser
+        - name: api_key
+          in: query
+          schema:
+            type: string
+          description: Your API application key.
+          example: <>
+        - name: format
+          in: query
+          schema:
+            type: string
+          description: >-
+            Response format. Accepted values: rest (REST), xmlrpc (XML-RPC),
+            soap (SOAP), soap2 (Alternate SOAP) json (JSON), php_serial
+            (Serialized PHP).
+          example: <>
+        - name: url
+          in: query
+          schema:
+            type: string
+          description: >-
+            A flickr.com/places URL in the form of /country/region/city. For
+            example: /Canada/Quebec/Montreal
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - rest
+      summary: Photosets Comments Edit Comment
+      description: Edit the text of a comment as the currently authenticated user.
+      requestBody:
+        content: {}
+      parameters:
+        - name: method
+          in: query
+          schema:
+            type: string
+          example: flickr.photosets.comments.editComment
+        - name: api_key
+          in: query
+          schema:
+            type: string
+          description: Your API application key.
+          example: <>
+        - name: comment_id
+          in: query
+          schema:
+            type: string
+          description: The id of the comment to edit.
+          example: <>
+        - name: comment_text
+          in: query
+          schema:
+            type: string
+          description: Text of the comment.
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /upload:
+    post:
+      tags:
+        - General
+      summary: Upload
+      description: >-
+        Uploads a photo. Uploading apps can call the
+        flickr.people.getUploadStatus method in the regular API to obtain file
+        and bandwidth limits for the user.
+      requestBody:
+        content: {}
+      parameters:
+        - name: title
+          in: query
+          schema:
+            type: string
+          description: The title of the photo. Optional.
+          example: <>
+        - name: description
+          in: query
+          schema:
+            type: string
+          description: A description of the photo. May contain some limited HTML. Optional.
+          example: <>
+        - name: tags
+          in: query
+          schema:
+            type: string
+          description: A space-seperated list of tags to apply to the photo. Optional.
+          example: <>
+        - name: is_public
+          in: query
+          schema:
+            type: string
+          description: >-
+            Set to 0 for no, 1 for yes. Specifies who can view the photo.
+            Optional.
+          example: <>
+        - name: is_friend
+          in: query
+          schema:
+            type: string
+          description: >-
+            Set to 0 for no, 1 for yes. Specifies who can view the photo.
+            Optional.
+          example: <>
+        - name: is_family
+          in: query
+          schema:
+            type: string
+          description: >-
+            Set to 0 for no, 1 for yes. Specifies who can view the photo.
+            Optional.
+          example: <>
+        - name: safety_level
+          in: query
+          schema:
+            type: string
+          description: Set to 1 for Safe, 2 for Moderate, or 3 for Restricted. Optional.
+          example: <>
+        - name: content_type
+          in: query
+          schema:
+            type: string
+          description: Set to 1 for Photo, 2 for Screenshot, or 3 for Other. Optional.
+          example: <>
+        - name: hidden
+          in: query
+          schema:
+            type: string
+          description: >-
+            Set to 1 to keep the photo in global search results, 2 to hide from
+            public searches. Optional.
+          example: <>
+        - name: async
+          in: query
+          schema:
+            type: string
+          description: >-
+            Flickr can process photos in async mode, for applications that need
+            to post multiple photos and don't want to wait around for each one
+            to complete, leaving a socket connection open the whole time. Set to
+            1 for async mode, 0 for sync mode.
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /replace:
+    post:
+      tags:
+        - General
+      summary: Replace
+      description: >-
+        Replaces a photo that has already been uploaded to Flickr. Uploading
+        apps can call the flickr.people.getUploadStatus method in the regular
+        API to obtain file and bandwidth limits for the user.
+      requestBody:
+        content: {}
+      parameters:
+        - name: photo_id
+          in: query
+          schema:
+            type: string
+          description: The ID of the photo to replace.
+          example: <>
+        - name: async
+          in: query
+          schema:
+            type: string
+          description: >-
+            Flickr can process photos in async mode, for applications that need
+            to post multiple photos and don't want to wait around for each one
+            to complete, leaving a socket connection open the whole time. Set to
+            1 for async mode, 0 for sync mode.
+          example: <>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

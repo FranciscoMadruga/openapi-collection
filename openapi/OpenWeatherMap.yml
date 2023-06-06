@@ -1,0 +1,235 @@
+openapi: 3.0.0
+info:
+  title: OpenWeatherMap
+  description: >-
+    Get the current weather, daily forecast for 16 days, and a
+    three-hour-interval forecast for 5 days for your city. Helpful stats,
+    graphics, and this day in history charts are available for your reference.
+    Interactive maps show precipitation, clouds, pressure, wind around your
+    location stations. Data is available in JSON, XML, or HTML format. **Note**:
+    This sample Swagger file covers the `current` endpoint only from the
+    OpenWeatherMap API. <br/><br/> **Note**: All parameters are optional, but
+    you must select at least one parameter. Calling the API by city ID (using
+    the `id` parameter) will provide the most precise location results.
+
+
+    Contact Support:
+     Name: No Contact
+     Email: email@example.com
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+paths:
+  /weather:
+    get:
+      tags:
+        - General
+      summary: Call current weather data for one location
+      description: >-
+        Access current weather data for any location on Earth including over
+        200,000 cities! Current weather is frequently updated based on global
+        models and data from more than 40,000 weather stations.
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: >-
+            **City name**. *Example: London*. You can call by city name, or by
+            city name and country code. The API responds with a list of results
+            that match a searching word. For the query value, type the city name
+            and optionally the country code divided by a comma; use ISO 3166
+            country codes.
+          example: <string>
+        - name: id
+          in: query
+          schema:
+            type: string
+          description: >-
+            **City ID**. *Example: `2172797`*. You can call by city ID. The API
+            responds with the exact result. The List of city IDs can be
+            downloaded [here](http://bulk.openweathermap.org/sample/). You can
+            include multiple cities in this parameter &mdash; just separate them
+            by commas. The limit of locations is 20. *Note: A single ID counts
+            as a one API call. So, if you have city IDs, its treated as 3 API
+            calls.*
+          example: <integer>
+        - name: lat
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Latitude**. *Example: 35*. The latitude coordinate of the location
+            of your interest. Must use with `lon`.
+          example: <number>
+        - name: lon
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Longitude**. *Example: 139*. Longitude coordinate of the location
+            of your interest. Must use with `lat`.
+          example: <number>
+        - name: zip
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Zip code**. Search by zip code. *Example: 95050,us*. Please note
+            that if the country is not specified, the search uses USA as a
+            default.
+          example: <string>
+        - name: units
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Units**. *Example: imperial*. Possible values: `metric`,
+            `imperial`. When you do not use the `units` parameter, the format is
+            `standard` by default.
+          example: <string>
+        - name: lang
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Language**. *Example: en*. You can use lang parameter to get the
+            output in your language. We support the following languages that you
+            can use with the corresponded lang values: Arabic - `ar`, Bulgarian
+            - `bg`, Catalan - `ca`, Czech - `cz`, German - `de`, Greek - `el`,
+            English - `en`, Persian (Farsi) - `fa`, Finnish - `fi`, French -
+            `fr`, Galician - `gl`, Croatian - `hr`, Hungarian - `hu`, Italian -
+            `it`, Japanese - `ja`, Korean - `kr`, Latvian - `la`, Lithuanian -
+            `lt`, Macedonian - `mk`, Dutc
+          example: <string>
+        - name: Mode
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Mode**. *Example: html*. Determines the format of the response.
+            Possible values are `xml` and `html`. If the mode parameter is
+            empty, the format is `json` by default.
+          example: <string>
+        - name: appid
+          in: query
+          schema:
+            type: string
+          description: >-
+            **API Key**. *Example: 52a17d91b3ed0697b05a7dd6fdc708c4*. API Keys
+            are associated with developer accounts.
+          example: <string>
+        - name: No Name
+          in: query
+          schema:
+            type: string
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /forecast:
+    get:
+      tags:
+        - General
+      summary: Forecasted Weather
+      description: >-
+        Access forecasted weather data for any location on Earth including over
+        200,000 cities! Current weather is frequently updated based on global
+        models and data from more than 40,000 weather stations.
+      parameters:
+        - name: appid
+          in: query
+          schema:
+            type: string
+          description: >-
+            **API Key**. *Example: 52a17d91b3ed0697b05a7dd6fdc708c4*. API Keys
+            are associated with developer accounts.
+          example: <string>
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: >-
+            **City name**. *Example: London*. You can call by city name, or by
+            city name and country code. The API responds with a list of results
+            that match a searching word. For the query value, type the city name
+            and optionally the country code divided by a comma; use ISO 3166
+            country codes.
+          example: <string>
+        - name: id
+          in: query
+          schema:
+            type: string
+          description: >-
+            **City ID**. *Example: `2172797`*. You can call by city ID. The API
+            responds with the exact result. The List of city IDs can be
+            downloaded [here](http://bulk.openweathermap.org/sample/). You can
+            include multiple cities in this parameter &mdash; just separate them
+            by commas. The limit of locations is 20. *Note: A single ID counts
+            as a one API call. So, if you have city IDs, its treated as 3 API
+            calls.*
+          example: <integer>
+        - name: lat
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Latitude**. *Example: 35*. The latitude coordinate of the location
+            of your interest. Must use with `lon`.
+          example: <number>
+        - name: lon
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Longitude**. *Example: 139*. Longitude coordinate of the location
+            of your interest. Must use with `lat`.
+          example: <number>
+        - name: zip
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Zip code**. Search by zip code. *Example: 95050,us*. Please note
+            that if the country is not specified, the search uses USA as a
+            default.
+          example: <string>
+        - name: units
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Units**. *Example: imperial*. Possible values: `metric`,
+            `imperial`. When you do not use the `units` parameter, the format is
+            `standard` by default.
+          example: <string>
+        - name: lang
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Language**. *Example: en*. You can use lang parameter to get the
+            output in your language. We support the following languages that you
+            can use with the corresponded lang values: Arabic - `ar`, Bulgarian
+            - `bg`, Catalan - `ca`, Czech - `cz`, German - `de`, Greek - `el`,
+            English - `en`, Persian (Farsi) - `fa`, Finnish - `fi`, French -
+            `fr`, Galician - `gl`, Croatian - `hr`, Hungarian - `hu`, Italian -
+            `it`, Japanese - `ja`, Korean - `kr`, Latvian - `la`, Lithuanian -
+            `lt`, Macedonian - `mk`, Dutc
+          example: <string>
+        - name: Mode
+          in: query
+          schema:
+            type: string
+          description: >-
+            **Mode**. *Example: html*. Determines the format of the response.
+            Possible values are `xml` and `html`. If the mode parameter is
+            empty, the format is `json` by default.
+          example: <string>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

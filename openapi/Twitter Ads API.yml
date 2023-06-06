@@ -1,0 +1,5482 @@
+openapi: 3.0.0
+info:
+  title: Twitter Ads API
+  description: >-
+    This is a Postman collection for the Twitter Ads API endpoints. Please see
+    the following documentation for more details:
+
+    https://developer.twitter.com/en/docs/ads/general/overview
+
+
+    In case you have an API-related question, you can also go to the [community
+    forum](https://twittercommunity.com/c/advertiser-api) and search/ask with
+    [required
+    information](https://twittercommunity.com/t/what-information-do-i-need-to-provide-in-order-to-get-help-on-the-forums-as-quickly-as-possible/58097).
+
+
+
+    ## Installation
+
+
+    ### Quick install
+
+
+    Make sure you installed the [Postman
+    client](https://www.getpostman.com/downloads/) on your machine then just
+    click `Run in Postman` button at the right-top. Or, you could also install
+    this collection from your Postman client directly by opening `New` =>
+    `Template` then search "Twitter Ads API".
+
+
+    ### Manual install
+
+
+    You can also download this collection files from GitHub repo here:  
+
+    https://github.com/twitterdev/postman-twitter-ads-api
+
+
+    ## Environment
+
+
+    This collection includes a pre-configured environment setting. You will be
+    needing to set up below variables in order to run each request:
+
+
+    |Name|Description|
+
+    |---|---|
+
+    |`account_id`|Your Ads Account ID.|
+
+    |`version`|Please use the [latest
+    version](https://developer.twitter.com/en/docs/ads/general/overview/versions).|
+
+    |`consumer_key`||
+
+    |`consumer_secret`||
+
+    |`access_token`||
+
+    |`token_secret`||
+
+
+    ## Authentication
+
+
+    As mentioned above, you need to configure your credentials. To get those,
+    please see the following information:
+
+
+    -
+    [Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+
+    - [Obtaining Ads Account credentials
+
+    ](https://developer.twitter.com/en/docs/ads/general/guides/obtaining-ads-account-access)
+
+
+    Please be noted that the Ads API currently only supports OAuth 1.0a.
+  version: 1.0.0
+servers:
+  - url: https://ads-api.twitter.com
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    oauth1Auth:
+      type: http
+      scheme: oauth1
+security:
+  - oauth1Auth: []
+tags:
+  - name: Analytics
+    description: https://developer.twitter.com/en/docs/ads/analytics/overview
+  - name: Analytics > Active Entities
+    description: >-
+      https://developer.twitter.com/en/docs/ads/analytics/api-reference/active-entities
+  - name: Analytics > Asynchronous Analytics
+    description: >-
+      https://developer.twitter.com/en/docs/ads/analytics/api-reference/asynchronous
+  - name: Analytics > Auction Insights
+    description: >-
+      https://developer.twitter.com/en/docs/ads/analytics/api-reference/auction-insights
+  - name: Analytics > Reach and Average Frequency
+    description: https://developer.twitter.com/en/docs/ads/analytics/api-reference/reach
+  - name: Analytics > Synchronous Analytics
+    description: >-
+      https://developer.twitter.com/en/docs/ads/analytics/api-reference/synchronous
+  - name: Audience
+    description: https://developer.twitter.com/en/docs/ads/audiences/overview
+  - name: Audience > Insights
+    description: https://developer.twitter.com/en/docs/ads/audiences/api-reference/insights
+  - name: Audience > Keyword Insights
+    description: >-
+      https://developer.twitter.com/en/docs/ads/audiences/api-reference/keyword-insights
+  - name: Audience > Tailored Audience Permissions
+    description: >-
+      https://developer.twitter.com/en/docs/ads/audiences/api-reference/tailored-audience-permissions
+  - name: Audience > Tailored Audiences
+    description: >-
+      https://developer.twitter.com/en/docs/ads/audiences/api-reference/tailored-audiences
+  - name: Audience > Tailored Audiences Users
+    description: https://developer.twitter.com/en/docs/ads/audiences/api-reference/audience
+  - name: Campaign Management
+    description: https://developer.twitter.com/en/docs/ads/campaign-management/overview
+  - name: Campaign Management > Accounts
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/accounts
+  - name: Campaign Management > Authenticated User Access
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/authenticated-user-access
+  - name: Campaign Management > Bidding Rules
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/bidding-rules
+  - name: Campaign Management > Campaigns
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/campaigns
+  - name: Campaign Management > Content Categories
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/content-categories
+  - name: Campaign Management > Features
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/features
+  - name: Campaign Management > Funding Instruments
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/funding-instruments
+  - name: Campaign Management > IAB Categories
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/iab-categories
+  - name: Campaign Management > Line Items
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/line-items
+  - name: Campaign Management > Line Item Apps
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/line-item-apps
+  - name: Campaign Management > Line Item Placements
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/line-item-placements
+  - name: Campaign Management > Media Creatives
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/media-creatives
+  - name: Campaign Management > Promoted Accounts
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/promoted-accounts
+  - name: Campaign Management > Promoted Tweets
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/promoted-tweets
+  - name: Campaign Management > Promotable Users
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/promotable-users
+  - name: Campaign Management > Scheduled Promoted Tweets
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/scheduled-promoted-tweets
+  - name: Campaign Management > Targeting Criteria
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/targeting-criteria
+  - name: Campaign Management > Targeting Options
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/targeting-options
+  - name: Campaign Management > Targeting Suggestions
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/targeting-suggestions
+  - name: Campaign Management > Tax Settings
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/tax-settings
+  - name: Campaign Management > User Settings
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/user-settings
+  - name: Campaign Management > Advertiser Business Categories
+    description: >
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/advertiser-business-categories
+  - name: Campaign Management > Audience Summary
+    description: >-
+      https://developer.twitter.com/en/docs/ads/campaign-management/api-reference/audience-summary
+  - name: Creatives
+    description: https://developer.twitter.com/en/docs/ads/creatives/overview
+  - name: Creatives > Account Media
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/account-media
+  - name: Creatives > Cards Fetch
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/cards-fetch
+  - name: Creatives > Tweets
+    description: https://developer.twitter.com/en/docs/ads/creatives/api-reference/tweets
+  - name: Creatives > Draft Tweets
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/draft-tweets
+  - name: Creatives > Scheduled Tweets
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/scheduled-tweets
+  - name: Creatives > Website Cards
+    description: https://developer.twitter.com/en/docs/ads/creatives/api-reference/website
+  - name: Creatives > Video Website Cards
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/video-website
+  - name: Creatives > Image App Download Cards
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/image-app-download
+  - name: Creatives > Image Conversation Cards
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/image-conversation
+  - name: Creatives > Image Direct Message Cards
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/image-direct-message
+  - name: Creatives > Video App Download Cards
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/video-app-download
+  - name: Creatives > Video Conversation Cards
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/video-conversation
+  - name: Creatives > Video Direct Message Cards
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/video-direct-message
+  - name: Creatives > Media Library
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/media-library
+  - name: Creatives > Poll Cards
+    description: https://developer.twitter.com/en/docs/ads/creatives/api-reference/poll
+  - name: Creatives > Preroll Call To Actions
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/preroll-call-to-actions
+  - name: Creatives > Tweet Previews
+    description: >-
+      https://developer.twitter.com/en/docs/ads/creatives/api-reference/tweet-previews
+  - name: Measurement
+    description: https://developer.twitter.com/en/docs/ads/measurement/overview
+  - name: Measurement > App Event Tags
+    description: >-
+      https://developer.twitter.com/en/docs/ads/measurement/api-reference/app-event-tags
+  - name: Measurement > App Event Provider Configurations
+    description: >-
+      https://developer.twitter.com/en/docs/ads/measurement/api-reference/app-event-provider-configurations
+  - name: Measurement > App Lists
+    description: >-
+      https://developer.twitter.com/en/docs/ads/measurement/api-reference/app-lists
+  - name: Measurement > Conversion Attribution
+    description: >-
+      https://developer.twitter.com/en/docs/ads/measurement/api-reference/conversion-attribution
+  - name: Measurement > Conversion Event
+    description: >-
+      https://developer.twitter.com/en/docs/ads/measurement/api-reference/conversion-event
+  - name: Measurement > Web Event Tags
+    description: >-
+      https://developer.twitter.com/en/docs/ads/measurement/api-reference/web-event-tags
+paths:
+  /{version}/stats/accounts/{account_id}/active_entities:
+    get:
+      tags:
+        - Analytics > Active Entities
+      summary: stats/accounts/:account_id/active_entities
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: end_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: entity
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/stats/jobs/accounts/{account_id}:
+    get:
+      tags:
+        - Analytics > Asynchronous Analytics
+      summary: stats/jobs/accounts/:account_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Analytics > Asynchronous Analytics
+      summary: stats/jobs/accounts/:account_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: end_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: entity
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: entity_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: granularity
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: metric_groups
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: placement
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/stats/jobs/accounts/{account_id}/{job_id}:
+    delete:
+      tags:
+        - Analytics > Asynchronous Analytics
+      summary: stats/jobs/accounts/:account_id/:job_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: job_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/auction_insights:
+    get:
+      tags:
+        - Analytics > Auction Insights
+      summary: accounts/:account_id/auction_insights
+      parameters:
+        - name: end_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: granularity
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: line_item_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: placement
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/stats/accounts/{account_id}/reach/campaigns:
+    get:
+      tags:
+        - Analytics > Reach and Average Frequency
+      summary: stats/accounts/:account_id/reach/campaigns
+      parameters:
+        - name: campaign_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: end_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/stats/accounts/{account_id}/reach/funding_instruments:
+    get:
+      tags:
+        - Analytics > Reach and Average Frequency
+      summary: stats/accounts/:account_id/reach/funding_instruments
+      parameters:
+        - name: funding_instrument_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: end_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/stats/accounts/{account_id}:
+    get:
+      tags:
+        - Analytics > Synchronous Analytics
+      summary: stats/accounts/:account_id
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: end_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: entity
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: entity_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: granularity
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: metric_groups
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: placement
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/insights/accounts/{account_id}:
+    get:
+      tags:
+        - Audience > Insights
+      summary: insights/accounts/:account_id
+      parameters:
+        - name: audience_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/insights/accounts/{account_id}/available_audiences:
+    get:
+      tags:
+        - Audience > Insights
+      summary: insights/accounts/:account_id/available_audiences
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/insights/keywords/search:
+    get:
+      tags:
+        - Audience > Keyword Insights
+      summary: insights/keywords/search
+      parameters:
+        - name: granularity
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: keywords
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tailored_audiences/{tailored_audience_id}/permissions:
+    get:
+      tags:
+        - Audience > Tailored Audience Permissions
+      summary: >-
+        accounts/:account_id/tailored_audiences/:tailored_audience_id/permissions
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: tailored_audience_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Audience > Tailored Audience Permissions
+      summary: >-
+        accounts/:account_id/tailored_audiences/:tailored_audience_id/permissions
+      requestBody:
+        content: {}
+      parameters:
+        - name: granted_account_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: permission_level
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: tailored_audience_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tailored_audiences/{tailored_audience_id}/permissions/{tailored_audience_permission_id}:
+    delete:
+      tags:
+        - Audience > Tailored Audience Permissions
+      summary: >-
+        accounts/:account_id/tailored_audiences/:tailored_audience_id/permissions/:tailored_audience_permission_id
+      parameters:
+        - name: tailored_audience_permission_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: tailored_audience_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: tailored_audience_permission_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tailored_audiences:
+    get:
+      tags:
+        - Audience > Tailored Audiences
+      summary: accounts/:account_id/tailored_audiences
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Audience > Tailored Audiences
+      summary: accounts/:account_id/tailored_audiences
+      requestBody:
+        content: {}
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tailored_audiences/{tailored_audience_id}:
+    get:
+      tags:
+        - Audience > Tailored Audiences
+      summary: accounts/:account_id/tailored_audiences/:tailored_audience_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: tailored_audience_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Audience > Tailored Audiences
+      summary: accounts/:account_id/tailored_audiences/:tailored_audience_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: tailored_audience_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/batch/accounts/{account_id}/tailored_audiences:
+    post:
+      tags:
+        - Audience > Tailored Audiences
+      summary: batch/accounts/:account_id/tailored_audiences
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: audience_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: child_segments
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: operation_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: params
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tailored_audiences/{tailored_audience_id}/users:
+    post:
+      tags:
+        - Audience > Tailored Audiences Users
+      summary: accounts/:account_id/tailored_audiences/:tailored_audience_id/users
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: operation_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: params
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: users
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: tailored_audience_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts:
+    get:
+      tags:
+        - Campaign Management > Accounts
+      summary: accounts
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Accounts
+      summary: accounts
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}:
+    get:
+      tags:
+        - Campaign Management > Accounts
+      summary: accounts/:account_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Campaign Management > Accounts
+      summary: accounts/:account_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Accounts
+      summary: accounts/:account_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/authenticated_user_access:
+    get:
+      tags:
+        - Campaign Management > Authenticated User Access
+      summary: accounts/:account_id/authenticated_user_access
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/bidding_rules:
+    get:
+      tags:
+        - Campaign Management > Bidding Rules
+      summary: bidding_rules
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/campaigns:
+    get:
+      tags:
+        - Campaign Management > Campaigns
+      summary: accounts/:account_id/campaigns
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Campaigns
+      summary: accounts/:account_id/campaigns
+      requestBody:
+        content: {}
+      parameters:
+        - name: funding_instrument_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/campaigns/{campaign_id}:
+    get:
+      tags:
+        - Campaign Management > Campaigns
+      summary: accounts/:account_id/campaigns/:campaign_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: campaign_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Campaign Management > Campaigns
+      summary: accounts/:account_id/campaigns/:campaign_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: campaign_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Campaigns
+      summary: accounts/:account_id/campaigns/:campaign_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: campaign_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/batch/accounts/{account_id}/campaigns:
+    post:
+      tags:
+        - Campaign Management > Campaigns
+      summary: batch/accounts/:account_id/campaigns
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: operation_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: params
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/content_categories:
+    get:
+      tags:
+        - Campaign Management > Content Categories
+      summary: content_categories
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/features:
+    get:
+      tags:
+        - Campaign Management > Features
+      summary: accounts/:account_id/features
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Features
+      summary: accounts/:account_id/features
+      requestBody:
+        content: {}
+      parameters:
+        - name: feature_keys
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Features
+      summary: accounts/:account_id/features
+      parameters:
+        - name: feature_keys
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/funding_instruments:
+    get:
+      tags:
+        - Campaign Management > Funding Instruments
+      summary: accounts/:account_id/funding_instruments
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Funding Instruments
+      summary: accounts/:account_id/funding_instruments
+      requestBody:
+        content: {}
+      parameters:
+        - name: currency
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: start_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/funding_instruments/{funding_instrument_id}:
+    get:
+      tags:
+        - Campaign Management > Funding Instruments
+      summary: accounts/:account_id/funding_instruments/:funding_instrument_id
+      parameters:
+        - name: funding_instrument_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: funding_instrument_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Campaign Management > Funding Instruments
+      summary: accounts/:account_id/funding_instruments/:funding_instrument_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: funding_instrument_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: funding_instrument_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Funding Instruments
+      summary: accounts/:account_id/funding_instruments/:funding_instrument_id
+      parameters:
+        - name: funding_instrument_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: funding_instrument_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/iab_categories:
+    get:
+      tags:
+        - Campaign Management > IAB Categories
+      summary: iab_categories
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/line_items:
+    get:
+      tags:
+        - Campaign Management > Line Items
+      summary: accounts/:account_id/line_items
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Line Items
+      summary: accounts/:account_id/line_items
+      requestBody:
+        content: {}
+      parameters:
+        - name: campaign_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: objective
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: placements
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: product_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/line_items/{line_item_id}:
+    get:
+      tags:
+        - Campaign Management > Line Items
+      summary: accounts/:account_id/line_items/:line_item_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: line_item_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Campaign Management > Line Items
+      summary: accounts/:account_id/line_items/:line_item_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: line_item_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Line Items
+      summary: accounts/:account_id/line_items/:line_item_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: line_item_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/batch/accounts/{account_id}/line_items:
+    post:
+      tags:
+        - Campaign Management > Line Items
+      summary: batch/accounts/:account_id/line_items
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: operation_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: params
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/line_item_apps:
+    get:
+      tags:
+        - Campaign Management > Line Item Apps
+      summary: accounts/:account_id/line_item_apps
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Line Item Apps
+      summary: accounts/:account_id/line_item_apps
+      requestBody:
+        content: {}
+      parameters:
+        - name: app_store_identifier
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: line_item_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: os_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/line_item_apps/{line_item_app_id}:
+    get:
+      tags:
+        - Campaign Management > Line Item Apps
+      summary: accounts/:account_id/line_item_apps/:line_item_app_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: line_item_app_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Line Item Apps
+      summary: accounts/:account_id/line_item_apps/:line_item_app_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: line_item_app_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/line_items/placements:
+    get:
+      tags:
+        - Campaign Management > Line Item Placements
+      summary: line_items/placements
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/media_creatives:
+    get:
+      tags:
+        - Campaign Management > Media Creatives
+      summary: accounts/:account_id/media_creatives
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Media Creatives
+      summary: accounts/:account_id/media_creatives
+      requestBody:
+        content: {}
+      parameters:
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: account_media_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: line_item_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/media_creatives/{media_creative_id}:
+    get:
+      tags:
+        - Campaign Management > Media Creatives
+      summary: accounts/:account_id/media_creatives/:media_creative_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: media_creative_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Media Creatives
+      summary: accounts/:account_id/media_creatives/:media_creative_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: media_creative_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/promoted_accounts:
+    get:
+      tags:
+        - Campaign Management > Promoted Accounts
+      summary: accounts/:account_id/promoted_accounts
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Promoted Accounts
+      summary: accounts/:account_id/promoted_accounts
+      requestBody:
+        content: {}
+      parameters:
+        - name: line_item_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/promoted_accounts/{promoted_account_id}:
+    get:
+      tags:
+        - Campaign Management > Promoted Accounts
+      summary: accounts/:account_id/promoted_accounts/:promoted_account_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: promoted_account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Promoted Accounts
+      summary: accounts/:account_id/promoted_accounts/:promoted_account_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: promoted_account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/promoted_tweets:
+    get:
+      tags:
+        - Campaign Management > Promoted Tweets
+      summary: accounts/:account_id/promoted_tweets
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Promoted Tweets
+      summary: accounts/:account_id/promoted_tweets
+      requestBody:
+        content: {}
+      parameters:
+        - name: line_item_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: tweet_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/promoted_tweets/{promoted_tweet_id}:
+    get:
+      tags:
+        - Campaign Management > Promoted Tweets
+      summary: accounts/:account_id/promoted_tweets/:promoted_tweet_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: promoted_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Promoted Tweets
+      summary: accounts/:account_id/promoted_tweets/:promoted_tweet_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: promoted_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/promotable_users:
+    get:
+      tags:
+        - Campaign Management > Promotable Users
+      summary: accounts/:account_id/promotable_users
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/promotable_users/{promotable_user_id}:
+    get:
+      tags:
+        - Campaign Management > Promotable Users
+      summary: accounts/:account_id/promotable_users/:promotable_user_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: promotable_user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/scheduled_promoted_tweets:
+    get:
+      tags:
+        - Campaign Management > Scheduled Promoted Tweets
+      summary: accounts/:account_id/scheduled_promoted_tweets
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Scheduled Promoted Tweets
+      summary: accounts/:account_id/scheduled_promoted_tweets
+      requestBody:
+        content: {}
+      parameters:
+        - name: line_item_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: scheduled_tweet_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/scheduled_promoted_tweets/{scheduled_promoted_tweet_id}:
+    get:
+      tags:
+        - Campaign Management > Scheduled Promoted Tweets
+      summary: >-
+        accounts/:account_id/scheduled_promoted_tweets/:scheduled_promoted_tweet_id
+      parameters:
+        - name: scheduled_promoted_tweet_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: scheduled_promoted_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Scheduled Promoted Tweets
+      summary: >-
+        accounts/:account_id/scheduled_promoted_tweets/:scheduled_promoted_tweet_id
+      parameters:
+        - name: scheduled_promoted_tweet_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: scheduled_promoted_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/targeting_criteria:
+    get:
+      tags:
+        - Campaign Management > Targeting Criteria
+      summary: accounts/:account_id/targeting_criteria
+      parameters:
+        - name: line_item_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Campaign Management > Targeting Criteria
+      summary: accounts/:account_id/targeting_criteria
+      requestBody:
+        content: {}
+      parameters:
+        - name: line_item_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: targeting_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: targeting_value
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/targeting_criteria/{targeting_criterion_id}:
+    get:
+      tags:
+        - Campaign Management > Targeting Criteria
+      summary: accounts/:account_id/targeting_criteria/:targeting_criterion_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: targeting_criterion_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Campaign Management > Targeting Criteria
+      summary: accounts/:account_id/targeting_criteria/:targeting_criterion_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: targeting_criterion_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/batch/accounts/{account_id}/targeting_criteria:
+    post:
+      tags:
+        - Campaign Management > Targeting Criteria
+      summary: batch/accounts/:account_id/targeting_criteria
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: operation_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: params
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/app_store_categories:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/app_store_categories
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/behavior_taxonomies:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/behavior_taxonomies
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/behaviors:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/behaviors
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/conversations:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/conversations
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/devices:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/devices
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/events:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/events
+      parameters:
+        - name: event_types
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/interests:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/interests
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/languages:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/languages
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/locations:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/locations
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/network_operators:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/network_operators
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/platform_versions:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/platform_versions
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/platforms:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/platforms
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/tv_markets:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/tv_markets
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/targeting_criteria/tv_shows:
+    get:
+      tags:
+        - Campaign Management > Targeting Options
+      summary: targeting_criteria/tv_shows
+      parameters:
+        - name: locale
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/targeting_suggestions:
+    get:
+      tags:
+        - Campaign Management > Targeting Suggestions
+      summary: accounts/:account_id/targeting_suggestions
+      parameters:
+        - name: suggestion_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: targeting_values
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tax_settings:
+    get:
+      tags:
+        - Campaign Management > Tax Settings
+      summary: accounts/:account_id/tax_settings
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Campaign Management > Tax Settings
+      summary: accounts/:account_id/tax_settings
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/user_settings/{user_id}:
+    get:
+      tags:
+        - Campaign Management > User Settings
+      summary: accounts/:account_id/user_settings/:user_id
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Campaign Management > User Settings
+      summary: accounts/:account_id/user_settings/:user_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/advertiser_business_categories:
+    get:
+      tags:
+        - Campaign Management > Advertiser Business Categories
+      summary: advertiser_business_categories
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/audience_summary:
+    post:
+      tags:
+        - Campaign Management > Audience Summary
+      summary: accounts/:account_id/audience_summary
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: targeting_criteria
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/account_media:
+    get:
+      tags:
+        - Creatives > Account Media
+      summary: accounts/:account_id/account_media
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/account_media/{account_media_id}:
+    get:
+      tags:
+        - Creatives > Account Media
+      summary: accounts/:account_id/account_media/:account_media_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Account Media
+      summary: accounts/:account_id/account_media/:account_media_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/all:
+    get:
+      tags:
+        - Creatives > Cards Fetch
+      summary: accounts/:account_id/cards/all
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: card_uris
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/all/{card_id}:
+    get:
+      tags:
+        - Creatives > Cards Fetch
+      summary: accounts/:account_id/cards/all/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tweets:
+    get:
+      tags:
+        - Creatives > Tweets
+      summary: accounts/:account_id/tweets
+      parameters:
+        - name: tweet_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tweet:
+    post:
+      tags:
+        - Creatives > Tweets
+      summary: accounts/:account_id/tweet
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: as_user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/draft_tweets:
+    get:
+      tags:
+        - Creatives > Draft Tweets
+      summary: accounts/:account_id/draft_tweets
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Draft Tweets
+      summary: accounts/:account_id/draft_tweets
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: as_user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/draft_tweets/{draft_tweet_id}:
+    get:
+      tags:
+        - Creatives > Draft Tweets
+      summary: accounts/:account_id/draft_tweets/:draft_tweet_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: draft_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Draft Tweets
+      summary: accounts/:account_id/draft_tweets/:draft_tweet_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: draft_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Draft Tweets
+      summary: accounts/:account_id/draft_tweets/:draft_tweet_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: draft_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/draft_tweets/preview/{draft_tweet_id}:
+    post:
+      tags:
+        - Creatives > Draft Tweets
+      summary: accounts/:account_id/draft_tweets/preview/:draft_tweet_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: draft_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/scheduled_tweets:
+    get:
+      tags:
+        - Creatives > Scheduled Tweets
+      summary: accounts/:account_id/scheduled_tweets
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Scheduled Tweets
+      summary: accounts/:account_id/scheduled_tweets
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: as_user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: scheduled_at
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/scheduled_tweets/{scheduled_tweet_id}:
+    get:
+      tags:
+        - Creatives > Scheduled Tweets
+      summary: accounts/:account_id/scheduled_tweets/:scheduled_tweet_id
+      parameters:
+        - name: scheduled_tweet_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: scheduled_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Scheduled Tweets
+      summary: accounts/:account_id/scheduled_tweets/:scheduled_tweet_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: scheduled_tweet_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: scheduled_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Scheduled Tweets
+      summary: accounts/:account_id/scheduled_tweets/:scheduled_tweet_id
+      parameters:
+        - name: scheduled_tweet_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: scheduled_tweet_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/website:
+    get:
+      tags:
+        - Creatives > Website Cards
+      summary: accounts/:account_id/cards/website
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Website Cards
+      summary: accounts/:account_id/cards/website
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: website_title
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: website_url
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/website/{card_id}:
+    get:
+      tags:
+        - Creatives > Website Cards
+      summary: accounts/:account_id/cards/website/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Website Cards
+      summary: accounts/:account_id/cards/website/:card_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Website Cards
+      summary: accounts/:account_id/cards/website/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_website:
+    get:
+      tags:
+        - Creatives > Video Website Cards
+      summary: accounts/:account_id/cards/video_website
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Video Website Cards
+      summary: accounts/:account_id/cards/video_website
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: title
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: media_key
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: website_url
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_website/{card_id}:
+    get:
+      tags:
+        - Creatives > Video Website Cards
+      summary: accounts/:account_id/cards/video_website/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Video Website Cards
+      summary: accounts/:account_id/cards/video_website/:card_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Video Website Cards
+      summary: accounts/:account_id/cards/video_website/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/image_app_download:
+    get:
+      tags:
+        - Creatives > Image App Download Cards
+      summary: accounts/:account_id/cards/image_app_download
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Image App Download Cards
+      summary: accounts/:account_id/cards/image_app_download
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: country_code
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/image_app_download/{card_id}:
+    get:
+      tags:
+        - Creatives > Image App Download Cards
+      summary: accounts/:account_id/cards/image_app_download/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Image App Download Cards
+      summary: accounts/:account_id/cards/image_app_download/:card_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Image App Download Cards
+      summary: accounts/:account_id/cards/image_app_download/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/image_conversation:
+    get:
+      tags:
+        - Creatives > Image Conversation Cards
+      summary: accounts/:account_id/cards/image_conversation
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Image Conversation Cards
+      summary: accounts/:account_id/cards/image_conversation
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: first_cta
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: first_cta_tweet
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: thank_you_text
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/image_conversation/{card_id}:
+    get:
+      tags:
+        - Creatives > Image Conversation Cards
+      summary: accounts/:account_id/cards/image_conversation/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Image Conversation Cards
+      summary: accounts/:account_id/cards/image_conversation/:card_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Image Conversation Cards
+      summary: accounts/:account_id/cards/image_conversation/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/image_direct_message:
+    get:
+      tags:
+        - Creatives > Image Direct Message Cards
+      summary: accounts/:account_id/cards/image_direct_message
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Image Direct Message Cards
+      summary: accounts/:account_id/cards/image_direct_message
+      requestBody:
+        content: {}
+      parameters:
+        - name: first_cta
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: first_cta_welcome_message_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: recipient_user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Image Direct Message Cards
+      summary: accounts/:account_id/cards/image_direct_message
+      requestBody:
+        content: {}
+      parameters:
+        - name: card_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/image_direct_message/{card_id}:
+    get:
+      tags:
+        - Creatives > Image Direct Message Cards
+      summary: accounts/:account_id/cards/image_direct_message/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Image Direct Message Cards
+      summary: accounts/:account_id/cards/image_direct_message/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_app_download:
+    get:
+      tags:
+        - Creatives > Video App Download Cards
+      summary: accounts/:account_id/cards/video_app_download
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Video App Download Cards
+      summary: accounts/:account_id/cards/video_app_download
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: country_code
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: media_key
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_app_download/{card_id}:
+    get:
+      tags:
+        - Creatives > Video App Download Cards
+      summary: accounts/:account_id/cards/video_app_download/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Video App Download Cards
+      summary: accounts/:account_id/cards/video_app_download/:card_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Video App Download Cards
+      summary: accounts/:account_id/cards/video_app_download/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_conversation:
+    get:
+      tags:
+        - Creatives > Video Conversation Cards
+      summary: accounts/:account_id/cards/video_conversation
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Video Conversation Cards
+      summary: accounts/:account_id/cards/video_conversation
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: first_cta
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: first_cta_tweet
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: thank_you_text
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: media_key
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_conversation/{card_id}:
+    get:
+      tags:
+        - Creatives > Video Conversation Cards
+      summary: accounts/:account_id/cards/video_conversation/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Video Conversation Cards
+      summary: accounts/:account_id/cards/video_conversation/:card_id
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Video Conversation Cards
+      summary: accounts/:account_id/cards/video_conversation/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_direct_message:
+    get:
+      tags:
+        - Creatives > Video Direct Message Cards
+      summary: accounts/:account_id/cards/video_direct_message
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Video Direct Message Cards
+      summary: accounts/:account_id/cards/video_direct_message
+      requestBody:
+        content: {}
+      parameters:
+        - name: first_cta
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: first_cta_welcome_message_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: recipient_user_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: media_key
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/video_direct_message/{card_id}:
+    get:
+      tags:
+        - Creatives > Video Direct Message Cards
+      summary: accounts/:account_id/cards/video_direct_message/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Video Direct Message Cards
+      summary: accounts/:account_id/cards/video_direct_message/:card_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Video Direct Message Cards
+      summary: accounts/:account_id/cards/video_direct_message/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/media_library:
+    get:
+      tags:
+        - Creatives > Media Library
+      summary: accounts/:account_id/media_library
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Media Library
+      summary: accounts/:account_id/media_library
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/media_library/{media_key}:
+    get:
+      tags:
+        - Creatives > Media Library
+      summary: accounts/:account_id/media_library/:media_key
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: media_key
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Media Library
+      summary: accounts/:account_id/media_library/:media_key
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: media_key
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Media Library
+      summary: accounts/:account_id/media_library/:media_key
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: media_key
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/poll:
+    get:
+      tags:
+        - Creatives > Poll Cards
+      summary: accounts/:account_id/cards/poll
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Poll Cards
+      summary: accounts/:account_id/cards/poll
+      requestBody:
+        content: {}
+      parameters:
+        - name: duration_in_minutes
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: first_choice
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: second_choice
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/cards/poll/{card_id}:
+    get:
+      tags:
+        - Creatives > Poll Cards
+      summary: accounts/:account_id/cards/poll/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Poll Cards
+      summary: accounts/:account_id/cards/poll/:card_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: card_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/preroll_call_to_actions:
+    get:
+      tags:
+        - Creatives > Preroll Call To Actions
+      summary: accounts/:account_id/preroll_call_to_actions
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Creatives > Preroll Call To Actions
+      summary: accounts/:account_id/preroll_call_to_actions
+      requestBody:
+        content: {}
+      parameters:
+        - name: call_to_action
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: call_to_action_url
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: line_item_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/preroll_call_to_actions/{preroll_call_to_action_id}:
+    get:
+      tags:
+        - Creatives > Preroll Call To Actions
+      summary: accounts/:account_id/preroll_call_to_actions/:preroll_call_to_action_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: preroll_call_to_action_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Creatives > Preroll Call To Actions
+      summary: accounts/:account_id/preroll_call_to_actions/:preroll_call_to_action_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: preroll_call_to_action_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Creatives > Preroll Call To Actions
+      summary: accounts/:account_id/preroll_call_to_actions/:preroll_call_to_action_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: preroll_call_to_action_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/tweet_previews:
+    get:
+      tags:
+        - Creatives > Tweet Previews
+      summary: accounts/:account_id/tweet_previews
+      parameters:
+        - name: tweet_ids
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: tweet_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/app_event_tags:
+    get:
+      tags:
+        - Measurement > App Event Tags
+      summary: accounts/:account_id/app_event_tags
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Measurement > App Event Tags
+      summary: accounts/:account_id/app_event_tags
+      requestBody:
+        content: {}
+      parameters:
+        - name: app_store_identifier
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: conversion_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: os_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: provider_app_event_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: provider_app_event_name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/app_event_tags/{app_event_tag_id}:
+    get:
+      tags:
+        - Measurement > App Event Tags
+      summary: accounts/:account_id/app_event_tags/:app_event_tag_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: app_event_tag_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/app_event_tags/{id}:
+    delete:
+      tags:
+        - Measurement > App Event Tags
+      summary: accounts/:account_id/app_event_tags/:id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/app_event_provider_configurations:
+    get:
+      tags:
+        - Measurement > App Event Provider Configurations
+      summary: accounts/:account_id/app_event_provider_configurations
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Measurement > App Event Provider Configurations
+      summary: accounts/:account_id/app_event_provider_configurations
+      requestBody:
+        content: {}
+      parameters:
+        - name: provider_advertiser_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/app_event_provider_configurations/{id}:
+    get:
+      tags:
+        - Measurement > App Event Provider Configurations
+      summary: accounts/:account_id/app_event_provider_configurations/:id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Measurement > App Event Provider Configurations
+      summary: accounts/:account_id/app_event_provider_configurations/:id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/app_lists:
+    get:
+      tags:
+        - Measurement > App Lists
+      summary: accounts/:account_id/app_lists
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Measurement > App Lists
+      summary: accounts/:account_id/app_lists
+      requestBody:
+        content: {}
+      parameters:
+        - name: app_store_identifiers
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/app_lists/{app_list_id}:
+    get:
+      tags:
+        - Measurement > App Lists
+      summary: accounts/:account_id/app_lists/:app_list_id
+      parameters:
+        - name: app_list_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: app_list_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Measurement > App Lists
+      summary: accounts/:account_id/app_lists/:app_list_id
+      parameters:
+        - name: app_list_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: app_list_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/conversion_attribution:
+    get:
+      tags:
+        - Measurement > Conversion Attribution
+      summary: conversion_attribution
+      parameters:
+        - name: app_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: conversion_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: conversion_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: hashed_device_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: os_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/conversion_event:
+    post:
+      tags:
+        - Measurement > Conversion Event
+      summary: conversion_event
+      requestBody:
+        content: {}
+      parameters:
+        - name: app_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: conversion_time
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: conversion_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: hashed_device_id
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: os_type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/web_event_tags:
+    get:
+      tags:
+        - Measurement > Web Event Tags
+      summary: accounts/:account_id/web_event_tags
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Measurement > Web Event Tags
+      summary: accounts/:account_id/web_event_tags
+      requestBody:
+        content: {}
+      parameters:
+        - name: click_window
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: retargeting_enabled
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: view_through_window
+          in: query
+          schema:
+            type: string
+          description: required
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{version}/accounts/{account_id}/web_event_tags/{web_event_tag_id}:
+    get:
+      tags:
+        - Measurement > Web Event Tags
+      summary: accounts/:account_id/web_event_tags/:web_event_tag_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: web_event_tag_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Measurement > Web Event Tags
+      summary: accounts/:account_id/web_event_tags/:web_event_tag_id
+      requestBody:
+        content: {}
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: web_event_tag_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Measurement > Web Event Tags
+      summary: accounts/:account_id/web_event_tags/:web_event_tag_id
+      parameters:
+        - name: version
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: web_event_tag_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
